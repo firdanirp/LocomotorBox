@@ -26,6 +26,8 @@ except ImportError:
 
     fileDialog = tk.filedialog
 
+
+
 #from tkinter import tix
 
 import threading #to run Arduino loop and tkinter loop alongside
@@ -40,9 +42,9 @@ def about():
 
                                 "10-BOX Schedule Setter\n\n"+
 
-                                "Version 0.2.4\n"+
+                                "Version 0.2.7\n"+
 
-                                "Oct 12, 2018\n"+
+                                "Oct 14, 2018\n"+
 
                                 "Laboratory of Braintime\n")
 
@@ -185,7 +187,9 @@ def get_data(): # Start recording
     w.close()
 
     global serial_obj
+
     global dead
+
     try:
 
         while True:
@@ -444,16 +448,25 @@ def get_data(): # Start recording
 
                 status.pack(side="bottom", fill="x")
 
-                status.set("Phase 3 schedules sent. All schedules transferred.") 
+                status.set("All schedules transferred. Recording began.") 
 
             i=i+1
+
     except:
-        print('Stopped recording and disconnected to the device')
+
+        print('Stopped recording and disconnected from the boxes')
+
+
 
 def writeToJSONFile(filename, data):
+
     filePathNameWExt = filename
+
     with open(filePathNameWExt, 'w') as fp:
+
         json.dump(data, fp)
+
+
 
 def save_conf(): # Save schedule configuration
 
@@ -462,344 +475,569 @@ def save_conf(): # Save schedule configuration
     status.set("Saving the schedule configuration...")
 
     config={}
+
     config['hourOn1_1'] = hourOn1_1
+
     config['minOn1_1'] = minOn1_1
-    config['hourOff1_1'] = minOff1_1
+
+    config['hourOff1_1'] = hourOff1_1
+
     config['minOff1_1'] = minOff1_1
 
+
+
     config['hourOn2_1'] = hourOn2_1
+
     config['minOn2_1'] = minOn2_1
+
     config['hourOff2_1'] = hourOff2_1
+
     config['minOff2_1'] = minOff2_1
 
+
+
     config['hourOn3_1'] = hourOn3_1
+
     config['minOn3_1'] = minOn3_1
+
     config['hourOff3_1'] = hourOff3_1
+
     config['minOff3_1'] = minOff3_1
 
+
+
     config['hourOn4_1'] = hourOn4_1
+
     config['minOn4_1'] = minOn4_1
+
     config['hourOff4_1'] = hourOff4_1
+
     config['minOff4_1'] = minOff4_1
 
+
+
     config['hourOn5_1'] = hourOn5_1
+
     config['minOn5_1'] = minOn5_1
+
     config['hourOff5_1'] = hourOff5_1
+
     config['minOff5_1'] = minOff5_1
 
+
+
     config['hourOn6_1'] = hourOn6_1
+
     config['minOn6_1'] = minOn6_1
+
     config['hourOff6_1'] = hourOff6_1
+
     config['minOff6_1'] = minOff6_1
 
+
+
     config['hourOn7_1'] = hourOn7_1
+
     config['minOn7_1'] = minOn7_1
+
     config['hourOff7_1'] = hourOff7_1
+
     config['minOff7_1'] = minOff7_1
 
     config['hourOn8_1'] = hourOn8_1
+
     config['minOn8_1'] = minOn8_1
+
     config['hourOff8_1'] = hourOff8_1
+
     config['minOff8_1'] = minOff8_1
 
     config['hourOn9_1'] = hourOn9_1
+
     config['minOn9_1'] = minOn9_1
+
     config['hourOff9_1'] = hourOff9_1
+
     config['minOff10_1'] = minOff10_1
 
     config['dark1_1'] = dark1_1
+
     config['light1_1'] = light1_1
+
     config['dark2_1'] = dark2_1
+
     config['light2_1'] = light2_1
+
     config['dark3_1'] = dark3_1
+
     config['light3_1'] = light3_1
+
     config['dark4_1'] = dark4_1
+
     config['light4_1'] = light4_1
+
     config['dark5_1'] = dark5_1
+
     config['light5_1'] = light5_1
+
     config['dark6_1'] = dark6_1
+
     config['light6_1'] = light6_1
+
     config['dark7_1'] = dark7_1
+
     config['light7_1'] = light7_1
+
     config['dark8_1'] = dark8_1
+
     config['light8_1'] = light8_1
+
     config['dark9_1'] = dark9_1
+
     config['light9_1'] = light9_1
+
     config['dark10_1'] = dark10_1
+
     config['light10_1'] = light10_1
 
     config['hourOn1_2'] = hourOn1_2
+
     config['minOn1_2'] = minOn1_2
+
     config['hourOff1_2'] = hourOff1_2
+
     config['minOff1_2'] = minOff1_2
 
     config['hourOn2_2'] = hourOn2_2
+
     config['minOn2_2'] = minOn2_2
+
     config['hourOff2_2'] = hourOff2_2
+
     config['minOff2_2'] = minOff2_2
 
     config['hourOn3_2'] = hourOn3_2
+
     config['minOn3_2'] = minOn3_2
+
     config['hourOff3_2'] = hourOff3_2
+
     config['minOff3_2'] = minOff3_2
 
     config['hourOn4_2'] = hourOn4_2
+
     config['minOn4_2'] = minOn4_2
+
     config['hourOff4_2'] = hourOff4_2
+
     config['minOff4_2'] = minOff4_2
 
     config['hourOn5_2'] = hourOn5_2
+
     config['minOn5_2'] = minOn5_2
+
     config['hourOff5_2'] = hourOff5_2
+
     config['minOff5_2'] = minOff5_2
 
     config['hourOn6_2'] = hourOn6_2
+
     config['minOn6_2'] = minOn6_2
+
     config['hourOff6_2'] = hourOff6_2
+
     config['minOff6_2'] = minOff6_2
 
     config['hourOn7_2'] = hourOn7_2
+
     config['minOn7_2'] = minOn7_2
+
     config['hourOff7_2'] = hourOff7_2
+
     config['minOff7_2'] = minOff7_2
 
     config['hourOn8_2'] = hourOn8_2
+
     config['minOn8_2'] = minOn8_2
+
     config['hourOff8_2'] = hourOff8_2
+
     config['minOff8_2'] = minOff8_2
 
     config['hourOn9_2'] = hourOn9_2
+
     config['minOn9_2'] = minOn9_2
+
     config['hourOff9_2'] = hourOff9_2
+
     config['minOff9_2'] = minOff9_2
 
     config['hourOn10_2'] = hourOn10_2
+
     config['minOn10_2'] = minOn10_2
+
     config['hourOff10_2'] = hourOff10_2
+
     config['minOff10_2'] = minOff10_2
 
     config['dark1_2'] = dark1_2
+
     config['light1_2'] = light1_2
+
     config['dark2_2'] = dark2_2
+
     config['light2_2'] = light2_2
+
     config['dark3_2'] = dark3_2
+
     config['light3_2'] = light3_2
+
     config['dark4_2'] = dark4_2
+
     config['light4_2'] = light4_2
+
     config['dark5_2'] = dark5_2
+
     config['light5_2'] = light5_2
+
     config['dark6_2'] = dark6_2
+
     config['light6_2'] = light6_2
+
     config['dark7_2'] = dark7_2
+
     config['light7_2'] = light7_2
+
     config['dark8_2'] = dark8_2
+
     config['light8_2'] = light8_2
+
     config['dark9_2'] = dark9_2
+
     config['light9_2'] = light9_2
+
     config['dark10_2'] = dark10_2
+
     config['light10_2'] = light10_2
 
     config['date1_2'] = date1_2
+
     config['month1_2'] = year1_2
+
     config['year1_2'] = year1_2
 
     config['date2_2'] = date2_2
+
     config['month2_2'] = month2_2
+
     config['year2_2'] = year2_2
 
     config['date3_2'] = date3_2
+
     config['month3_2'] = month3_2
+
     config['year3_2'] = year3_2
 
     config['date4_2'] = date4_2
+
     config['month4_2'] = month4_2
+
     config['year4_2'] = year4_2
 
     config['date5_2'] = date5_2
+
     config['month5_2'] = month5_2
+
     config['year5_2'] = year5_2
 
     config['hourFrom1_2'] = hourFrom1_2
+
     config['minuteFrom1_2'] = minuteFrom1_2
+
     config['hourFrom2_2'] = hourFrom2_2
+
     config['minuteFrom2_2'] = minuteFrom2_2
+
     config['hourFrom3_2'] = hourFrom3_2
+
     config['minuteFrom3_2'] = minuteFrom3_2
+
     config['hourFrom4_2'] = hourFrom4_2
+
     config['minuteFrom4_2'] = minuteFrom4_2
+
     config['hourFrom5_2'] = hourFrom5_2
+
     config['minuteFrom5_2'] = minuteFrom5_2
 
     config['date6_2'] = date6_2
+
     config['month6_2'] = month6_2
+
     config['year6_2'] = year6_2
 
     config['date7_2'] = date7_2
+
     config['month7_2'] = month7_2
+
     config['year7_2'] = year7_2
 
     config['date8_2'] = date8_2
+
     config['month8_2'] = month8_2
+
     config['year8_2'] = year8_2
 
     config['date9_2'] = date9_2
+
     config['month9_2'] = month9_2
+
     config['year9_2'] = year9_2
 
     config['date10_2'] = date10_2
+
     config['month10_2'] = month10_2
+
     config['year10_2'] = year10_2
 
     config['hourFrom6_2'] = hourFrom6_2
+
     config['minuteFrom6_2'] = minuteFrom6_2
+
     config['hourFrom7_2'] = hourFrom7_2
+
     config['minuteFrom7_2'] = minuteFrom7_2
+
     config['hourFrom8_2'] = hourFrom8_2
+
     config['minuteFrom8_2'] = minuteFrom8_2
+
     config['hourFrom9_2'] = hourFrom9_2
+
     config['minuteFrom9_2'] = minuteFrom9_2
+
     config['hourFrom10_2'] = hourFrom10_2
+
     config['minuteFrom10_2'] = minuteFrom10_2
 
     config['hourOn1_3'] = hourOn1_3
+
     config['minOn1_3'] = minOn1_3
+
     config['hourOff1_3'] = hourOff1_3
+
     config['minOff1_3'] = minOff1_3
 
     config['hourOn2_3'] = hourOn2_3
+
     config['minOn2_3'] = minOn2_3
+
     config['hourOff2_3'] = hourOff2_3
+
     config['minOff2_3'] = minOff2_3
 
     config['hourOn3_3'] = hourOn3_3
+
     config['minOn3_3'] = minOn3_3
+
     config['hourOff3_3'] = hourOff3_3
+
     config['minOff3_3'] = minOff3_3
 
     config['hourOn4_3'] = hourOn4_3
+
     config['minOn4_3'] = minOn4_3
+
     config['hourOff4_3'] = hourOff4_3
+
     config['minOff4_3'] = minOff4_3
 
     config['hourOn5_3'] = hourOn5_3
+
     config['minOn5_3'] = minOn5_3
+
     config['hourOff5_3'] = hourOff5_3
+
     config['minOff5_3'] = minOff5_3
 
     config['hourOn6_3'] = hourOn6_3
+
     config['minOn6_3'] = minOn6_3
+
     config['hourOff6_3'] = hourOff6_3
+
     config['minOff6_3'] = minOff6_3
 
     config['hourOn7_3'] = hourOn7_3
+
     config['minOn7_3'] = minOn7_3
+
     config['hourOff7_3'] = hourOff7_3
+
     config['minOff7_3'] = minOff7_3
 
     config['hourOn8_3'] = hourOn8_3
+
     config['minOn8_3'] = minOn8_3
+
     config['hourOff8_3'] = hourOff8_3
+
     config['minOff8_3'] = minOff8_3
 
     config['hourOn9_3'] = hourOn9_3
+
     config['minOn9_3'] = minOn9_3
+
     config['hourOff9_3'] = hourOff9_3
+
     config['minOff9_3'] = minOff9_3
 
     config['hourOn10_3'] = hourOn10_3
+
     config['minOn10_3'] = minOn10_3
+
     config['hourOff10_3'] = hourOff10_3
+
     config['minOff10_3'] = minOff10_3
 
     config['dark1_3'] = dark1_3
+
     config['light1_3'] = light1_3
+
     config['dark2_3'] = dark2_3
+
     config['light2_3'] = light2_3
 
     config['dark3_3'] = dark3_3
+
     config['light3_3'] = light3_3
+
     config['dark4_3'] = dark4_3
+
     config['light4_3'] = light4_3
 
     config['dark5_3'] = dark5_3
+
     config['light5_3'] = light5_3
+
     config['dark6_3'] = dark6_3
+
     config['light6_3'] = light6_3
 
     config['dark7_3'] = dark7_3
+
     config['light7_3'] = light7_3
+
     config['dark8_3'] = dark8_3
+
     config['light8_3'] = light8_3
 
     config['dark9_3'] = dark9_3
+
     config['light9_3'] = light9_3
+
     config['dark10_3'] = dark10_3
+
     config['light10_3'] = light10_3
 
     config['date1_3'] = date1_3
+
     config['month1_3'] = month1_3
+
     config['year1_3'] = year1_3
 
     config['date2_3'] = date2_3
+
     config['month2_3'] = month2_3
+
     config['year2_3'] = year2_3
 
     config['date3_3'] = date3_3
+
     config['month3_3'] = month3_3
+
     config['year3_3'] = year3_3
 
     config['date4_3'] = date4_3
+
     config['month4_3'] = month4_3
+
     config['year4_3'] = year4_3
 
     config['date5_3'] = date5_3
+
     config['month5_3'] = month5_3
+
     config['year5_3'] = year5_3
 
     config['hourFrom1_3'] = hourFrom1_3
+
     config['minuteFrom1_3'] = minuteFrom1_3
+
     config['hourFrom2_3'] = hourFrom2_3
+
     config['minuteFrom2_3'] = minuteFrom2_3
 
     config['hourFrom3_3'] = hourFrom3_3
+
     config['minuteFrom3_3'] = minuteFrom3_3
+
     config['hourFrom4_3'] = hourFrom4_3
+
     config['minuteFrom4_3'] = minuteFrom4_3
 
     config['hourFrom5_3'] = hourFrom5_3
+
     config['minuteFrom5_3'] = minuteFrom5_3
 
     config['date6_3'] = date6_3
+
     config['month6_3'] = month6_3
+
     config['year6_3'] = year6_3
 
     config['date7_3'] = date7_3
+
     config['month7_3'] = month7_3
+
     config['year7_3'] = year7_3
 
     config['date8_3'] = date8_3
+
     config['month8_3'] = month8_3
+
     config['year8_3'] = year8_3
 
     config['date9_3'] = date9_3
+
     config['month9_3'] = month9_3
+
     config['year9_3'] = year9_3
 
     config['date10_3'] = date10_3
+
     config['month10_3'] = month10_3
+
     config['year10_3'] = year10_3
 
     config['hourFrom6_3'] = hourFrom6_3
+
     config['minuteFrom6_3'] = minuteFrom6_3
+
     config['hourFrom7_3'] = hourFrom7_3
+
     config['minuteFrom7_3'] = minuteFrom7_3
 
     config['hourFrom8_3'] = hourFrom8_3
+
     config['minuteFrom8_3'] = minuteFrom8_3
+
     config['hourFrom9_3'] = hourFrom9_3
+
     config['minuteFrom9_3'] = minuteFrom9_3
 
     config['hourFrom10_3'] = hourFrom10_3
+
     config['minuteFrom10_3'] = minuteFrom10_3
 
     configfilename = configfilename_entry.get()
@@ -821,355 +1059,1301 @@ def read_conf(): # Read schedule configuration
     configfilename = filedialog.askopenfilename()
 
     with open(configfilename) as data_file:
+
         config = json.load(data_file)
 
-    Label(tab11, text=config, wraplength=1000).grid(column=0, row= 3, columnspan='100', sticky='we')
+#    Label(tab11, text=config, wraplength=1000).grid(column=0, row= 3, columnspan='100', sticky='we')
+
+     
+    global hourOn1_1
+
+    global minOn1_1
+
+    global hourOff1_1 
+
+    global minOff1_1
+
+    global hourOn2_1
+
+    global minOn2_1 
+
+    global hourOff2_1 
+
+    global minOff2_1 
+
+    global hourOn3_1 
+
+    global minOn3_1 
+
+    global hourOff3_1 
+
+    global minOff3_1 
+
+    global hourOn4_1 
+
+    global minOn4_1 
+
+    global hourOff4_1  
+
+    global minOff4_1 
+
+    global hourOn5_1 
+
+    global minOn5_1
+
+    global hourOff5_1 
+
+    global minOff5_1 
+
+    global hourOn6_1 
+
+    global minOn6_1 
+
+    global hourOff6_1 
+
+    global minOff6_1  
+
+    global hourOn7_1  
+
+    global minOn7_1  
+
+    global hourOff7_1  
+
+    global minOff7_1  
+
+    global hourOn8_1  
+
+    global minOn8_1 
+
+    global hourOff8_1  
+
+    global minOff8_1 
+
+    global hourOn9_1 
+
+    global minOn9_1  
+
+    global hourOff9_1 
+
+    global minOff10_1 
+
+    global dark1_1 
+
+    global light1_1 
+
+    global dark2_1
+
+    global light2_1
+
+    global dark3_1 
+
+    global light3_1 
+
+    global dark4_1
+
+    global light4_1
+
+    global dark5_1 
+
+    global light5_1 
+
+    global dark6_1  
+
+    global light6_1  
+
+    global dark7_1 
+
+    global light7_1  
+
+    global dark8_1 
+
+    global light8_1 
+
+    global dark9_1 
+
+    global light9_1 
+
+    global dark10_1 
+
+    global light10_1 
+
+    global hourOn1_2 
+
+    global minOn1_2 
+
+    global hourOff1_2
+
+    global minOff1_2  
+
+    global hourOn2_2  
+
+    global minOn2_2  
+
+    global hourOff2_2  
+
+    global minOff2_2 
+
+    global hourOn3_2
+
+    global minOn3_2
+
+    global hourOff3_2 
+
+    global minOff3_2 
+
+    global hourOn4_2 
+
+    global minOn4_2 
+
+    global hourOff4_2  
+
+    global minOff4_2  
+
+    global hourOn5_2  
+
+    global minOn5_2 
+
+    global hourOff5_2  
+
+    global minOff5_2 
+
+    global hourOn6_2 
+
+    global minOn6_2 
+
+    global hourOff6_2 
+
+    global minOff6_2
+
+    global hourOn7_2  
+
+    global minOn7_2 
+
+    global hourOff7_2 
+
+    global minOff7_2 
+
+    global hourOn8_2 
+
+    global minOn8_2 
+
+    global hourOff8_2  
+
+    global minOff8_2 
+
+    global hourOn9_2
+
+    global minOn9_2 
+
+    global hourOff9_2 
+
+    global minOff9_2 
+
+    global hourOn10_2 
+
+    global minOn10_2 
+
+    global hourOff10_2  
+
+    global minOff10_2 
+
+    global dark1_2 
+
+    global light1_2 
+
+    global dark2_2 
+
+    global light2_2  
+
+    global dark3_2 
+
+    global light3_2
+
+    global dark4_2 
+
+    global light4_2 
+
+    global dark5_2 
+
+    global light5_2 
+
+    global dark6_2 
+
+    global light6_2 
+
+    global dark7_2 
+
+    global light7_2 
+
+    global dark8_2 
+
+    global light8_2 
+
+    global dark9_2 
+
+    global light9_2 
+
+    global dark10_2 
+
+    global light10_2 
+
+    global date1_2 
+
+    global year1_2 
+
+    global year1_2 
+
+    global date2_2 
+
+    global month2_2 
+
+    global year2_2 
+
+    global date3_2 
+
+    global month3_2 
+
+    global year3_2 
+
+    global date4_2 
+
+    global month4_2 
+
+    global year4_2 
+
+    global date5_2 
+
+    global month5_2 
+
+    global year5_2
+
+    global hourFrom1_2 
+
+    global minuteFrom1_2 
+
+    global hourFrom2_2 
+
+    global minuteFrom2_2
+
+    global hourFrom3_2 
+
+    global minuteFrom3_2 
+
+    global hourFrom4_2 
+
+    global minuteFrom4_2 
+
+    global hourFrom5_2
+
+    global minuteFrom5_2 
+
+    global date6_2  
+
+    global month6_2 
+
+    global year6_2 
+
+    global date7_2 
+
+    global month7_2 
+
+    global year7_2 
+
+    global date8_2 
+
+    global month8_2
+
+    global year8_2 
+
+    global date9_2 
+
+    global month9_2 
+
+    global year9_2 
+
+    global date10_2 
+
+    global month10_2 
+
+    global year10_2 
+
+    global hourFrom6_2 
+
+    global minuteFrom6_2 
+
+    global hourFrom7_2 
+
+    global minuteFrom7_2
+
+    global hourFrom8_2
+
+    global minuteFrom8_2 
+
+    global hourFrom9_2 
+
+    global minuteFrom9_2 
+
+    global hourFrom10_2 
+
+    global minuteFrom10_2 
+
+    global hourOn1_3 
+
+    global minOn1_3 
+
+    global hourOff1_3
+
+    global minOff1_3 
+
+    global hourOn2_3 
+
+    global minOn2_3 
+
+    global hourOff2_3
+
+    global minOff2_3 
+
+    global hourOn3_3 
+
+    global minOn3_3
+
+    global hourOff3_3 
+
+    global minOff3_3 
+
+    global hourOn4_3 
+
+    global minOn4_3 
+
+    global hourOff4_3 
+
+    global minOff4_3 
+
+    global hourOn5_3 
+
+    global minOn5_3 
+
+    global hourOff5_3 
+
+    global minOff5_3 
+
+    global hourOn6_3  
+
+    global minOn6_3 
+
+    global hourOff6_3 
+
+    global minOff6_3  
+
+    global hourOn7_3 
+
+    global minOn7_3 
+
+    global hourOff7_3
+
+    global minOff7_3 
+
+    global hourOn8_3 
+
+    global minOn8_3
+
+    global hourOff8_3 
+
+    global minOff8_3 
+
+    global hourOn9_3 
+
+    global minOn9_3 
+
+    global hourOff9_3 
+
+    global minOff9_3 
+
+    global hourOn10_3
+
+    global minOn10_3 
+
+    global hourOff10_3 
+
+    global minOff10_3 
+
+    global dark1_3 
+
+    global light1_3 
+
+    global dark2_3 
+
+    global light2_3  
+
+    global dark3_3 
+
+    global light3_3 
+
+    global dark4_3 
+
+    global light4_3 
+
+    global dark5_3 
+
+    global light5_3 
+
+    global dark6_3 
+
+    global light6_3 
+
+    global dark7_3 
+
+    global light7_3 
+
+    global dark8_3 
+
+    global light8_3  
+
+    global dark9_3 
+
+    global light9_3 
+
+    global dark10_3  
+
+    global light10_3 
+
+    global date1_3 
+
+    global month1_3 
+
+    global year1_3 
+
+    global date2_3 
+
+    global month2_3 
+
+    global year2_3 
+
+    global date3_3 
+
+    global month3_3 
+
+    global year3_3 
+
+    global date4_3 
+
+    global month4_3 
+
+    global year4_3 
+
+    global date5_3
+
+    global month5_3 
+
+    global year5_3 
+
+    global hourFrom1_3 
+
+    global minuteFrom1_3 
+
+    global hourFrom2_3
+
+    global minuteFrom2_3 
+
+    global hourFrom3_3 
+
+    global minuteFrom3_3  
+
+    global hourFrom4_3 
+
+    global minuteFrom4_3 
+
+    global hourFrom5_3 
+
+    global minuteFrom5_3 
+
+    global date6_3  
+
+    global month6_3 
+
+    global year6_3 
+
+    global date7_3 
+
+    global month7_3  
+
+    global year7_3 
+
+    global date8_3 
+
+    global month8_3 
+
+    global year8_3 
+
+    global date9_3 
+
+    global month9_3 
+
+    global year9_3 
+
+    global date10_3 
+
+    global month10_3 
+
+    global year10_3 
+
+    global hourFrom6_3  
+
+    global minuteFrom6_3 
+
+    global hourFrom7_3 
+
+    global minuteFrom7_3 
+
+    global hourFrom8_3  
+
+    global minuteFrom8_3 
+
+    global hourFrom9_3  
+
+    global minuteFrom9_3  
+
+    global hourFrom10_3 
+
+    global minuteFrom10_3 
+
     
 
     hourOn1_1 = config['hourOn1_1'] 
+
     minOn1_1 = config['minOn1_1'] 
-    minOff1_1 = config['hourOff1_1']
+
+    hourOff1_1 = config['hourOff1_1']
+
     minOff1_1 = config['minOff1_1'] 
 
     hourOn2_1 = config['hourOn2_1']
+
     minOn2_1 = config['minOn2_1'] 
+
     hourOff2_1 = config['hourOff2_1'] 
+
     minOff2_1 = config['minOff2_1'] 
 
     hourOn3_1 = config['hourOn3_1'] 
+
     minOn3_1 = config['minOn3_1'] 
+
     hourOff3_1 = config['hourOff3_1'] 
+
     minOff3_1 = config['minOff3_1'] 
 
     hourOn4_1 = config['hourOn4_1'] 
+
     minOn4_1 = config['minOn4_1']
+
     hourOff4_1 = config['hourOff4_1'] 
+
     minOff4_1 = config['minOff4_1'] 
 
     hourOn5_1 = config['hourOn5_1']
+
     minOn5_1 = config['minOn5_1'] 
+
     hourOff5_1 = config['hourOff5_1'] 
+
     minOff5_1 = config['minOff5_1'] 
 
     hourOn6_1 = config['hourOn6_1'] 
+
     minOn6_1 = config['minOn6_1'] 
+
     hourOff6_1 = config['hourOff6_1'] 
+
     minOff6_1 = config['minOff6_1'] 
 
     hourOn7_1 = config['hourOn7_1'] 
+
     minOn7_1 = config['minOn7_1'] 
+
     hourOff7_1 = config['hourOff7_1'] 
+
     minOff7_1 = config['minOff7_1'] 
 
     hourOn8_1 = config['hourOn8_1'] 
+
     minOn8_1 = config['minOn8_1'] 
+
     hourOff8_1 = config['hourOff8_1'] 
+
     minOff8_1 = config['minOff8_1'] 
 
     hourOn9_1 =config['hourOn9_1'] 
+
     minOn9_1 = config['minOn9_1'] 
+
     hourOff9_1 = config['hourOff9_1'] 
+
     minOff10_1 = config['minOff10_1'] 
 
     dark1_1 = config['dark1_1'] 
+
     light1_1 = config['light1_1']
+
     dark2_1 = config['dark2_1'] 
+
     light2_1 = config['light2_1'] 
+
     dark3_1 = config['dark3_1'] 
+
     light3_1 = config['light3_1'] 
+
     dark4_1 = config['dark4_1'] 
+
     light4_1 = config['light4_1'] 
+
     dark5_1 = config['dark5_1'] 
+
     light5_1 = config['light5_1'] 
+
     dark6_1 = config['dark6_1'] 
+
     light6_1 = config['light6_1'] 
+
     dark7_1 = config['dark7_1']
+
     light7_1 = config['light7_1'] 
+
     dark8_1 = config['dark8_1'] 
+
     light8_1 = config['light8_1'] 
+
     dark9_1 = config['dark9_1']
+
     light9_1 = config['light9_1'] 
+
     dark10_1 = config['dark10_1'] 
+
     light10_1 = config['light10_1'] 
 
     hourOn1_2 = config['hourOn1_2'] 
+
     minOn1_2 = config['minOn1_2'] 
+
     hourOff1_2 = config['hourOff1_2'] 
+
     minOff1_2 = config['minOff1_2'] 
 
     hourOn2_2 = config['hourOn2_2'] 
+
     minOn2_2 = config['minOn2_2'] 
+
     hourOff2_2 = config['hourOff2_2'] 
+
     minOff2_2 = config['minOff2_2'] 
 
     hourOn3_2 = config['hourOn3_2'] 
+
     minOn3_2 = config['minOn3_2'] 
+
     hourOff3_2 = config['hourOff3_2'] 
+
     minOff3_2 = config['minOff3_2'] 
 
     hourOn4_2 = config['hourOn4_2'] 
+
     minOn4_2 = config['minOn4_2'] 
+
     hourOff4_2 = config['hourOff4_2'] 
+
     minOff4_2 = config['minOff4_2'] 
 
     hourOn5_2 = config['hourOn5_2'] 
+
     minOn5_2 = config['minOn5_2'] 
+
     hourOff5_2 = config['hourOff5_2'] 
+
     minOff5_2 = config['minOff5_2'] 
 
     hourOn6_2 = config['hourOn6_2']
+
     minOn6_2 = config['minOn6_2'] 
+
     hourOff6_2 = config['hourOff6_2'] 
+
     minOff6_2 = config['minOff6_2']
 
     hourOn7_2 = config['hourOn7_2'] 
+
     minOn7_2 = config['minOn7_2'] 
+
     hourOff7_2 = config['hourOff7_2'] 
+
     minOff7_2 = config['minOff7_2'] 
 
     hourOn8_2 = config['hourOn8_2'] 
+
     minOn8_2 = config['minOn8_2'] 
+
     hourOff8_2 = config['hourOff8_2'] 
+
     minOff8_2 = config['minOff8_2']
 
     hourOn9_2 = config['hourOn9_2']
+
     minOn9_2 = config['minOn9_2'] 
+
     hourOff9_2 = config['hourOff9_2'] 
+
     minOff9_2 = config['minOff9_2'] 
 
     hourOn10_2 = config['hourOn10_2'] 
+
     minOn10_2 = config['minOn10_2'] 
+
     hourOff10_2 = config['hourOff10_2'] 
+
     minOff10_2 = config['minOff10_2'] 
 
     dark1_2 = config['dark1_2'] 
+
     light1_2 = config['light1_2'] 
+
     dark2_2 = config['dark2_2'] 
+
     light2_2 = config['light2_2'] 
+
     dark3_2 = config['dark3_2'] 
+
     light3_2 = config['light3_2'] 
+
     dark4_2 = config['dark4_2'] 
+
     light4_2 = config['light4_2'] 
+
     dark5_2 = config['dark5_2'] 
+
     light5_2 = config['light5_2'] 
+
     dark6_2 = config['dark6_2'] 
+
     light6_2 = config['light6_2'] 
+
     dark7_2 = config['dark7_2'] 
+
     light7_2 = config['light7_2'] 
+
     dark8_2 = config['dark8_2'] 
+
     light8_2 = config['light8_2'] 
+
     dark9_2 = config['dark9_2'] 
+
     light9_2 = config['light9_2'] 
+
     dark10_2 = config['dark10_2'] 
+
     light10_2 = config['light10_2'] 
 
     date1_2 = config['date1_2']
+
     year1_2 = config['month1_2'] 
+
     year1_2 = config['year1_2'] 
 
     date2_2 = config['date2_2'] 
+
     month2_2 = config['month2_2'] 
+
     year2_2 = config['year2_2'] 
 
     date3_2 = config['date3_2'] 
+
     month3_2 = config['month3_2'] 
+
     year3_2 = config['year3_2'] 
 
     date4_2 = config['date4_2'] 
+
     month4_2 = config['month4_2'] 
+
     year4_2 = config['year4_2'] 
 
     date5_2 = config['date5_2'] 
+
     month5_2 = config['month5_2'] 
+
     year5_2 = config['year5_2'] 
 
     hourFrom1_2 = config['hourFrom1_2'] 
+
     minuteFrom1_2 = config['minuteFrom1_2'] 
+
     hourFrom2_2 = config['hourFrom2_2'] 
+
     minuteFrom2_2 = config['minuteFrom2_2'] 
+
     hourFrom3_2 = config['hourFrom3_2'] 
+
     minuteFrom3_2 = config['minuteFrom3_2'] 
+
     hourFrom4_2 = config['hourFrom4_2'] 
+
     minuteFrom4_2 = config['minuteFrom4_2'] 
+
     hourFrom5_2 = config['hourFrom5_2'] 
+
     minuteFrom5_2 = config['minuteFrom5_2'] 
 
     date6_2 = config['date6_2'] 
+
     month6_2 = config['month6_2'] 
+
     year6_2 = config['year6_2'] 
 
     date7_2 = config['date7_2'] 
+
     month7_2 = config['month7_2'] 
+
     year7_2 = config['year7_2'] 
 
     date8_2 = config['date8_2'] 
+
     month8_2 = config['month8_2'] 
+
     year8_2 = config['year8_2'] 
 
     date9_2 = config['date9_2'] 
+
     month9_2 = config['month9_2'] 
+
     year9_2 = config['year9_2'] 
 
     date10_2 = config['date10_2'] 
+
     month10_2 = config['month10_2'] 
+
     year10_2 = config['year10_2'] 
 
     hourFrom6_2 = config['hourFrom6_2'] 
+
     minuteFrom6_2 = config['minuteFrom6_2'] 
+
     hourFrom7_2 = config['hourFrom7_2'] 
+
     minuteFrom7_2 = config['minuteFrom7_2'] 
+
     hourFrom8_2 = config['hourFrom8_2'] 
+
     minuteFrom8_2 = config['minuteFrom8_2'] 
+
     hourFrom9_2 = config['hourFrom9_2'] 
+
     minuteFrom9_2 = config['minuteFrom9_2'] 
+
     hourFrom10_2 = config['hourFrom10_2'] 
+
     minuteFrom10_2 = config['minuteFrom10_2'] 
 
     hourOn1_3 = config['hourOn1_3'] 
+
     minOn1_3 = config['minOn1_3'] 
+
     hourOff1_3 = config['hourOff1_3'] 
+
     minOff1_3 = config['minOff1_3'] 
 
     hourOn2_3 = config['hourOn2_3'] 
+
     minOn2_3 = config['minOn2_3'] 
+
     hourOff2_3 = config['hourOff2_3'] 
+
     minOff2_3 = config['minOff2_3']
 
     hourOn3_3 = config['hourOn3_3'] 
+
     minOn3_3 = config['minOn3_3'] 
+
     hourOff3_3 = config['hourOff3_3'] 
+
     minOff3_3 = config['minOff3_3'] 
 
     hourOn4_3 = config['hourOn4_3'] 
+
     minOn4_3 = config['minOn4_3'] 
+
     hourOff4_3 = config['hourOff4_3'] 
+
     minOff4_3 = config['minOff4_3'] 
 
     hourOn5_3 = config['hourOn5_3'] 
+
     minOn5_3 = config['minOn5_3'] 
+
     hourOff5_3 = config['hourOff5_3'] 
+
     minOff5_3 = config['minOff5_3'] 
 
     hourOn6_3 = config['hourOn6_3'] 
+
     minOn6_3 = config['minOn6_3'] 
+
     hourOff6_3 = config['hourOff6_3'] 
+
     minOff6_3 = config['minOff6_3'] 
 
     hourOn7_3 = config['hourOn7_3'] 
+
     minOn7_3 = config['minOn7_3'] 
+
     hourOff7_3 = config['hourOff7_3'] 
+
     minOff7_3 = config['minOff7_3'] 
 
     hourOn8_3 = config['hourOn8_3'] 
+
     minOn8_3 = config['minOn8_3'] 
+
     hourOff8_3 = config['hourOff8_3'] 
+
     minOff8_3 = config['minOff8_3'] 
 
     hourOn9_3 = config['hourOn9_3'] 
+
     minOn9_3 = config['minOn9_3'] 
+
     hourOff9_3 = config['hourOff9_3'] 
+
     minOff9_3 = config['minOff9_3'] 
 
     hourOn10_3 = config['hourOn10_3'] 
+
     minOn10_3 = config['minOn10_3'] 
+
     hourOff10_3 = config['hourOff10_3'] 
+
     minOff10_3 = config['minOff10_3'] 
 
     dark1_3 = config['dark1_3'] 
+
     light1_3 = config['light1_3'] 
+
     dark2_3 = config['dark2_3'] 
+
     light2_3 = config['light2_3'] 
 
     dark3_3 = config['dark3_3'] 
+
     light3_3 = config['light3_3'] 
+
     dark4_3 = config['dark4_3'] 
+
     light4_3 = config['light4_3'] 
 
     dark5_3 = config['dark5_3'] 
+
     light5_3 = config['light5_3'] 
+
     dark6_3 = config['dark6_3'] 
+
     light6_3 = config['light6_3'] 
 
     dark7_3 = config['dark7_3'] 
+
     light7_3 = config['light7_3'] 
+
     dark8_3 = config['dark8_3'] 
+
     light8_3 = config['light8_3'] 
 
     dark9_3 = config['dark9_3'] 
+
     light9_3 = config['light9_3'] 
+
     dark10_3 = config['dark10_3'] 
+
     light10_3 = config['light10_3'] 
 
     date1_3 = config['date1_3']
+
     month1_3 = config['month1_3'] 
+
     year1_3 = config['year1_3'] 
 
     date2_3 = config['date2_3'] 
+
     month2_3 = config['month2_3'] 
+
     year2_3 = config['year2_3'] 
 
     date3_3 = config['date3_3'] 
+
     month3_3 = config['month3_3'] 
+
     year3_3 = config['year3_3'] 
 
     date4_3 = config['date4_3'] 
+
     month4_3 = config['month4_3'] 
+
     year4_3 = config['year4_3']
 
     date5_3 = config['date5_3'] 
+
     month5_3 = config['month5_3'] 
+
     year5_3 = config['year5_3'] 
 
     hourFrom1_3 = config['hourFrom1_3'] 
+
     minuteFrom1_3 = config['minuteFrom1_3'] 
+
     hourFrom2_3 = config['hourFrom2_3'] 
+
     minuteFrom2_3 = config['minuteFrom2_3'] 
 
     hourFrom3_3 = config['hourFrom3_3'] 
+
     minuteFrom3_3 = config['minuteFrom3_3'] 
+
     hourFrom4_3 = config['hourFrom4_3'] 
+
     minuteFrom4_3 = config['minuteFrom4_3'] 
 
     hourFrom5_3 = config['hourFrom5_3'] 
+
     minuteFrom5_3 = config['minuteFrom5_3'] 
 
     date6_3 = config['date6_3'] 
+
     month6_3 = config['month6_3'] 
+
     year6_3 = config['year6_3'] 
 
     date7_3 = config['date7_3'] 
+
     month7_3 = config['month7_3'] 
+
     year7_3 = config['year7_3'] 
 
     date8_3 = config['date8_3'] 
+
     month8_3 = config['month8_3'] 
+
     year8_3 = config['year8_3'] 
 
     date9_3 = config['date9_3'] 
+
     month9_3 = config['month9_3'] 
+
     year9_3 = config['year9_3'] 
 
     date10_3 = config['date10_3'] 
+
     month10_3 = config['month10_3'] 
+
     year10_3 = config['year10_3'] 
 
     hourFrom6_3 = config['hourFrom6_3'] 
+
     minuteFrom6_3 = config['minuteFrom6_3'] 
+
     hourFrom7_3 = config['hourFrom7_3'] 
+
     minuteFrom7_3 = config['minuteFrom7_3'] 
 
     hourFrom8_3 = config['hourFrom8_3'] 
+
     minuteFrom8_3 = config['minuteFrom8_3'] 
+
     hourFrom9_3 = config['hourFrom9_3'] 
+
     minuteFrom9_3 = config['minuteFrom9_3'] 
 
     hourFrom10_3 = config['hourFrom10_3'] 
+
     minuteFrom10_3 = config['minuteFrom10_3'] 
+
+
+
+    show_conf()
+
+
 
     status.pack(side="bottom", fill="x")
 
-    status.set("The schedule configuration is loaded")
+    status.set("The schedule configuration is loaded.")
 
+
+
+def show_conf(): # Show schedule configuration
+
+    col11_1=Label(tab11, text='Phase 1')
+
+    col11_2=Label(tab11, text='Phase 2')
+
+    col11_3=Label(tab11, text='Phase 3')
+
+
+
+    row11_1=Label(tab11, text='Box1')
+
+    row11_2=Label(tab11, text='Box2')
+
+    row11_3=Label(tab11, text='Box3')
+
+    row11_4=Label(tab11, text='Box4')
+
+    row11_5=Label(tab11, text='Box5')
+
+    row11_6=Label(tab11, text='Box6')
+
+    row11_7=Label(tab11, text='Box7')
+
+    row11_8=Label(tab11, text='Box8')
+
+    row11_9=Label(tab11, text='Box9')
+
+    row11_10=Label(tab11, text='Box10')
+
+
+
+    col11_1.grid(column=2,row=1,padx=5)
+
+    col11_2.grid(column=3,row=1,padx=5)
+
+    col11_3.grid(column=4,row=1,padx=5)
+
+
+
+    row11_1.grid(column=1,row=2,padx=2,pady=0)
+
+    row11_2.grid(column=1,row=3,padx=2,pady=0)
+
+    row11_3.grid(column=1,row=4,padx=2,pady=0)
+
+    row11_4.grid(column=1,row=5,padx=2,pady=0)
+
+    row11_5.grid(column=1,row=6,padx=2,pady=0)
+
+    row11_6.grid(column=1,row=7,padx=2,pady=0)
+
+    row11_7.grid(column=1,row=8,padx=2,pady=0)
+
+    row11_8.grid(column=1,row=9,padx=2,pady=0)
+
+    row11_9.grid(column=1,row=10,padx=2,pady=0)
+
+    row11_10.grid(column=1,row=11,padx=2,pady=0)
+
+
+
+    if light1_1=='0' and dark1_1=='0':
+
+        box1pha1_LD=Label(tab11, text=hourOn1_1+":"+minOn1_1+" on > "+hourOff1_1+":"+minOff1_1+" off")
+
+        box1pha1_LD.grid(column=2,row=2,padx=2,pady=0)
+
+        box1pha2_LD=Label(tab11, text=hourOn1_2+":"+minOn1_2+" on > "+hourOff1_2+":"+minOff1_2+" off")
+
+        box1pha2_LD.grid(column=3,row=2,padx=2,pady=0)
+
+        box1pha3_LD=Label(tab11, text=hourOn1_3+":"+minOn1_3+" on > "+hourOff1_3+":"+minOff1_3+" off")
+
+        box1pha3_LD.grid(column=4,row=2,padx=2,pady=0)
+
+    if light1_2=='0' and dark1_2=='1':
+
+        box1pha1_LD=Label(tab11, text="DD")
+
+        box1pha1_LD.grid(column=2,row=2,padx=2,pady=0)
+
+    if light1_3=='1' and dark1_3=='0':
+
+        box1pha1_LD=Label(tab11, text="LL")
+
+        box1pha1_LD.grid(column=2,row=2,padx=2,pady=0)
+
+
+
+    if light2_1=='0' and dark2_1=='0':       
+
+        box2pha1_LD=Label(tab11, text=hourOn2_1+":"+minOn2_1+" on > "+hourOff2_1+":"+minOff2_1+" off")
+
+        box2pha1_LD.grid(column=2,row=3,padx=2,pady=0)
+
+        box2pha2_LD=Label(tab11, text=hourOn2_2+":"+minOn2_2+" on > "+hourOff2_2+":"+minOff2_2+" off")
+
+        box2pha2_LD.grid(column=3,row=3,padx=2,pady=0)
+
+        box2pha3_LD=Label(tab11, text=hourOn2_3+":"+minOn2_3+" on > "+hourOff2_3+":"+minOff2_3+" off")
+
+        box2pha3_LD.grid(column=4,row=3,padx=2,pady=0)
+
+    if light2_2=='0' and dark2_2=='1':
+
+        box1pha1_LD=Label(tab11, text="DD")
+
+        box1pha1_LD.grid(column=2,row=2,padx=2,pady=0)
+
+    if light2_3=='1' and dark2_3=='0':
+
+        box1pha1_LD=Label(tab11, text="LL")
+
+        box1pha1_LD.grid(column=2,row=2,padx=2,pady=0)
+
+
+
+    if light3_1=='0' and dark3_1=='0':
+
+        box3pha1_LD=Label(tab11, text=hourOn3_1+":"+minOn3_1+" on > "+hourOff3_1+":"+minOff3_1+" off")
+
+        box3pha1_LD.grid(column=2,row=4,padx=2,pady=0)
+
+        box3pha2_LD=Label(tab11, text=hourOn3_2+":"+minOn3_2+" on > "+hourOff3_2+":"+minOff3_2+" off")
+
+        box3pha2_LD.grid(column=3,row=4,padx=2,pady=0)
+
+        box3pha3_LD=Label(tab11, text=hourOn3_3+":"+minOn3_3+" on > "+hourOff3_3+":"+minOff3_3+" off")
+
+        box3pha3_LD.grid(column=4,row=4,padx=2,pady=0)
+
+    if light3_2=='0' and dark3_2=='1':
+
+        box1pha1_LD=Label(tab11, text="DD")
+
+        box1pha1_LD.grid(column=2,row=2,padx=2,pady=0)
+
+    if light3_3=='1' and dark3_3=='0':
+
+        box1pha1_LD=Label(tab11, text="LL")
+
+        box1pha1_LD.grid(column=2,row=2,padx=2,pady=0)
+
+
+
+    if light4_1=='0' and dark4_1=='0':
+
+        box4pha1_LD=Label(tab11, text=hourOn4_1+":"+minOn4_1+" on > "+hourOff4_1+":"+minOff4_1+" off")
+
+        box4pha1_LD.grid(column=2,row=5,padx=2,pady=0)
+
+        box4pha2_LD=Label(tab11, text=hourOn4_2+":"+minOn4_2+" on > "+hourOff4_2+":"+minOff4_2+" off")
+
+        box4pha2_LD.grid(column=3,row=5,padx=2,pady=0)
+
+        box4pha3_LD=Label(tab11, text=hourOn4_3+":"+minOn4_3+" on > "+hourOff4_3+":"+minOff4_3+" off")
+
+        box4pha3_LD.grid(column=4,row=5,padx=2,pady=0)
+
+    if light4_2=='0' and dark4_2=='1':
+
+        box1pha1_LD=Label(tab11, text="DD")
+
+        box1pha1_LD.grid(column=2,row=2,padx=2,pady=0)
+
+    if light4_3=='1' and dark4_3=='0':
+
+        box1pha1_LD=Label(tab11, text="LL")
+
+        box1pha1_LD.grid(column=2,row=2,padx=2,pady=0)
 
 
 
@@ -1182,7 +2366,9 @@ def connect():  # Start to connect and call get_data - Link to Start in Recordin
     timeout = int(timeout_entry.get())
 
     global serial_obj
+
     
+
     global dead
 
     dead = False
@@ -1206,6 +2392,7 @@ def connect():  # Start to connect and call get_data - Link to Start in Recordin
     t1.start()
 
 
+
 def disconnect():  # close the serial_obj thread
 
     status.pack(side="bottom", fill="x")
@@ -1226,9 +2413,8 @@ def disconnect():  # close the serial_obj thread
 
     status.pack(side="bottom", fill="x")
 
-    status.set("Stopped recording and disconnected to the device.")
+    status.set("Stopped recording and disconnected from the boxes.")
 
-        
 
 def getBox1Schedule(): 
 
@@ -2876,6 +4062,8 @@ def getAllBoxSchedule():
 
     status.set("Schedules for all boxes are set.")
 
+    show_conf()
+
 
 
 if __name__ == '__main__':
@@ -2976,6 +4164,8 @@ if __name__ == '__main__':
 
     settingmenu.add_command(label='Set all boxes', command=getAllBoxSchedule)
 
+    settingmenu.add_command(label='Show Schedule', command=show_conf)
+
     menu.add_cascade(label='Setting', menu=settingmenu)
 
     #create recording menu
@@ -3046,7 +4236,7 @@ if __name__ == '__main__':
 
     tab_control.add(tab10, text='Box10')
 
-    tab_control.add(tab11, text='Schedule Loaded')
+    tab_control.add(tab11, text='Schedule')
 
 
 
