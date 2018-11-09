@@ -18,26 +18,17 @@ import serial.tools.list_ports # For identifying Arduino port
 import numpy as np
 import pandas as pd
 import matplotlib # For plotting actogram
-# matplotlib.use('Qt5Agg')
 import matplotlib.pylab as plt
 from matplotlib import style
 from matplotlib.colors import ListedColormap
-# from matplotlib.pyplot import figure
-# from matplotlib.widgets import Slider
-# style.use('seaborn-colorblind') # For color blinders
-# from PyQt5 import QtWidgets
-# from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
-# from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT as NavigationToolbar
-# Remove the margins
-from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
+style.use('seaborn-colorblind') # For color blinders
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg, NavigationToolbar2Tk
 plt.rcParams['axes.autolimit_mode'] = 'round_numbers'
 plt.rcParams['axes.xmargin'] = 0.
 plt.rcParams['axes.ymargin'] = 0.1
-#plt.rcParams['xtick.direction'] = 'out'
 plt.rcParams['axes.linewidth'] = 0.5  # axis thickness
 plt.rcParams['font.family'] = ['sans serif']
 plt.rcParams['font.size'] = 10
-
 
 # Global variables
 global hourOn1_1, minOn1_1, hourOff1_1, minOff1_1, hourOn2_1, minOn2_1, hourOff2_1, minOff2_1 
@@ -603,10 +594,10 @@ def save_conf(): # Save schedule configuration
 
 from tkinter.filedialog import askopenfilename
 def read_data(): # Read data from file for plotting
-    global file
+    global file_plot
     status.pack(side='bottom', fill='x')
     status.set('Reading the data...')
-    file = askopenfilename(filetypes=(("Text files", "*.txt"),
+    file_plot = askopenfilename(filetypes=(("Text files", "*.txt"),
                                       ("All files", "*.*")))
 
 def plot_box1():
@@ -614,7 +605,7 @@ def plot_box1():
     pir = 'PIR01'
     led = 'LED01'
 
-    df = pd.read_table(file, sep='\s+',
+    df = pd.read_table(file_plot, sep='\s+',
                     skiprows=23, index_col=None, error_bad_lines=False)
     df.index = pd.to_datetime(df['MO/DY/YEAR']+' ' + df['HH:MM:SS'],
                             format="%m/%d/%Y %H:%M:%S")
@@ -680,7 +671,7 @@ def plot_box1():
     j = 0
     for name, group in dategroup:
         (group[pir]*scale).plot.area(ax=axes[j, 0],
-                                    sharey=True, cmap='gray', figsize=(5, 0.3*n_group))
+                                    sharey=True, cmap='gray', figsize=(5, 0.2*n_group))
         ((1-group[led])*800).plot.area(linewidth=0, ax=axes[j, 0],
                                     cmap=my_cmap, sharey=True)
         axes[j, 0].axes.set_yticklabels([])
@@ -700,7 +691,7 @@ def plot_box1():
     i = 0
     for name, group in dategroup2:
         (group[pir]*scale).plot.area(ax=axes[i, 1],
-                                    sharey=True, cmap='gray', figsize=(5, 0.3*n_group))
+                                    sharey=True, cmap='gray', figsize=(5, 0.2*n_group))
         ((1-group[led])*800).plot.area(linewidth=0,
                                     cmap=my_cmap, ax=axes[i, 1], sharey=True)
         x_axis = axes[i, 1].axes.get_xaxis()
@@ -710,24 +701,29 @@ def plot_box1():
         y_axis.set_visible(False)
         i = i+1
 
-    fig.subplots_adjust(left=0.12, right=0.88, bottom=0.45, wspace=0, hspace=0)
+    fig.subplots_adjust(left=0.12, right=0.88, bottom=0.6, top=0.94, wspace=0, hspace=0)
     plt.axis('off')
-    plt.suptitle(box, size=9)
-    top = Toplevel()
+    plt.suptitle(box,x=0.5,y=0.98, size=9)
+    plt.savefig(file_plot + '-' + box+'.png') ## Save file
+    top=Toplevel() ## Make the plot in the top level with scrollable bar
     top.wm_title("Actogram")
-    scrollbar = Scrollbar(top)
-    scrollbar.pack(side=RIGHT, fill=Y)
+    top.geometry("%dx%d%+d%+d" % (400, 100*n_group, 0, 0))
     canvas = FigureCanvasTkAgg(fig, master=top)
-    canvas.get_tk_widget().config(yscrollcommand=scrollbar.set)
-    canvas.draw()
-    canvas.get_tk_widget().pack(side = TOP,  fill = BOTH,  expand = False)
+    vbar = Scrollbar(canvas.get_tk_widget(), orient=VERTICAL)
+    canvas.get_tk_widget().config(yscrollcommand=vbar.set)
+    vbar.config(command=canvas.get_tk_widget().yview)
+    vbar.pack(side="right", fill="y")
+    f = Frame(canvas.get_tk_widget())
+    canvas.get_tk_widget().pack(side="top", fill=BOTH , expand=True)
+    canvas.get_tk_widget().create_window((100,100),window=f, anchor='nw')
+    canvas.get_tk_widget().config(scrollregion=(0, 0, 100, 1000*n_group))
 
 def plot_box2():
     box = 'BOX2'
     pir = 'PIR02'
     led = 'LED02'
-    
-    df = pd.read_table(file, sep='\s+',
+
+    df = pd.read_table(file_plot, sep='\s+',
                     skiprows=23, index_col=None, error_bad_lines=False)
     df.index = pd.to_datetime(df['MO/DY/YEAR']+' ' + df['HH:MM:SS'],
                             format="%m/%d/%Y %H:%M:%S")
@@ -793,7 +789,7 @@ def plot_box2():
     j = 0
     for name, group in dategroup:
         (group[pir]*scale).plot.area(ax=axes[j, 0],
-                                    sharey=True, cmap='gray', figsize=(5, 0.3*n_group))
+                                    sharey=True, cmap='gray', figsize=(5, 0.2*n_group))
         ((1-group[led])*800).plot.area(linewidth=0, ax=axes[j, 0],
                                     cmap=my_cmap, sharey=True)
         axes[j, 0].axes.set_yticklabels([])
@@ -813,7 +809,7 @@ def plot_box2():
     i = 0
     for name, group in dategroup2:
         (group[pir]*scale).plot.area(ax=axes[i, 1],
-                                    sharey=True, cmap='gray', figsize=(5, 0.3*n_group))
+                                    sharey=True, cmap='gray', figsize=(5, 0.2*n_group))
         ((1-group[led])*800).plot.area(linewidth=0,
                                     cmap=my_cmap, ax=axes[i, 1], sharey=True)
         x_axis = axes[i, 1].axes.get_xaxis()
@@ -823,24 +819,29 @@ def plot_box2():
         y_axis.set_visible(False)
         i = i+1
 
-    fig.subplots_adjust(left=0.12, right=0.88, bottom=0.45, wspace=0, hspace=0)
+    fig.subplots_adjust(left=0.12, right=0.88, bottom=0.6, top=0.94, wspace=0, hspace=0)
     plt.axis('off')
-    plt.suptitle(box, size=9)
-    top = Toplevel()
+    plt.suptitle(box,x=0.5,y=0.98, size=9)
+    plt.savefig(file_plot + '-' + box+'.png') ## Save file
+    top=Toplevel() ## Make the plot in the top level with scrollable bar
     top.wm_title("Actogram")
-    scrollbar = Scrollbar(top)
-    scrollbar.pack(side=RIGHT, fill=Y)
+    top.geometry("%dx%d%+d%+d" % (400, 100*n_group, 0, 0))
     canvas = FigureCanvasTkAgg(fig, master=top)
-    canvas.get_tk_widget().config(yscrollcommand=scrollbar.set)
-    canvas.draw()
-    canvas.get_tk_widget().pack(side = TOP,  fill = BOTH,  expand = False)
+    vbar = Scrollbar(canvas.get_tk_widget(), orient=VERTICAL)
+    canvas.get_tk_widget().config(yscrollcommand=vbar.set)
+    vbar.config(command=canvas.get_tk_widget().yview)
+    vbar.pack(side="right", fill="y")
+    f = Frame(canvas.get_tk_widget())
+    canvas.get_tk_widget().pack(side="top", fill=BOTH , expand=True)
+    canvas.get_tk_widget().create_window((100,100),window=f, anchor='nw')
+    canvas.get_tk_widget().config(scrollregion=(0, 0, 100, 1000*n_group))
 
 def plot_box3():
     box = 'BOX3'
     pir = 'PIR03'
     led = 'LED03'
-    
-    df = pd.read_table(file, sep='\s+',
+
+    df = pd.read_table(file_plot, sep='\s+',
                     skiprows=23, index_col=None, error_bad_lines=False)
     df.index = pd.to_datetime(df['MO/DY/YEAR']+' ' + df['HH:MM:SS'],
                             format="%m/%d/%Y %H:%M:%S")
@@ -906,7 +907,7 @@ def plot_box3():
     j = 0
     for name, group in dategroup:
         (group[pir]*scale).plot.area(ax=axes[j, 0],
-                                    sharey=True, cmap='gray', figsize=(5, 0.3*n_group))
+                                    sharey=True, cmap='gray', figsize=(5, 0.2*n_group))
         ((1-group[led])*800).plot.area(linewidth=0, ax=axes[j, 0],
                                     cmap=my_cmap, sharey=True)
         axes[j, 0].axes.set_yticklabels([])
@@ -926,7 +927,7 @@ def plot_box3():
     i = 0
     for name, group in dategroup2:
         (group[pir]*scale).plot.area(ax=axes[i, 1],
-                                    sharey=True, cmap='gray', figsize=(5, 0.3*n_group))
+                                    sharey=True, cmap='gray', figsize=(5, 0.2*n_group))
         ((1-group[led])*800).plot.area(linewidth=0,
                                     cmap=my_cmap, ax=axes[i, 1], sharey=True)
         x_axis = axes[i, 1].axes.get_xaxis()
@@ -936,24 +937,30 @@ def plot_box3():
         y_axis.set_visible(False)
         i = i+1
 
-    fig.subplots_adjust(left=0.12, right=0.88, bottom=0.45, wspace=0, hspace=0)
+    fig.subplots_adjust(left=0.12, right=0.88, bottom=0.6, top=0.94, wspace=0, hspace=0)
     plt.axis('off')
-    plt.suptitle(box, size=9)
-    top = Toplevel()
+    plt.suptitle(box,x=0.5,y=0.98, size=9)
+    plt.savefig(file_plot + '-' + box+'.png') ## Save file
+    top=Toplevel() ## Make the plot in the top level with scrollable bar
     top.wm_title("Actogram")
-    scrollbar = Scrollbar(top)
-    scrollbar.pack(side=RIGHT, fill=Y)
+    top.geometry("%dx%d%+d%+d" % (400, 100*n_group, 0, 0))
     canvas = FigureCanvasTkAgg(fig, master=top)
-    canvas.get_tk_widget().config(yscrollcommand=scrollbar.set)
-    canvas.draw()
-    canvas.get_tk_widget().pack(side = TOP,  fill = BOTH,  expand = False)
+    vbar = Scrollbar(canvas.get_tk_widget(), orient=VERTICAL)
+    canvas.get_tk_widget().config(yscrollcommand=vbar.set)
+    vbar.config(command=canvas.get_tk_widget().yview)
+    vbar.pack(side="right", fill="y")
+    f = Frame(canvas.get_tk_widget())
+    canvas.get_tk_widget().pack(side="top", fill=BOTH , expand=True)
+    canvas.get_tk_widget().create_window((100,100),window=f, anchor='nw')
+    canvas.get_tk_widget().config(scrollregion=(0, 0, 100, 1000*n_group))
+    
 
 def plot_box4():
     box = 'BOX4'
     pir = 'PIR04'
     led = 'LED04'
-    
-    df = pd.read_table(file, sep='\s+',
+
+    df = pd.read_table(file_plot, sep='\s+',
                     skiprows=23, index_col=None, error_bad_lines=False)
     df.index = pd.to_datetime(df['MO/DY/YEAR']+' ' + df['HH:MM:SS'],
                             format="%m/%d/%Y %H:%M:%S")
@@ -1019,7 +1026,7 @@ def plot_box4():
     j = 0
     for name, group in dategroup:
         (group[pir]*scale).plot.area(ax=axes[j, 0],
-                                    sharey=True, cmap='gray', figsize=(5, 0.3*n_group))
+                                    sharey=True, cmap='gray', figsize=(5, 0.2*n_group))
         ((1-group[led])*800).plot.area(linewidth=0, ax=axes[j, 0],
                                     cmap=my_cmap, sharey=True)
         axes[j, 0].axes.set_yticklabels([])
@@ -1039,7 +1046,7 @@ def plot_box4():
     i = 0
     for name, group in dategroup2:
         (group[pir]*scale).plot.area(ax=axes[i, 1],
-                                    sharey=True, cmap='gray', figsize=(5, 0.3*n_group))
+                                    sharey=True, cmap='gray', figsize=(5, 0.2*n_group))
         ((1-group[led])*800).plot.area(linewidth=0,
                                     cmap=my_cmap, ax=axes[i, 1], sharey=True)
         x_axis = axes[i, 1].axes.get_xaxis()
@@ -1049,24 +1056,29 @@ def plot_box4():
         y_axis.set_visible(False)
         i = i+1
 
-    fig.subplots_adjust(left=0.12, right=0.88, bottom=0.45, wspace=0, hspace=0)
+    fig.subplots_adjust(left=0.12, right=0.88, bottom=0.6, top=0.94, wspace=0, hspace=0)
     plt.axis('off')
-    plt.suptitle(box, size=9)
-    top = Toplevel()
+    plt.suptitle(box,x=0.5,y=0.98, size=9)
+    plt.savefig(file_plot + '-' + box+'.png') ## Save file
+    top=Toplevel() ## Make the plot in the top level with scrollable bar
     top.wm_title("Actogram")
-    scrollbar = Scrollbar(top)
-    scrollbar.pack(side=RIGHT, fill=Y)
+    top.geometry("%dx%d%+d%+d" % (400, 100*n_group, 0, 0))
     canvas = FigureCanvasTkAgg(fig, master=top)
-    canvas.get_tk_widget().config(yscrollcommand=scrollbar.set)
-    canvas.draw()
-    canvas.get_tk_widget().pack(side = TOP,  fill = BOTH,  expand = False)
-
+    vbar = Scrollbar(canvas.get_tk_widget(), orient=VERTICAL)
+    canvas.get_tk_widget().config(yscrollcommand=vbar.set)
+    vbar.config(command=canvas.get_tk_widget().yview)
+    vbar.pack(side="right", fill="y")
+    f = Frame(canvas.get_tk_widget())
+    canvas.get_tk_widget().pack(side="top", fill=BOTH , expand=True)
+    canvas.get_tk_widget().create_window((100,100),window=f, anchor='nw')
+    canvas.get_tk_widget().config(scrollregion=(0, 0, 100, 1000*n_group))
+    
 def plot_box5():
     box = 'BOX5'
     pir = 'PIR05'
     led = 'LED05'
-    
-    df = pd.read_table(file, sep='\s+',
+
+    df = pd.read_table(file_plot, sep='\s+',
                     skiprows=23, index_col=None, error_bad_lines=False)
     df.index = pd.to_datetime(df['MO/DY/YEAR']+' ' + df['HH:MM:SS'],
                             format="%m/%d/%Y %H:%M:%S")
@@ -1132,7 +1144,7 @@ def plot_box5():
     j = 0
     for name, group in dategroup:
         (group[pir]*scale).plot.area(ax=axes[j, 0],
-                                    sharey=True, cmap='gray', figsize=(5, 0.3*n_group))
+                                    sharey=True, cmap='gray', figsize=(5, 0.2*n_group))
         ((1-group[led])*800).plot.area(linewidth=0, ax=axes[j, 0],
                                     cmap=my_cmap, sharey=True)
         axes[j, 0].axes.set_yticklabels([])
@@ -1152,7 +1164,7 @@ def plot_box5():
     i = 0
     for name, group in dategroup2:
         (group[pir]*scale).plot.area(ax=axes[i, 1],
-                                    sharey=True, cmap='gray', figsize=(5, 0.3*n_group))
+                                    sharey=True, cmap='gray', figsize=(5, 0.2*n_group))
         ((1-group[led])*800).plot.area(linewidth=0,
                                     cmap=my_cmap, ax=axes[i, 1], sharey=True)
         x_axis = axes[i, 1].axes.get_xaxis()
@@ -1162,24 +1174,30 @@ def plot_box5():
         y_axis.set_visible(False)
         i = i+1
 
-    fig.subplots_adjust(left=0.12, right=0.88, bottom=0.45, wspace=0, hspace=0)
+    fig.subplots_adjust(left=0.12, right=0.88, bottom=0.6, top=0.94, wspace=0, hspace=0)
     plt.axis('off')
-    plt.suptitle(box, size=9)
-    top = Toplevel()
+    plt.suptitle(box,x=0.5,y=0.98, size=9)
+    plt.savefig(file_plot + '-' + box+'.png') ## Save file
+    top=Toplevel() ## Make the plot in the top level with scrollable bar
     top.wm_title("Actogram")
-    scrollbar = Scrollbar(top)
-    scrollbar.pack(side=RIGHT, fill=Y)
+    top.geometry("%dx%d%+d%+d" % (400, 100*n_group, 0, 0))
     canvas = FigureCanvasTkAgg(fig, master=top)
-    canvas.get_tk_widget().config(yscrollcommand=scrollbar.set)
-    canvas.draw()
-    canvas.get_tk_widget().pack(side = TOP,  fill = BOTH,  expand = False)
-
+    vbar = Scrollbar(canvas.get_tk_widget(), orient=VERTICAL)
+    canvas.get_tk_widget().config(yscrollcommand=vbar.set)
+    vbar.config(command=canvas.get_tk_widget().yview)
+    vbar.pack(side="right", fill="y")
+    f = Frame(canvas.get_tk_widget())
+    canvas.get_tk_widget().pack(side="top", fill=BOTH , expand=True)
+    canvas.get_tk_widget().create_window((100,100),window=f, anchor='nw')
+    canvas.get_tk_widget().config(scrollregion=(0, 0, 100, 1000*n_group))
+    
+    
 def plot_box6():
     box = 'BOX6'
     pir = 'PIR06'
     led = 'LED06'
-    
-    df = pd.read_table(file, sep='\s+',
+
+    df = pd.read_table(file_plot, sep='\s+',
                     skiprows=23, index_col=None, error_bad_lines=False)
     df.index = pd.to_datetime(df['MO/DY/YEAR']+' ' + df['HH:MM:SS'],
                             format="%m/%d/%Y %H:%M:%S")
@@ -1245,7 +1263,7 @@ def plot_box6():
     j = 0
     for name, group in dategroup:
         (group[pir]*scale).plot.area(ax=axes[j, 0],
-                                    sharey=True, cmap='gray', figsize=(5, 0.3*n_group))
+                                    sharey=True, cmap='gray', figsize=(5, 0.2*n_group))
         ((1-group[led])*800).plot.area(linewidth=0, ax=axes[j, 0],
                                     cmap=my_cmap, sharey=True)
         axes[j, 0].axes.set_yticklabels([])
@@ -1265,7 +1283,7 @@ def plot_box6():
     i = 0
     for name, group in dategroup2:
         (group[pir]*scale).plot.area(ax=axes[i, 1],
-                                    sharey=True, cmap='gray', figsize=(5, 0.3*n_group))
+                                    sharey=True, cmap='gray', figsize=(5, 0.2*n_group))
         ((1-group[led])*800).plot.area(linewidth=0,
                                     cmap=my_cmap, ax=axes[i, 1], sharey=True)
         x_axis = axes[i, 1].axes.get_xaxis()
@@ -1275,58 +1293,64 @@ def plot_box6():
         y_axis.set_visible(False)
         i = i+1
 
-    fig.subplots_adjust(left=0.12, right=0.88, bottom=0.45, wspace=0, hspace=0)
+    fig.subplots_adjust(left=0.12, right=0.88, bottom=0.6, top=0.94, wspace=0, hspace=0)
     plt.axis('off')
-    plt.suptitle(box, size=9)
-    top = Toplevel()
+    plt.suptitle(box,x=0.5,y=0.98, size=9)
+    plt.savefig(file_plot + '-' + box+'.png') ## Save file
+    top=Toplevel() ## Make the plot in the top level with scrollable bar
     top.wm_title("Actogram")
-    scrollbar = Scrollbar(top)
-    scrollbar.pack(side=RIGHT, fill=Y)
+    top.geometry("%dx%d%+d%+d" % (400, 100*n_group, 0, 0))
     canvas = FigureCanvasTkAgg(fig, master=top)
-    canvas.get_tk_widget().config(yscrollcommand=scrollbar.set)
-    canvas.draw()
-    canvas.get_tk_widget().pack(side = TOP,  fill = BOTH,  expand = False)
+    vbar = Scrollbar(canvas.get_tk_widget(), orient=VERTICAL)
+    canvas.get_tk_widget().config(yscrollcommand=vbar.set)
+    vbar.config(command=canvas.get_tk_widget().yview)
+    vbar.pack(side="right", fill="y")
+    f = Frame(canvas.get_tk_widget())
+    canvas.get_tk_widget().pack(side="top", fill=BOTH , expand=True)
+    canvas.get_tk_widget().create_window((100,100),window=f, anchor='nw')
+    canvas.get_tk_widget().config(scrollregion=(0, 0, 100, 1000*n_group))
+    
 
 def plot_box7():
     box = 'BOX7'
     pir = 'PIR07'
     led = 'LED07'
-    
-    df = pd.read_table(file, sep='\s+',
-                    skiprows=23, index_col=None, error_bad_lines=False)
+
+    df = pd.read_table(file_plot, sep='\s+',
+                       skiprows=23, index_col=None, error_bad_lines=False)
     df.index = pd.to_datetime(df['MO/DY/YEAR']+' ' + df['HH:MM:SS'],
-                            format="%m/%d/%Y %H:%M:%S")
+                              format="%m/%d/%Y %H:%M:%S")
     df0 = pd.DataFrame(
         {'HH:MM:SS': ['00:00:00'],  'MO/DY/YEAR':  [df['MO/DY/YEAR'][0]],
-        'LED01': [0], 'PIR01': [0], 'LED02': [0], 'PIR02': [0], 'LED03': [0], 'PIR03': [0], 'LED04': [0], 'PIR04': [0], 'LED05': [0], 'PIR05': [0], 'LED06': [0], 'PIR06': [0], 'LED07': [0], 'PIR07': [0], 'LED08': [0], 'PIR08': [0], 'LED09': [0], 'PIR09': [0], 'LED10': [0], 'PIR10': [0]
-        })
+         'LED01': [0], 'PIR01': [0], 'LED02': [0], 'PIR02': [0], 'LED03': [0], 'PIR03': [0], 'LED04': [0], 'PIR04': [0], 'LED05': [0], 'PIR05': [0], 'LED06': [0], 'PIR06': [0], 'LED07': [0], 'PIR07': [0], 'LED08': [0], 'PIR08': [0], 'LED09': [0], 'PIR09': [0], 'LED10': [0], 'PIR10': [0]
+         })
     df0.index = pd.to_datetime(df0['MO/DY/YEAR']+' ' + df0['HH:MM:SS'],
-                            format="%m/%d/%Y %H:%M:%S")
+                               format="%m/%d/%Y %H:%M:%S")
 
     df1 = pd.DataFrame(
         {'HH:MM:SS': df['HH:MM:SS'][0],  'MO/DY/YEAR':  [df['MO/DY/YEAR'][0]],
-        'LED01': [0], 'PIR01': [0], 'LED02': [0], 'PIR02': [0], 'LED03': [0], 'PIR03': [0], 'LED04': [0], 'PIR04': [0], 'LED05': [0], 'PIR05': [0], 'LED06': [0], 'PIR06': [0], 'LED07': [0], 'PIR07': [0], 'LED08': [0], 'PIR08': [0], 'LED09': [0], 'PIR09': [0], 'LED10': [0], 'PIR10': [0]
-        })
+         'LED01': [0], 'PIR01': [0], 'LED02': [0], 'PIR02': [0], 'LED03': [0], 'PIR03': [0], 'LED04': [0], 'PIR04': [0], 'LED05': [0], 'PIR05': [0], 'LED06': [0], 'PIR06': [0], 'LED07': [0], 'PIR07': [0], 'LED08': [0], 'PIR08': [0], 'LED09': [0], 'PIR09': [0], 'LED10': [0], 'PIR10': [0]
+         })
     df1.index = pd.to_datetime(df1['MO/DY/YEAR']+' ' + df1['HH:MM:SS'],
-                            format="%m/%d/%Y %H:%M:%S")
+                               format="%m/%d/%Y %H:%M:%S")
     df1.index.set_value(df1.index, df1.index[0], pd.Timestamp(
         df1.index.date[0].year, df1.index.date[0].month, df1.index.date[0].day, df1.index.time[0].hour, df1.index.time[0].minute-1, df1.index.time[0].second))
 
     df2 = pd.DataFrame(
         {'HH:MM:SS': ['00:00:00'],  'MO/DY/YEAR':  [df['MO/DY/YEAR'][-1]],
-        'LED01': [0], 'PIR01': [0], 'LED02': [0], 'PIR02': [0], 'LED03': [0], 'PIR03': [0], 'LED04': [0], 'PIR04': [0], 'LED05': [0], 'PIR05': [0], 'LED06': [0], 'PIR06': [0], 'LED07': [0], 'PIR07': [0], 'LED08': [0], 'PIR08': [0], 'LED09': [0], 'PIR09': [0], 'LED10': [0], 'PIR10': [0]
-        })
+         'LED01': [0], 'PIR01': [0], 'LED02': [0], 'PIR02': [0], 'LED03': [0], 'PIR03': [0], 'LED04': [0], 'PIR04': [0], 'LED05': [0], 'PIR05': [0], 'LED06': [0], 'PIR06': [0], 'LED07': [0], 'PIR07': [0], 'LED08': [0], 'PIR08': [0], 'LED09': [0], 'PIR09': [0], 'LED10': [0], 'PIR10': [0]
+         })
     df2.index = pd.to_datetime(df2['MO/DY/YEAR']+' ' + df2['HH:MM:SS'],
-                            format="%m/%d/%Y %H:%M:%S")
+                               format="%m/%d/%Y %H:%M:%S")
     df2.index.set_value(df2.index, df2.index[0], pd.Timestamp(
         df2.index.date[0].year, df2.index.date[0].month, df2.index.date[0].day, 23, 59, 0))
 
     df3 = pd.DataFrame(
         {'HH:MM:SS': df['HH:MM:SS'][-1],  'MO/DY/YEAR':  [df['MO/DY/YEAR'][-1]],
-        'LED01': [0], 'PIR01': [0], 'LED02': [0], 'PIR02': [0], 'LED03': [0], 'PIR03': [0], 'LED04': [0], 'PIR04': [0], 'LED05': [0], 'PIR05': [0], 'LED06': [0], 'PIR06': [0], 'LED07': [0], 'PIR07': [0], 'LED08': [0], 'PIR08': [0], 'LED09': [0], 'PIR09': [0], 'LED10': [0], 'PIR10': [0]
-        })
+         'LED01': [0], 'PIR01': [0], 'LED02': [0], 'PIR02': [0], 'LED03': [0], 'PIR03': [0], 'LED04': [0], 'PIR04': [0], 'LED05': [0], 'PIR05': [0], 'LED06': [0], 'PIR06': [0], 'LED07': [0], 'PIR07': [0], 'LED08': [0], 'PIR08': [0], 'LED09': [0], 'PIR09': [0], 'LED10': [0], 'PIR10': [0]
+         })
     df3.index = pd.to_datetime(df3['MO/DY/YEAR']+' ' + df3['HH:MM:SS'],
-                            format="%m/%d/%Y %H:%M:%S")
+                               format="%m/%d/%Y %H:%M:%S")
     df3.index.set_value(df3.index, df3.index[0], pd.Timestamp(
         df3.index.date[0].year, df3.index.date[0].month, df3.index.date[0].day, df3.index.time[0].hour, df3.index.time[0].minute+1, df3.index.time[0].second))
 
@@ -1358,9 +1382,9 @@ def plot_box7():
     j = 0
     for name, group in dategroup:
         (group[pir]*scale).plot.area(ax=axes[j, 0],
-                                    sharey=True, cmap='gray', figsize=(5, 0.3*n_group))
+                                     sharey=True, cmap='gray', figsize=(5, 0.2*n_group))
         ((1-group[led])*800).plot.area(linewidth=0, ax=axes[j, 0],
-                                    cmap=my_cmap, sharey=True)
+                                       cmap=my_cmap, sharey=True)
         axes[j, 0].axes.set_yticklabels([])
         axes[j, 0].axes.set_yticks([])
         axes[j, 0].axes.set_xticklabels(
@@ -1378,9 +1402,9 @@ def plot_box7():
     i = 0
     for name, group in dategroup2:
         (group[pir]*scale).plot.area(ax=axes[i, 1],
-                                    sharey=True, cmap='gray', figsize=(5, 0.3*n_group))
+                                     sharey=True, cmap='gray', figsize=(5, 0.2*n_group))
         ((1-group[led])*800).plot.area(linewidth=0,
-                                    cmap=my_cmap, ax=axes[i, 1], sharey=True)
+                                       cmap=my_cmap, ax=axes[i, 1], sharey=True)
         x_axis = axes[i, 1].axes.get_xaxis()
         x_axis.set_visible(False)
         axes[i, 1].axes.set_ylim(1, 800)
@@ -1388,24 +1412,30 @@ def plot_box7():
         y_axis.set_visible(False)
         i = i+1
 
-    fig.subplots_adjust(left=0.12, right=0.88, bottom=0.45, wspace=0, hspace=0)
+    fig.subplots_adjust(left=0.12, right=0.88, bottom=0.6,
+                        top=0.94, wspace=0, hspace=0)
     plt.axis('off')
-    plt.suptitle(box, size=9)
-    top = Toplevel()
+    plt.suptitle(box, x=0.5, y=0.98, size=9)
+    plt.savefig(file_plot + '-' + box+'.png')  # Save file
+    top = Toplevel()  # Make the plot in the top level with scrollable bar
     top.wm_title("Actogram")
-    scrollbar = Scrollbar(top)
-    scrollbar.pack(side=RIGHT, fill=Y)
+    top.geometry("%dx%d%+d%+d" % (400, 100*n_group, 0, 0))
     canvas = FigureCanvasTkAgg(fig, master=top)
-    canvas.get_tk_widget().config(yscrollcommand=scrollbar.set)
-    canvas.draw()
-    canvas.get_tk_widget().pack(side = TOP,  fill = BOTH,  expand = False)
+    vbar = Scrollbar(canvas.get_tk_widget(), orient=VERTICAL)
+    canvas.get_tk_widget().config(yscrollcommand=vbar.set)
+    vbar.config(command=canvas.get_tk_widget().yview)
+    vbar.pack(side="right", fill="y")
+    f = Frame(canvas.get_tk_widget())
+    canvas.get_tk_widget().pack(side="top", fill=BOTH, expand=True)
+    canvas.get_tk_widget().create_window((100, 100), window=f, anchor='nw')
+    canvas.get_tk_widget().config(scrollregion=(0, 0, 100, 1000*n_group))
 
 def plot_box8():
     box = 'BOX8'
     pir = 'PIR08'
     led = 'LED08'
-    
-    df = pd.read_table(file, sep='\s+',
+
+    df = pd.read_table(file_plot, sep='\s+',
                     skiprows=23, index_col=None, error_bad_lines=False)
     df.index = pd.to_datetime(df['MO/DY/YEAR']+' ' + df['HH:MM:SS'],
                             format="%m/%d/%Y %H:%M:%S")
@@ -1471,7 +1501,7 @@ def plot_box8():
     j = 0
     for name, group in dategroup:
         (group[pir]*scale).plot.area(ax=axes[j, 0],
-                                    sharey=True, cmap='gray', figsize=(5, 0.3*n_group))
+                                    sharey=True, cmap='gray', figsize=(5, 0.2*n_group))
         ((1-group[led])*800).plot.area(linewidth=0, ax=axes[j, 0],
                                     cmap=my_cmap, sharey=True)
         axes[j, 0].axes.set_yticklabels([])
@@ -1491,7 +1521,7 @@ def plot_box8():
     i = 0
     for name, group in dategroup2:
         (group[pir]*scale).plot.area(ax=axes[i, 1],
-                                    sharey=True, cmap='gray', figsize=(5, 0.3*n_group))
+                                    sharey=True, cmap='gray', figsize=(5, 0.2*n_group))
         ((1-group[led])*800).plot.area(linewidth=0,
                                     cmap=my_cmap, ax=axes[i, 1], sharey=True)
         x_axis = axes[i, 1].axes.get_xaxis()
@@ -1501,24 +1531,29 @@ def plot_box8():
         y_axis.set_visible(False)
         i = i+1
 
-    fig.subplots_adjust(left=0.12, right=0.88, bottom=0.45, wspace=0, hspace=0)
+    fig.subplots_adjust(left=0.12, right=0.88, bottom=0.6, top=0.94, wspace=0, hspace=0)
     plt.axis('off')
-    plt.suptitle(box, size=9)
-    top = Toplevel()
+    plt.suptitle(box,x=0.5,y=0.98, size=9)
+    plt.savefig(file_plot + '-' + box+'.png') ## Save file
+    top=Toplevel() ## Make the plot in the top level with scrollable bar
     top.wm_title("Actogram")
-    scrollbar = Scrollbar(top)
-    scrollbar.pack(side=RIGHT, fill=Y)
+    top.geometry("%dx%d%+d%+d" % (400, 100*n_group, 0, 0))
     canvas = FigureCanvasTkAgg(fig, master=top)
-    canvas.get_tk_widget().config(yscrollcommand=scrollbar.set)
-    canvas.draw()
-    canvas.get_tk_widget().pack(side = TOP,  fill = BOTH,  expand = False)
+    vbar = Scrollbar(canvas.get_tk_widget(), orient=VERTICAL)
+    canvas.get_tk_widget().config(yscrollcommand=vbar.set)
+    vbar.config(command=canvas.get_tk_widget().yview)
+    vbar.pack(side="right", fill="y")
+    f = Frame(canvas.get_tk_widget())
+    canvas.get_tk_widget().pack(side="top", fill=BOTH , expand=True)
+    canvas.get_tk_widget().create_window((100,100),window=f, anchor='nw')
+    canvas.get_tk_widget().config(scrollregion=(0, 0, 100, 1000*n_group))
 
 def plot_box9():
     box = 'BOX9'
     pir = 'PIR09'
     led = 'LED09'
-    
-    df = pd.read_table(file, sep='\s+',
+
+    df = pd.read_table(file_plot, sep='\s+',
                     skiprows=23, index_col=None, error_bad_lines=False)
     df.index = pd.to_datetime(df['MO/DY/YEAR']+' ' + df['HH:MM:SS'],
                             format="%m/%d/%Y %H:%M:%S")
@@ -1584,7 +1619,7 @@ def plot_box9():
     j = 0
     for name, group in dategroup:
         (group[pir]*scale).plot.area(ax=axes[j, 0],
-                                    sharey=True, cmap='gray', figsize=(5, 0.3*n_group))
+                                    sharey=True, cmap='gray', figsize=(5, 0.2*n_group))
         ((1-group[led])*800).plot.area(linewidth=0, ax=axes[j, 0],
                                     cmap=my_cmap, sharey=True)
         axes[j, 0].axes.set_yticklabels([])
@@ -1604,7 +1639,7 @@ def plot_box9():
     i = 0
     for name, group in dategroup2:
         (group[pir]*scale).plot.area(ax=axes[i, 1],
-                                    sharey=True, cmap='gray', figsize=(5, 0.3*n_group))
+                                    sharey=True, cmap='gray', figsize=(5, 0.2*n_group))
         ((1-group[led])*800).plot.area(linewidth=0,
                                     cmap=my_cmap, ax=axes[i, 1], sharey=True)
         x_axis = axes[i, 1].axes.get_xaxis()
@@ -1614,24 +1649,30 @@ def plot_box9():
         y_axis.set_visible(False)
         i = i+1
 
-    fig.subplots_adjust(left=0.12, right=0.88, bottom=0.45, wspace=0, hspace=0)
+    fig.subplots_adjust(left=0.12, right=0.88, bottom=0.6, top=0.94, wspace=0, hspace=0)
     plt.axis('off')
-    plt.suptitle(box, size=9)
-    top = Toplevel()
+    plt.suptitle(box,x=0.5,y=0.98, size=9)
+    plt.savefig(file_plot + '-' + box+'.png') ## Save file
+    top=Toplevel() ## Make the plot in the top level with scrollable bar
     top.wm_title("Actogram")
-    scrollbar = Scrollbar(top)
-    scrollbar.pack(side=RIGHT, fill=Y)
+    top.geometry("%dx%d%+d%+d" % (400, 100*n_group, 0, 0))
     canvas = FigureCanvasTkAgg(fig, master=top)
-    canvas.get_tk_widget().config(yscrollcommand=scrollbar.set)
-    canvas.draw()
-    canvas.get_tk_widget().pack(side = TOP,  fill = BOTH,  expand = False)
+    vbar = Scrollbar(canvas.get_tk_widget(), orient=VERTICAL)
+    canvas.get_tk_widget().config(yscrollcommand=vbar.set)
+    vbar.config(command=canvas.get_tk_widget().yview)
+    vbar.pack(side="right", fill="y")
+    f = Frame(canvas.get_tk_widget())
+    canvas.get_tk_widget().pack(side="top", fill=BOTH , expand=True)
+    canvas.get_tk_widget().create_window((100,100),window=f, anchor='nw')
+    canvas.get_tk_widget().config(scrollregion=(0, 0, 100, 1000*n_group))
+
 
 def plot_box10():
     box = 'BOX10'
-    pir = 'PIR010'
-    led = 'LED010'
-    
-    df = pd.read_table(file, sep='\s+',
+    pir = 'PIR10'
+    led = 'LED10'
+
+    df = pd.read_table(file_plot, sep='\s+',
                     skiprows=23, index_col=None, error_bad_lines=False)
     df.index = pd.to_datetime(df['MO/DY/YEAR']+' ' + df['HH:MM:SS'],
                             format="%m/%d/%Y %H:%M:%S")
@@ -1697,7 +1738,7 @@ def plot_box10():
     j = 0
     for name, group in dategroup:
         (group[pir]*scale).plot.area(ax=axes[j, 0],
-                                    sharey=True, cmap='gray', figsize=(5, 0.3*n_group))
+                                    sharey=True, cmap='gray', figsize=(5, 0.2*n_group))
         ((1-group[led])*800).plot.area(linewidth=0, ax=axes[j, 0],
                                     cmap=my_cmap, sharey=True)
         axes[j, 0].axes.set_yticklabels([])
@@ -1717,7 +1758,7 @@ def plot_box10():
     i = 0
     for name, group in dategroup2:
         (group[pir]*scale).plot.area(ax=axes[i, 1],
-                                    sharey=True, cmap='gray', figsize=(5, 0.3*n_group))
+                                    sharey=True, cmap='gray', figsize=(5, 0.2*n_group))
         ((1-group[led])*800).plot.area(linewidth=0,
                                     cmap=my_cmap, ax=axes[i, 1], sharey=True)
         x_axis = axes[i, 1].axes.get_xaxis()
@@ -1727,17 +1768,22 @@ def plot_box10():
         y_axis.set_visible(False)
         i = i+1
 
-    fig.subplots_adjust(left=0.12, right=0.88, bottom=0.45, wspace=0, hspace=0)
+    fig.subplots_adjust(left=0.12, right=0.88, bottom=0.6, top=0.94, wspace=0, hspace=0)
     plt.axis('off')
-    plt.suptitle(box, size=9)
-    top = Toplevel()
+    plt.suptitle(box,x=0.5,y=0.98, size=9)
+    plt.savefig(file_plot + '-' + box+'.png') ## Save file
+    top=Toplevel() ## Make the plot in the top level with scrollable bar
     top.wm_title("Actogram")
-    scrollbar = Scrollbar(top)
-    scrollbar.pack(side=RIGHT, fill=Y)
+    top.geometry("%dx%d%+d%+d" % (400, 100*n_group, 0, 0))
     canvas = FigureCanvasTkAgg(fig, master=top)
-    canvas.get_tk_widget().config(yscrollcommand=scrollbar.set)
-    canvas.draw()
-    canvas.get_tk_widget().pack(side = TOP,  fill = BOTH,  expand = False)
+    vbar = Scrollbar(canvas.get_tk_widget(), orient=VERTICAL)
+    canvas.get_tk_widget().config(yscrollcommand=vbar.set)
+    vbar.config(command=canvas.get_tk_widget().yview)
+    vbar.pack(side="right", fill="y")
+    f = Frame(canvas.get_tk_widget())
+    canvas.get_tk_widget().pack(side="top", fill=BOTH , expand=True)
+    canvas.get_tk_widget().create_window((100,100),window=f, anchor='nw')
+    canvas.get_tk_widget().config(scrollregion=(0, 0, 100, 1000*n_group))
 
 def read_conf(): # Read schedule configuration
     status.pack(side='bottom', fill='x')
