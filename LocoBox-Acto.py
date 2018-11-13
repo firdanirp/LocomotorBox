@@ -1,13 +1,13 @@
 import serial   # For Serial communication
 import time     # Required for using delay functions
 import datetime # For date-time setting and timedelta calculations
-import sys
 import platform
 import glob
 import tkinter as tk
 from tkinter import * #import INIT set of tkinter library for GUI
 from tkinter import ttk
 from tkinter import messagebox
+from tkinter.filedialog import askopenfilename
 import json
 try:
     from tkinter import filedialog
@@ -17,12 +17,12 @@ import threading # To run Arduino loop and tkinter loop alongside
 import serial.tools.list_ports # For identifying Arduino port
 import numpy as np
 import pandas as pd
-import matplotlib # For plotting actogram
+#import matplotlib for plotting actogram
 import matplotlib.pylab as plt
 from matplotlib import style
 from matplotlib.colors import ListedColormap
 style.use('seaborn-colorblind') # For color blinders
-from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg, NavigationToolbar2Tk
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 plt.rcParams['axes.autolimit_mode'] = 'round_numbers'
 plt.rcParams['axes.xmargin'] = 0.
 plt.rcParams['axes.ymargin'] = 0.1
@@ -592,13 +592,15 @@ def save_conf(): # Save schedule configuration
     status.set('Schedule configuration saved.')
 
 
-from tkinter.filedialog import askopenfilename
+
 def read_data(): # Read data from file for plotting
     global file_plot
     status.pack(side='bottom', fill='x')
     status.set('Reading the data...')
     file_plot = askopenfilename(filetypes=(("Text files", "*.txt"),
                                       ("All files", "*.*")))
+    status.pack(side='bottom', fill='x')
+    status.set('Schedule configuration saved.')
 
 def plot_box1():
     box = 'BOX1'

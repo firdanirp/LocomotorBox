@@ -1,5 +1,0 @@
-('C:\\Users\\truon\\Desktop\\github\\LocomotorBox\\build\\LocoBox-Acto\\pyserial-3.4-py3.7.egg',
- None,
- {'*.py', '*.cp37-win32.pyd', '*.pyc', 'EGG-INFO', '*.pyd', '*.pyw'},
- 'DATA',
- [])
