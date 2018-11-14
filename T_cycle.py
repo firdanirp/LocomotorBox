@@ -10,8 +10,8 @@ filename = 'test.csv'
 startYear1_1 = '2018'
 startMonth1_1 = '11'
 startdate1_1 = '13'
-hourOn1_1 = '17'
-minOn1_1 = '58'
+hourOn1_1 = '18'
+minOn1_1 = '34'
 t_cycle1_1 = '12'
 days1_1 = '001'
 ratio_on1_1 = '04'
@@ -49,7 +49,8 @@ while True:
     if i == 0:
         print('Synching time...')
         t = datetime.datetime.now()
-        serial_obj.write(str.encode(t.strftime('%Y-%m-%d %H:%M:%S')))
+        #serial_obj.write(str.encode(t.strftime('%Y-%m-%d %H:%M:%S')))
+        serial_obj.write(str.encode('2018-11-14 23:56:00'))
     if i == 1:
         serial_obj.write(str.encode(startYear1_1+startMonth1_1+startdate1_1 +
                                     hourOn1_1+minOn1_1+t_cycle1_1+days1_1+ratio_on1_1+ratio_off1_1+dark1_1+light1_1))

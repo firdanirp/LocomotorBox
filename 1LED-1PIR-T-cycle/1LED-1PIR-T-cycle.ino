@@ -55,13 +55,13 @@ int T_Cycle1_1=24;
 int T_Cycle1_2=24;
 int T_Cycle1_3=24;
 
-int RatioOn1_1=12;
-int RatioOn1_2=12;
-int RatioOn1_3=12;
+float RatioOn1_1=12;
+float RatioOn1_2=12;
+float RatioOn1_3=12;
 
-int RatioOff1_1=12;
-int RatioOff1_2=12;
-int RatioOff1_3=12;
+float RatioOff1_1=12;
+float RatioOff1_2=12;
+float RatioOff1_3=12;
 
 // Digital In-Out
 int DIn1 = 2;  // PIR1
@@ -77,6 +77,7 @@ int LightSet2 = 0;
 
 int reset1_1 = 0;
 int reset1_2 = 0;
+int addref = 0;
 float timeStart=0;
 float timeEnd=0;
 int hourstart = 0;
@@ -84,6 +85,7 @@ int minstart = 0;
 int secstart = 0;
 int Day=0;
 float intTime=0;
+float intTimeex=0;
 float intHour=0;
 float intMinute=0;
 float intSecond=0;
@@ -200,13 +202,10 @@ void loop()
   if (reset1_1==1 && reset1_2==0){
     clock.getTime();
     setTime(clock.hour,clock.minute,clock.second,clock.dayOfMonth,clock.month,(clock.year+2000));
-    
     timeStart = ((float)hourstart*60.*60.) + ((float)minstart*60.) + (float)secstart; // second of the day
     timeEnd =  ((float)hour() * 60. * 60.) + ((float)minute() * 60.) + (float)second(); // second of the day
-    
-
     intTime = timeStart + ((timeEnd - timeStart)*(24./T_Cycle1_1));
-    
+  
     //Internal Time
     intSecond = second(intTime);
     intMinute = minute(intTime);
@@ -218,16 +217,33 @@ void loop()
     clock.getTime();
     setTime(clock.hour,clock.minute,clock.second,clock.dayOfMonth,clock.month,(clock.year+2000));
     
+    // Additional step to make sure that the elapsed time calculation is correct when external clock resets from 23:59 to 00:00
+    if (addref ==0 && clock.hour==0&&clock.minute==0){
+      hourstart==0;
+      minstart==0;
+      secstart==clock.second;
+      addref=1;
+    }
+    // Before external clock resets
+    if (addref==0){
     timeStart = ((float)hourstart*60.*60.) + ((float)minstart*60.) + (float)secstart; // second of the day
     timeEnd =  ((float)hour() * 60. * 60.) + ((float)minute() * 60.) + (float)second(); // second of the day
-    
-
-    intTime = ((timeEnd - timeStart)*(24./T_Cycle1_1));
-    
-    //Internal Time
+    intTime = (timeEnd - timeStart)*(24./T_Cycle1_1);
     intSecond = second(intTime);
     intMinute = minute(intTime);
     intHour   = hour(intTime);
+    }
+    // After external clock resets
+    if (addref==1){
+      timeStart = ((float)hourstart*60.*60.) + ((float)minstart*60.) + (float)secstart; // second of the day
+      timeEnd =  ((float)hour() * 60. * 60.) + ((float)minute() * 60.) + (float)second(); // second of the day
+      intTimeex = intTime + (timeEnd - timeStart)*(24./T_Cycle1_1);
+
+      intSecond = second(intTimeex);
+      intMinute = minute(intTimeex);
+      intHour   = hour(intTimeex);
+
+    }
     
   }
     //Reset the reference to clock time from the second Day at 23:59:00, after 1 min of PIR sampling, it becomes the next day
@@ -238,6 +254,7 @@ void loop()
       secstart = clock.second;
       Day=Day+1;
       reset1_2=1;
+      addref=0;
   }
       
   
@@ -264,12 +281,12 @@ void loop()
     {
       phase1_2 = 1;
     }
-
+    
     //////////For Phase1
     //Box1
     if (phase1_1 == 0)
     {
-      if (intHour*60 +  intMinute >= HourOn1_1 * 60 + MinuteOn1_1 && (HourOn1_1 * 60 + MinuteOn1_1) - (intHour*60 + intMinute) <= T_Cycle1_1 * (RatioOn1_1/(RatioOn1_1+RatioOff1_1)) * 60)
+      if (intHour*60 +  intMinute >= HourOn1_1 * 60 + MinuteOn1_1 && (intHour*60 + intMinute) - (HourOn1_1 * 60 + MinuteOn1_1) <= 24 * (RatioOn1_1/(RatioOn1_1+RatioOff1_1)) * 60)
       {
         if (light1_1 == 0 && dark1_1 == 0)
         {
@@ -310,7 +327,7 @@ void loop()
     //////////For Phase2
     if (phase1_1 == 1)
     {
-      if (intHour*60 +  intMinute >= HourOn1_2 * 60 + MinuteOn1_2 && (HourOn1_2 * 60 + MinuteOn1_2) - (intHour*60 + intMinute) <= T_Cycle1_2 * (RatioOn1_2/(RatioOn1_2+RatioOff1_2)) * 60)
+      if (intHour*60 +  intMinute >= HourOn1_2 * 60 + MinuteOn1_2 && (intHour*60 + intMinute)-(HourOn1_2 * 60 + MinuteOn1_2) <= 24 * (RatioOn1_2/(RatioOn1_2+RatioOff1_2)) * 60)
       {
         if (light1_2 == 0 && dark1_2 == 0)
         {
@@ -347,10 +364,10 @@ void loop()
         }
       }
     }
-    //////////For Phase2
+    //////////For Phase3
     if (phase1_2 == 1)
     {
-      if (intHour*60 +  intMinute >= HourOn1_3 * 60 + MinuteOn1_3 && (HourOn1_3 * 60 + MinuteOn1_3) - (intHour*60 + intMinute) <= T_Cycle1_3 * (RatioOn1_3/(RatioOn1_3+RatioOff1_3)) * 60)
+      if (intHour*60 +  intMinute >= HourOn1_3 * 60 + MinuteOn1_3 && (intHour*60 + intMinute)-(HourOn1_3 * 60 + MinuteOn1_3) <= 24 * (RatioOn1_3/(RatioOn1_3+RatioOff1_3)) * 60)
       {
         if (light1_3 == 0 && dark1_3 == 0)
         {
