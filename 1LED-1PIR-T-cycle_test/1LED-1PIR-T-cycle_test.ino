@@ -396,18 +396,17 @@ void loop()
   }
 
   if (InitialFlag == 1)
-  {
+  { 
+    clock.getTime();   
+    while ((clock.second==0)==false){
+      delay(1);
+      clock.getTime();
+    }
 
     // Calculate Internal Time based on External Time
     // Set the reference for Only for the first Day because we want to synchronize the first time point of internal and external clock
     if (reset1 == 0)
     {
-      clock.getTime();
-      while ((clock.second == 0) == false)
-      {
-        delay(1);
-        clock.getTime();
-      }
       hourstart = clock.hour;
       minstart = clock.minute;
       secstart = clock.second;
@@ -417,7 +416,6 @@ void loop()
     // For the first day, we need to add the reference day into the elapse time to get the internal time
     if (reset1 == 1 && reset2 == 0)
     {
-      clock.getTime();
       setTime(clock.hour, clock.minute, clock.second, clock.dayOfMonth, clock.month, (clock.year + 2000));
       timeStart = (hourstart * 60. * 60.) + (minstart * 60.) + secstart; // second of the day
       timeEnd = hour() * 60. * 60. + minute() * 60. + second();          // second of the day
@@ -427,30 +425,15 @@ void loop()
       intSecond = second(intTime);
       intMinute = minute(intTime);
       intHour = hour(intTime);
-      while ((intSecond ==0) == false)
-      {
-        delay(1);
-        clock.getTime();
-        setTime(clock.hour, clock.minute, clock.second, clock.dayOfMonth, clock.month, (clock.year + 2000));
-        //timeStart = (hourstart * 60. * 60.) + (minstart * 60.) + secstart; // second of the day
-        timeEnd = hour() * 60. * 60. + minute() * 60. + second();          // second of the day
-        intTime = timeStart + ((timeEnd - timeStart) * (24. / T_Cycle));
-
-        //Internal Time
-        intSecond = second(intTime);
-        intMinute = minute(intTime);
-        intHour = hour(intTime);
-      }
     }
 
     // From the second day, we dont need to add the reference into internal time anymore
     if (reset1 == 1 && reset2 == 1)
     {
-      clock.getTime();
       setTime(clock.hour, clock.minute, clock.second, clock.dayOfMonth, clock.month, (clock.year + 2000));
 
       // Additional step to make sure that the elapsed time calculation is correct when external clock resets from 23:59 to 00:00
-      if (addref == 0 && clock.hour == 0 && clock.minute == 0)
+      if (addref == 0 && clock.hour == 0 && clock.minute == 0 && clock.second == 0)
       {
         hourstart = 0;
         minstart = 0;
@@ -466,49 +449,23 @@ void loop()
         intSecond = second(intTime);
         intMinute = minute(intTime);
         intHour = hour(intTime);
-        while ((intSecond ==0) == false)
-        {
-          delay(1);
-          clock.getTime();
-          setTime(clock.hour, clock.minute, clock.second, clock.dayOfMonth, clock.month, (clock.year + 2000));
-          //timeStart = ((float)hourstart * 60. * 60.) + ((float)minstart * 60.) + (float)secstart; // second of the day
-          timeEnd = ((float)hour() * 60. * 60.) + ((float)minute() * 60.) + (float)second();      // second of the day
-          intTime = (timeEnd - timeStart) * (24. / T_Cycle);
-          intSecond = second(intTime);
-          intMinute = minute(intTime);
-          intHour = hour(intTime);
-        }
       }
       // After external clock resets
       if (addref == 1)
       {
         timeStart = ((float)hourstart * 60. * 60.) + ((float)minstart * 60.) + (float)secstart; // second of the day
         timeEnd = ((float)hour() * 60. * 60.) + ((float)minute() * 60.) + (float)second();      // second of the day
-        intTimeex = intTime + 60. + (timeEnd - timeStart) * (24. / T_Cycle);
+        intTimeex = intTime + 60. * (24. / T_Cycle) + (timeEnd - timeStart) * (24. / T_Cycle);
 
         intSecond = second(intTimeex);
         intMinute = minute(intTimeex);
         intHour = hour(intTimeex);
 
-        while ((intSecond == 0) == false)
-        {
-          delay(1);
-          clock.getTime();
-          setTime(clock.hour, clock.minute, clock.second, clock.dayOfMonth, clock.month, (clock.year + 2000));
-          //timeStart = ((float)hourstart * 60. * 60.) + ((float)minstart * 60.) + (float)secstart; // second of the day
-          timeEnd = ((float)hour() * 60. * 60.) + ((float)minute() * 60.) + (float)second();      // second of the day
-          intTimeex = intTime + (timeEnd - timeStart) * (24. / T_Cycle);
-
-          intSecond = second(intTimeex);
-          intMinute = minute(intTimeex);
-          intHour = hour(intTimeex);
-        }
       }
     }
     //Reset the reference to clock time from the second Day at 23:59:00, after 1 min of PIR sampling, it becomes the next day
     if (reset1==1 && intHour == 0. && intMinute == 0. )
     {
-      clock.getTime();
       hourstart = clock.hour;
       minstart = clock.minute;
       secstart = clock.second;
@@ -688,7 +645,7 @@ void printMeasurement()
   }
 
   // sensor value sampling for 1-min
-  for (int i = 0; i < 999 / (24 / T_Cycle); i++)
+  for (int i = 0; i < 990 ; i++)
   {
     for (int j = 0; j < 10; j++)
     {
