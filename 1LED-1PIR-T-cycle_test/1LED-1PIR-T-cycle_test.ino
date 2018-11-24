@@ -57,6 +57,8 @@ int DOut[10] = {3, 5, 7, 9, 11, 13, 23, 25, 27, 29}; // LED
 int phase1 = 0;
 int phase2 = 0;
 
+int StartHour=0;
+int StartMinute=0;
 int StartYear = 2018;
 int StartMonth = 01;
 int StartDate = 01;
@@ -140,20 +142,22 @@ void loop()
   ////////////////////// Light Schedule (Get the input from Python interface)
 
   // Phase1
-  if (Serial.available() == 23 && InitialFlag == 0 && TimeSet == 1 && LightSet1 == 0)
+  if (Serial.available() == 27 && InitialFlag == 0 && TimeSet == 1 && LightSet1 == 0)
   {
     lightIn1 = Serial.readString();
     Serial.println(lightIn1);
 
-    StartYear = getInt(lightIn1.substring(0, 4));
-    StartMonth = getInt(lightIn1.substring(4, 6));
-    StartDate = getInt(lightIn1.substring(6, 8));
-    Days1 = getInt(lightIn1.substring(8, 11));
-    Days2 = getInt(lightIn1.substring(11, 14));
-    Days3 = getInt(lightIn1.substring(14, 17));
-    T_Cycle1 = getInt(lightIn1.substring(17, 19));
-    T_Cycle2 = getInt(lightIn1.substring(19, 21));
-    T_Cycle3 = getInt(lightIn1.substring(21, 23));
+    StartHour = getInt(lightIn1.substring(0, 2));
+    StartMinute = getInt(lightIn1.substring(2, 4));
+    StartYear = getInt(lightIn1.substring(4, 8));
+    StartMonth = getInt(lightIn1.substring(8, 10));
+    StartDate = getInt(lightIn1.substring(10, 12));
+    Days1 = getInt(lightIn1.substring(12, 15));
+    Days2 = getInt(lightIn1.substring(15, 18));
+    Days3 = getInt(lightIn1.substring(18, 21));
+    T_Cycle1 = getInt(lightIn1.substring(21, 23));
+    T_Cycle2 = getInt(lightIn1.substring(23, 25));
+    T_Cycle3 = getInt(lightIn1.substring(25, 27));
 
     LightSet1 = 1;
   }
@@ -393,11 +397,15 @@ void loop()
     Serial.println("HH:MM:SS MO/DY/YEAR DAY Internal LED01 PIR01 LED02 PIR02 LED03 PIR03 LED04 PIR04 LED05 PIR05 LED06 PIR06 LED07 PIR07 LED08 PIR08 LED09 PIR09 LED10 PIR10");
     InitialFlag = 1;
     T_Cycle = T_Cycle1;
+    clock.getTime();
+    while ((clock.hour==StartHour && clock.minute==StartMinute && clock.dayOfMonth==StartDate && clock.month == StartMonth && (clock.year+2000) == StartYear)==false){
+      delay(1);
+      clock.getTime();   
+    }    
   }
 
   if (InitialFlag == 1)
-  { 
-    clock.getTime();   
+  { clock.getTime();
     while ((clock.second==0)==false){
       delay(1);
       clock.getTime();
@@ -464,7 +472,7 @@ void loop()
       }
     }
     //Reset the reference to clock time from the second Day at 23:59:00, after 1 min of PIR sampling, it becomes the next day
-    if (reset1==1 && intHour == 0. && intMinute == 0. )
+    if (reset1==1 && intHour == 0. && intMinute < (24/T_Cycle) )
     {
       hourstart = clock.hour;
       minstart = clock.minute;
