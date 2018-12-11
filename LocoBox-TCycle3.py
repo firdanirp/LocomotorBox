@@ -17,18 +17,6 @@ import threading  # To run Arduino loop and tkinter loop alongside
 import serial.tools.list_ports  # For identifying Arduino port
 import numpy as np
 import pandas as pd
-# import matplotlib for plotting actogram
-import matplotlib.pylab as plt
-from matplotlib import style
-from matplotlib.colors import ListedColormap
-style.use('seaborn-colorblind')  # For color blinders
-from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
-plt.rcParams['axes.autolimit_mode'] = 'round_numbers'
-plt.rcParams['axes.xmargin'] = 0.
-plt.rcParams['axes.ymargin'] = 0.1
-plt.rcParams['axes.linewidth'] = 0.5  # axis thickness
-plt.rcParams['font.family'] = ['sans serif']
-plt.rcParams['font.size'] = 10
 
 
 # Global variables
@@ -169,6 +157,8 @@ def get_data(istate=0):  # Start recording
             status.set('Synching time...')
             t = datetime.datetime.now()
             serial_obj.write(str.encode(t.strftime('%Y-%m-%d %H:%M:%S')))
+            #serial_obj.write(str.encode(t.strftime('2018-12-08 23:58:30')))
+            
         if i == 1:
             serial_obj.write(str.encode(starthour+startminute+startYear1_1 + startMonth1_1 + startdate1_1 +
                                         days1 + days2 + days3 + t_cycle1 + t_cycle2 + t_cycle3))

@@ -13,7 +13,7 @@ startdate1_1 = '13'
 days1 = '001'
 days2 = '001'
 days3 = '001'
-t_cycle1 = '12'
+t_cycle1 = '48'
 t_cycle2 = '12'
 t_cycle3 = '24'
 
@@ -221,7 +221,7 @@ while True:
         print('Synching time...')
         t = datetime.datetime.now()
         #serial_obj.write(str.encode(t.strftime('%Y-%m-%d %H:%M:%S')))
-        serial_obj.write(str.encode('2018-15-11 23:57:20'))
+        serial_obj.write(str.encode('2018-15-11 23:58:20'))
     if i == 1:
         serial_obj.write(str.encode(startYear1_1 + startMonth1_1 + startdate1_1 +
                                     days1 + days2 + days3 + t_cycle1 + t_cycle2 + t_cycle3))
