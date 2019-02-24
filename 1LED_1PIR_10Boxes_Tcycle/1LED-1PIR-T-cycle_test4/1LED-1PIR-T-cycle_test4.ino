@@ -2061,7 +2061,7 @@ void loop()
     }
     //Reset the reference to clock time from the second Day at 23:59:00, after 1 min of PIR sampling, it becomes the next day
 
-    if (reset1 == 1 && intHour == 0. && intMinute == 0. && intSecond == 0.)
+    if (reset1 == 1 && intHour == 23. && intMinute == 59.)
     {
       hourstart = clock.hour;
       minstart = clock.minute;
