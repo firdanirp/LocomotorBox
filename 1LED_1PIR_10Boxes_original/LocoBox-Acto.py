@@ -164,7 +164,7 @@ if sys.platform.startswith('win'):
 elif sys.platform.startswith('darwin'):
     window.geometry('1000x440')
 elif sys.platform.startswith('linux') or sys.platform.startswith('cygwin'):
-    window.geometry('730x420')
+    window.geometry('1100x420')
 else:
     window.geometry('1000x440')
 status = StatusBar(window)
@@ -766,7 +766,8 @@ def plot_box1():
     led = 'LED01'
 
     df = pd.read_table(file_plot, sep='\s+',
-                    skiprows=23, index_col=None, error_bad_lines=False)
+                    skiprows=16, index_col=None, error_bad_lines=False)
+    print(df)                
     df.index = pd.to_datetime(df['MO/DY/YEAR']+' ' + df['HH:MM:SS'],
                             format="%m/%d/%Y %H:%M:%S")
     df0 = pd.DataFrame(
@@ -884,7 +885,7 @@ def plot_box2():
     led = 'LED02'
 
     df = pd.read_table(file_plot, sep='\s+',
-                    skiprows=23, index_col=None, error_bad_lines=False)
+                    skiprows=16, index_col=None, error_bad_lines=False)
     df.index = pd.to_datetime(df['MO/DY/YEAR']+' ' + df['HH:MM:SS'],
                             format="%m/%d/%Y %H:%M:%S")
     df0 = pd.DataFrame(
@@ -1002,7 +1003,7 @@ def plot_box3():
     led = 'LED03'
 
     df = pd.read_table(file_plot, sep='\s+',
-                    skiprows=23, index_col=None, error_bad_lines=False)
+                    skiprows=16, index_col=None, error_bad_lines=False)
     df.index = pd.to_datetime(df['MO/DY/YEAR']+' ' + df['HH:MM:SS'],
                             format="%m/%d/%Y %H:%M:%S")
     df0 = pd.DataFrame(
@@ -1121,7 +1122,7 @@ def plot_box4():
     led = 'LED04'
 
     df = pd.read_table(file_plot, sep='\s+',
-                    skiprows=23, index_col=None, error_bad_lines=False)
+                    skiprows=16, index_col=None, error_bad_lines=False)
     df.index = pd.to_datetime(df['MO/DY/YEAR']+' ' + df['HH:MM:SS'],
                             format="%m/%d/%Y %H:%M:%S")
     df0 = pd.DataFrame(
@@ -1239,7 +1240,7 @@ def plot_box5():
     led = 'LED05'
 
     df = pd.read_table(file_plot, sep='\s+',
-                    skiprows=23, index_col=None, error_bad_lines=False)
+                    skiprows=16, index_col=None, error_bad_lines=False)
     df.index = pd.to_datetime(df['MO/DY/YEAR']+' ' + df['HH:MM:SS'],
                             format="%m/%d/%Y %H:%M:%S")
     df0 = pd.DataFrame(
@@ -1358,7 +1359,7 @@ def plot_box6():
     led = 'LED06'
 
     df = pd.read_table(file_plot, sep='\s+',
-                    skiprows=23, index_col=None, error_bad_lines=False)
+                    skiprows=16, index_col=None, error_bad_lines=False)
     df.index = pd.to_datetime(df['MO/DY/YEAR']+' ' + df['HH:MM:SS'],
                             format="%m/%d/%Y %H:%M:%S")
     df0 = pd.DataFrame(
@@ -1477,7 +1478,7 @@ def plot_box7():
     led = 'LED07'
 
     df = pd.read_table(file_plot, sep='\s+',
-                       skiprows=23, index_col=None, error_bad_lines=False)
+                       skiprows=16, index_col=None, error_bad_lines=False)
     df.index = pd.to_datetime(df['MO/DY/YEAR']+' ' + df['HH:MM:SS'],
                               format="%m/%d/%Y %H:%M:%S")
     df0 = pd.DataFrame(
@@ -1596,7 +1597,7 @@ def plot_box8():
     led = 'LED08'
 
     df = pd.read_table(file_plot, sep='\s+',
-                    skiprows=23, index_col=None, error_bad_lines=False)
+                    skiprows=16, index_col=None, error_bad_lines=False)
     df.index = pd.to_datetime(df['MO/DY/YEAR']+' ' + df['HH:MM:SS'],
                             format="%m/%d/%Y %H:%M:%S")
     df0 = pd.DataFrame(
@@ -1714,7 +1715,7 @@ def plot_box9():
     led = 'LED09'
 
     df = pd.read_table(file_plot, sep='\s+',
-                    skiprows=23, index_col=None, error_bad_lines=False)
+                    skiprows=16, index_col=None, error_bad_lines=False)
     df.index = pd.to_datetime(df['MO/DY/YEAR']+' ' + df['HH:MM:SS'],
                             format="%m/%d/%Y %H:%M:%S")
     df0 = pd.DataFrame(
@@ -1833,7 +1834,7 @@ def plot_box10():
     led = 'LED10'
 
     df = pd.read_table(file_plot, sep='\s+',
-                    skiprows=23, index_col=None, error_bad_lines=False)
+                    skiprows=16, index_col=None, error_bad_lines=False)
     df.index = pd.to_datetime(df['MO/DY/YEAR']+' ' + df['HH:MM:SS'],
                             format="%m/%d/%Y %H:%M:%S")
     df0 = pd.DataFrame(
@@ -2480,7 +2481,7 @@ def show_conf(): # Show schedule configuration
     col11_4.grid(column=8,row=0,padx=5)
 
     schedSep = ttk.Separator(tab11, orient=HORIZONTAL)
-    schedSep.grid(column=0, row = 1, columnspan='8', sticky='we')
+    schedSep.grid(column=0, row = 1, columnspan='10', sticky='we')
     schedSep2 = ttk.Separator(tab11, orient=VERTICAL)
     schedSep2.grid(column=1, row = 2, rowspan='10', sticky='ns')
     schedSep3 = ttk.Separator(tab11, orient=VERTICAL)
@@ -4426,8 +4427,8 @@ if __name__ == '__main__':
         btnSave.place(x=685, y=360)
         btnRun.place(x=745, y=360)
     elif sys.platform.startswith('linux') or sys.platform.startswith('cygwin'):
-        btnSave.place(x=610, y=360)
-        btnRun.place(x=660, y=360)
+        btnSave.place(x=650, y=360)
+        btnRun.place(x=720, y=360)
     else:
         btnSave.place(x=685, y=360)
         btnRun.place(x=745, y=360)

@@ -22,6 +22,7 @@ String dateIn;
 String lightIn1;
 String lightIn2;
 String lightIn3;
+String lightIn4;
 
 // declaration in array of 10 boxes
 int PIR[10]  = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
@@ -50,6 +51,7 @@ int MinuteOff4[10] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 
 int HourFrom2[10]   = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}; // phase 2
 int HourFrom3[10]   = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}; // phase 3
+int HourFrom4[10]   = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}; // phase 4
 int MinuteFrom2[10] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}; // phase 2
 int MinuteFrom3[10] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}; // phase 3
 int MinuteFrom4[10] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}; // phase 4
@@ -80,7 +82,7 @@ int DOut[10] = { 3, 5, 7, 9, 11, 13, 23, 25, 27, 29};  // LED
 // Light flags
 int LightFlag[10] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 int TimeSet = 0;
-int LightSet[14] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+int LightSet[15] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 int InitialFlag = 0;
 
 // Define a function to convert string to integer
@@ -517,8 +519,42 @@ void loop()
     LightSet[9] = 1;
   }
 
-  // Phase4
   if (Serial.available() == 40 && InitialFlag == 0 && TimeSet == 1 && LightSet[1] == 1 && LightSet[2] == 1 && LightSet[3] == 1 && LightSet[4] == 1 && LightSet[5] == 1 && LightSet[6] == 1 && LightSet[7] == 1 && LightSet[8] == 1 && LightSet[9] == 1 && LightSet[10] == 0)
+  {
+    lightIn3 = Serial.readString();
+
+    date3[5]  = getInt(lightIn3.substring(0, 2));
+    month3[5] = getInt(lightIn3.substring(2, 4));
+    year3[5]  = getInt(lightIn3.substring(4, 8));
+    date3[6]  = getInt(lightIn3.substring(8, 10));
+    month3[6] = getInt(lightIn3.substring(10, 12));
+    year3[6]  = getInt(lightIn3.substring(12, 16));
+    date3[7]  = getInt(lightIn3.substring(16, 18));
+    month3[7] = getInt(lightIn3.substring(18, 20));
+    year3[7]  = getInt(lightIn3.substring(20, 24));
+    date3[8]  = getInt(lightIn3.substring(24, 26));
+    month3[8] = getInt(lightIn3.substring(26, 28));
+    year3[8]  = getInt(lightIn3.substring(28, 32));
+    date3[9]  = getInt(lightIn3.substring(32, 34));
+    month3[9] = getInt(lightIn3.substring(34, 36));
+    year3[9]  = getInt(lightIn3.substring(36, 40));
+    HourFrom3[5]   = getInt(lightIn3.substring(40, 42));
+    MinuteFrom3[5] = getInt(lightIn3.substring(42, 44));
+    HourFrom3[6]   = getInt(lightIn3.substring(44, 46));
+    MinuteFrom3[6] = getInt(lightIn3.substring(46, 48));
+    HourFrom3[7]   = getInt(lightIn3.substring(48, 50));
+    MinuteFrom3[7] = getInt(lightIn3.substring(50, 52));
+    HourFrom3[8]   = getInt(lightIn3.substring(52, 54));
+    MinuteFrom3[8] = getInt(lightIn3.substring(54, 56));
+    HourFrom3[9]   = getInt(lightIn3.substring(56, 58));
+    MinuteFrom3[9] = getInt(lightIn3.substring(58, 60));  
+    
+    Serial.println(lightIn3);
+    LightSet[10] = 1;
+  }
+
+  // Phase4
+  if (Serial.available() == 40 && InitialFlag == 0 && TimeSet == 1 && LightSet[1] == 1 && LightSet[2] == 1 && LightSet[3] == 1 && LightSet[4] == 1 && LightSet[5] == 1 && LightSet[6] == 1 && LightSet[7] == 1 && LightSet[8] == 1 && LightSet[9] == 1 && LightSet[10] == 1 && LightSet[11] == 0)
   {
     lightIn4 = Serial.readString();
     //Box1
@@ -552,10 +588,10 @@ void loop()
     MinuteOff4[4] = getInt(lightIn4.substring(38, 40));
 
     Serial.println(lightIn4);
-    LightSet[10] = 1;
+    LightSet[11] = 1;
   }
 
-  if (Serial.available() == 40 && InitialFlag == 0 && TimeSet == 1 && LightSet[1] == 1 && LightSet[2] == 1 && LightSet[3] == 1 && LightSet[4] == 1 && LightSet[5] == 1 && LightSet[6] == 1 && LightSet[7] == 1 && LightSet[8] == 1 && LightSet[9] == 1 && LightSet[10] == 1 && LightSet[11] == 0)
+  if (Serial.available() == 40 && InitialFlag == 0 && TimeSet == 1 && LightSet[1] == 1 && LightSet[2] == 1 && LightSet[3] == 1 && LightSet[4] == 1 && LightSet[5] == 1 && LightSet[6] == 1 && LightSet[7] == 1 && LightSet[8] == 1 && LightSet[9] == 1 && LightSet[10] == 1 && LightSet[11] == 1&&LightSet[12] == 0)
   {
     lightIn4 = Serial.readString();
 
@@ -611,10 +647,10 @@ void loop()
     light4[9] = getInt(lightIn4.substring(59, 60));
 
     Serial.println(lightIn4);
-    LightSet[11] = 1;
+    LightSet[12] = 1;
   }
 
-  if (Serial.available() == 40 && InitialFlag == 0 && TimeSet == 1 && LightSet[1] == 1 && LightSet[2] == 1 && LightSet[3] == 1 && LightSet[4] == 1 && LightSet[5] == 1 && LightSet[6] == 1 && LightSet[7] == 1 && LightSet[8] == 1 && LightSet[9] == 1 && LightSet[10] == 1 && LightSet[11] == 1&& LightSet[12] == 0)
+  if (Serial.available() == 40 && InitialFlag == 0 && TimeSet == 1 && LightSet[1] == 1 && LightSet[2] == 1 && LightSet[3] == 1 && LightSet[4] == 1 && LightSet[5] == 1 && LightSet[6] == 1 && LightSet[7] == 1 && LightSet[8] == 1 && LightSet[9] == 1 && LightSet[10] == 1 && LightSet[11] == 1&& LightSet[12] == 1 &&  LightSet[13] == 0)
   {
     lightIn4 = Serial.readString();
 
@@ -645,11 +681,11 @@ void loop()
     MinuteFrom4[4] = getInt(lightIn4.substring(58, 60));
 
     Serial.println(lightIn4);
-    LightSet[12] = 1;
+    LightSet[13] = 1;
   }
 
 
-  if (Serial.available() == 40 && InitialFlag == 0 && TimeSet == 1 && LightSet[1] == 1 && LightSet[2] == 1 && LightSet[3] == 1 && LightSet[4] == 1 && LightSet[5] == 1 && LightSet[6] == 1 && LightSet[7] == 1 && LightSet[8] == 1 && LightSet[9] == 1 && LightSet[10] == 1 && LightSet[11] == 1&& LightSet[12] == 1&& LightSet[13] == 0)
+  if (Serial.available() == 40 && InitialFlag == 0 && TimeSet == 1 && LightSet[1] == 1 && LightSet[2] == 1 && LightSet[3] == 1 && LightSet[4] == 1 && LightSet[5] == 1 && LightSet[6] == 1 && LightSet[7] == 1 && LightSet[8] == 1 && LightSet[9] == 1 && LightSet[10] == 1 && LightSet[11] == 1&& LightSet[12] == 1&& LightSet[13] == 1 && LightSet[14] == 0)
   {
     lightIn4 = Serial.readString();
 
@@ -680,11 +716,11 @@ void loop()
     MinuteFrom4[9] = getInt(lightIn4.substring(58, 60));
 
     Serial.println(lightIn4);
-    LightSet[13] = 1;
+    LightSet[14] = 1;
   }
 
   // Begin to print the headers and set light flag
-  if (InitialFlag == 0 && TimeSet == 1 && LightSet[0] == 1 && LightSet[1] == 1 && LightSet[2] == 1 && LightSet[3] == 1 && LightSet[4] == 1 && LightSet[5] == 1 && LightSet[6] == 1 && LightSet[7] == 1 && LightSet[8] == 1 && LightSet[9] == 1 LightSet[10] == 1 LightSet[11] == 1 LightSet[12] == 1 LightSet[13] == 1)
+  if (InitialFlag == 0 && TimeSet == 1 && LightSet[1] == 1 && LightSet[2] == 1 && LightSet[3] == 1 && LightSet[4] == 1 && LightSet[5] == 1 && LightSet[6] == 1 && LightSet[7] == 1 && LightSet[8] == 1 && LightSet[9] == 1 && LightSet[10] == 1 && LightSet[11] == 1 && LightSet[12] == 1 && LightSet[13] == 1&& LightSet[14] == 1)
   {
     Serial.println("HH:MM:SS MO/DY/YEAR LED01 PIR01 LED02 PIR02 LED03 PIR03 LED04 PIR04 LED05 PIR05 LED06 PIR06 LED07 PIR07 LED08 PIR08 LED09 PIR09 LED10 PIR10");
     InitialFlag = 1;
@@ -851,7 +887,7 @@ void loop()
 
     ///////For phase 4
     for (int i=0; i<10; i++){
-      if (phase1[i] == 1 && phase2[i] == 1 phase3[i] == 1)
+      if (phase1[i] == 1 && phase2[i] == 1 && phase3[i] == 1)
       {
         if (clock.hour * 60 + clock.minute >= HourOn4[i] * 60 + MinuteOn4[i] && clock.hour * 60 + clock.minute < HourOff4[i] * 60 + MinuteOff4[i])
         {
