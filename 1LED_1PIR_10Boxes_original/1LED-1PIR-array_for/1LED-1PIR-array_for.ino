@@ -29,6 +29,7 @@ int mPIR[10]  = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 
 int phase1[10]  = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 int phase2[10]  = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+int phase3[10]  = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 
 int HourOn1[10]    = { 8, 8, 8, 8, 8, 8, 8, 8, 8, 8};  // phase 1
 int MinuteOn1[10]  = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
@@ -42,25 +43,35 @@ int HourOn3[10]    = { 8, 8, 8, 8, 8, 8, 8, 8, 8, 8};  // phase 3
 int MinuteOn3[10]  = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 int HourOff3[10]   = {20,20,20,20,20,20,20,20,20,20};
 int MinuteOff3[10] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+int HourOn4[10]    = { 8, 8, 8, 8, 8, 8, 8, 8, 8, 8};  // phase 4
+int MinuteOn4[10]  = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+int HourOff4[10]   = {20,20,20,20,20,20,20,20,20,20};
+int MinuteOff4[10] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 
 int HourFrom2[10]   = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}; // phase 2
 int HourFrom3[10]   = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}; // phase 3
 int MinuteFrom2[10] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}; // phase 2
 int MinuteFrom3[10] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}; // phase 3
+int MinuteFrom4[10] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}; // phase 4
 
 int date2[10]  = {10,10,10,10,10,10,10,10,10,10};      // phase 2
 int date3[10]  = {10,10,10,10,10,10,10,10,10,10};      // phase 3
+int date4[10]  = {10,10,10,10,10,10,10,10,10,10};      // phase 4
 int month2[10] = {12,12,12,12,12,12,12,12,12,12};      // phase 2
 int month3[10] = {12,12,12,12,12,12,12,12,12,12};      // phase 3
+int month4[10] = {12,12,12,12,12,12,12,12,12,12};      // phase 4
 int year2[10]  = {2018,2018,2018,2018,2018,2018,2018,2018,2018,2018}; // phase 2
 int year3[10]  = {2018,2018,2018,2018,2018,2018,2018,2018,2018,2018}; // phase 3
+int year4[10]  = {2018,2018,2018,2018,2018,2018,2018,2018,2018,2018}; // phase 4
 
 int light1[10] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};      // phase 1
 int light2[10] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};      // phase 2
 int light3[10] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};      // phase 3
+int light4[10] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};      // phase 4
 int dark1[10]  = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};      // phase 1
 int dark2[10]  = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};      // phase 2
 int dark3[10]  = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};      // phase 3
+int dark4[10]  = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};      // phase 4
 
 // Digital In-Out
 int DIn[10]  = { 2, 4, 6, 8, 10, 12, 22, 24, 26, 28};  // PIR
@@ -69,7 +80,7 @@ int DOut[10] = { 3, 5, 7, 9, 11, 13, 23, 25, 27, 29};  // LED
 // Light flags
 int LightFlag[10] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 int TimeSet = 0;
-int LightSet[10] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+int LightSet[14] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 int InitialFlag = 0;
 
 // Define a function to convert string to integer
@@ -506,42 +517,174 @@ void loop()
     LightSet[9] = 1;
   }
 
-  if (Serial.available() == 60 && InitialFlag == 0 && TimeSet == 1 && LightSet[1] == 1 && LightSet[2] == 1 && LightSet[3] == 1 && LightSet[4] == 1 && LightSet[5] == 1 && LightSet[6] == 1 && LightSet[7] == 1 && LightSet[8] == 1 && LightSet[9] == 1 && LightSet[0] == 0)
+  // Phase4
+  if (Serial.available() == 40 && InitialFlag == 0 && TimeSet == 1 && LightSet[1] == 1 && LightSet[2] == 1 && LightSet[3] == 1 && LightSet[4] == 1 && LightSet[5] == 1 && LightSet[6] == 1 && LightSet[7] == 1 && LightSet[8] == 1 && LightSet[9] == 1 && LightSet[10] == 0)
   {
-    lightIn3 = Serial.readString();
+    lightIn4 = Serial.readString();
+    //Box1
+    HourOn4[0]    = getInt(lightIn4.substring(0, 2));
+    MinuteOn4[0]  = getInt(lightIn4.substring(2, 4));
+    HourOff4[0]   = getInt(lightIn4.substring(4, 6));
+    MinuteOff4[0] = getInt(lightIn4.substring(6, 8));
 
-    date3[5]  = getInt(lightIn3.substring(0, 2));
-    month3[5] = getInt(lightIn3.substring(2, 4));
-    year3[5]  = getInt(lightIn3.substring(4, 8));
-    date3[6]  = getInt(lightIn3.substring(8, 10));
-    month3[6] = getInt(lightIn3.substring(10, 12));
-    year3[6]  = getInt(lightIn3.substring(12, 16));
-    date3[7]  = getInt(lightIn3.substring(16, 18));
-    month3[7] = getInt(lightIn3.substring(18, 20));
-    year3[7]  = getInt(lightIn3.substring(20, 24));
-    date3[8]  = getInt(lightIn3.substring(24, 26));
-    month3[8] = getInt(lightIn3.substring(26, 28));
-    year3[8]  = getInt(lightIn3.substring(28, 32));
-    date3[9]  = getInt(lightIn3.substring(32, 34));
-    month3[9] = getInt(lightIn3.substring(34, 36));
-    year3[9]  = getInt(lightIn3.substring(36, 40));
-    HourFrom3[5]   = getInt(lightIn3.substring(40, 42));
-    MinuteFrom3[5] = getInt(lightIn3.substring(42, 44));
-    HourFrom3[6]   = getInt(lightIn3.substring(44, 46));
-    MinuteFrom3[6] = getInt(lightIn3.substring(46, 48));
-    HourFrom3[7]   = getInt(lightIn3.substring(48, 50));
-    MinuteFrom3[7] = getInt(lightIn3.substring(50, 52));
-    HourFrom3[8]   = getInt(lightIn3.substring(52, 54));
-    MinuteFrom3[8] = getInt(lightIn3.substring(54, 56));
-    HourFrom3[9]   = getInt(lightIn3.substring(56, 58));
-    MinuteFrom3[9] = getInt(lightIn3.substring(58, 60));
+    //Box2
+    HourOn4[1]    = getInt(lightIn4.substring(8, 10));
+    MinuteOn4[1]  = getInt(lightIn4.substring(10, 12));
+    HourOff4[1]   = getInt(lightIn4.substring(12, 14));
+    MinuteOff4[1] = getInt(lightIn4.substring(14, 16));
 
-    Serial.println(lightIn3);
-    LightSet[0] = 1;
+    //Box3
+    HourOn4[2]    = getInt(lightIn4.substring(16, 18));
+    MinuteOn4[2]  = getInt(lightIn4.substring(18, 20));
+    HourOff4[2]   = getInt(lightIn4.substring(20, 22));
+    MinuteOff4[2] = getInt(lightIn4.substring(22, 24));
+
+    //Box4
+    HourOn4[3]    = getInt(lightIn4.substring(24, 26));
+    MinuteOn4[3]  = getInt(lightIn4.substring(26, 28));
+    HourOff4[3]   = getInt(lightIn4.substring(28, 30));
+    MinuteOff4[3] = getInt(lightIn4.substring(30, 32));
+
+    //Box5
+    HourOn4[4]    = getInt(lightIn4.substring(32, 34));
+    MinuteOn4[4]  = getInt(lightIn4.substring(34, 36));
+    HourOff4[4]   = getInt(lightIn4.substring(36, 38));
+    MinuteOff4[4] = getInt(lightIn4.substring(38, 40));
+
+    Serial.println(lightIn4);
+    LightSet[10] = 1;
+  }
+
+  if (Serial.available() == 40 && InitialFlag == 0 && TimeSet == 1 && LightSet[1] == 1 && LightSet[2] == 1 && LightSet[3] == 1 && LightSet[4] == 1 && LightSet[5] == 1 && LightSet[6] == 1 && LightSet[7] == 1 && LightSet[8] == 1 && LightSet[9] == 1 && LightSet[10] == 1 && LightSet[11] == 0)
+  {
+    lightIn4 = Serial.readString();
+
+    //Box6
+    HourOn4[5]    = getInt(lightIn4.substring(0, 2));
+    MinuteOn4[5]  = getInt(lightIn4.substring(2, 4));
+    HourOff4[5]   = getInt(lightIn4.substring(4, 6));
+    MinuteOff4[5] = getInt(lightIn4.substring(6, 8));
+
+    //Box7
+    HourOn4[6]    = getInt(lightIn4.substring(8, 10));
+    MinuteOn4[6]  = getInt(lightIn4.substring(10, 12));
+    HourOff4[6]   = getInt(lightIn4.substring(12, 14));
+    MinuteOff4[6] = getInt(lightIn4.substring(14, 16));
+
+    //Box8
+    HourOn4[7]    = getInt(lightIn4.substring(16, 18));
+    MinuteOn4[7]  = getInt(lightIn4.substring(18, 20));
+    HourOff4[7]   = getInt(lightIn4.substring(20, 22));
+    MinuteOff4[7] = getInt(lightIn4.substring(22, 24));
+
+    //Box9
+    HourOn4[8]    = getInt(lightIn4.substring(24, 26));
+    MinuteOn4[8]  = getInt(lightIn4.substring(26, 28));
+    HourOff4[8]   = getInt(lightIn4.substring(28, 30));
+    MinuteOff4[8] = getInt(lightIn4.substring(30, 32));
+
+    //Box10
+    HourOn4[9]    = getInt(lightIn4.substring(32, 34));
+    MinuteOn4[9]  = getInt(lightIn4.substring(34, 36));
+    HourOff4[9]   = getInt(lightIn4.substring(36, 38));
+    MinuteOff4[9] = getInt(lightIn4.substring(38, 40));
+
+    dark4[0]  = getInt(lightIn4.substring(40, 41));
+    light4[0] = getInt(lightIn4.substring(41, 42));
+    dark4[1]  = getInt(lightIn4.substring(42, 43));
+    light4[1] = getInt(lightIn4.substring(43, 44));
+    dark4[2]  = getInt(lightIn4.substring(44, 45));
+    light4[2] = getInt(lightIn4.substring(45, 46));
+    dark4[3]  = getInt(lightIn4.substring(46, 47));
+    light4[3] = getInt(lightIn4.substring(47, 48));
+    dark4[4]  = getInt(lightIn4.substring(48, 49));
+    light4[4] = getInt(lightIn4.substring(49, 50));
+    dark4[5]  = getInt(lightIn4.substring(50, 51));
+    light4[5] = getInt(lightIn4.substring(51, 52));
+    dark4[6]  = getInt(lightIn4.substring(52, 53));
+    light4[6] = getInt(lightIn4.substring(53, 54));
+    dark4[7]  = getInt(lightIn4.substring(54, 55));
+    light4[7] = getInt(lightIn4.substring(55, 56));
+    dark4[8]  = getInt(lightIn4.substring(56, 57));
+    light4[8] = getInt(lightIn4.substring(57, 58));
+    dark4[9]  = getInt(lightIn4.substring(58, 59));
+    light4[9] = getInt(lightIn4.substring(59, 60));
+
+    Serial.println(lightIn4);
+    LightSet[11] = 1;
+  }
+
+  if (Serial.available() == 40 && InitialFlag == 0 && TimeSet == 1 && LightSet[1] == 1 && LightSet[2] == 1 && LightSet[3] == 1 && LightSet[4] == 1 && LightSet[5] == 1 && LightSet[6] == 1 && LightSet[7] == 1 && LightSet[8] == 1 && LightSet[9] == 1 && LightSet[10] == 1 && LightSet[11] == 1&& LightSet[12] == 0)
+  {
+    lightIn4 = Serial.readString();
+
+    date4[0]  = getInt(lightIn4.substring(0, 2));
+    month4[0] = getInt(lightIn4.substring(2, 4));
+    year4[0]  = getInt(lightIn4.substring(4, 8));
+    date4[1]  = getInt(lightIn4.substring(8, 10));
+    month4[1] = getInt(lightIn4.substring(10, 12));
+    year4[1]  = getInt(lightIn4.substring(12, 16));
+    date4[2]  = getInt(lightIn4.substring(16, 18));
+    month4[2] = getInt(lightIn4.substring(18, 20));
+    year4[2]  = getInt(lightIn4.substring(20, 24));
+    date4[3]  = getInt(lightIn4.substring(24, 26));
+    month4[3] = getInt(lightIn4.substring(26, 28));
+    year4[3]  = getInt(lightIn4.substring(28, 32));
+    date4[4]  = getInt(lightIn4.substring(32, 34));
+    month4[4] = getInt(lightIn4.substring(34, 36));
+    year4[4]  = getInt(lightIn4.substring(36, 40));
+    HourFrom4[0]   = getInt(lightIn4.substring(40, 42));
+    MinuteFrom4[0] = getInt(lightIn4.substring(42, 44));
+    HourFrom4[1]   = getInt(lightIn4.substring(44, 46));
+    MinuteFrom4[1] = getInt(lightIn4.substring(46, 48));
+    HourFrom4[2]   = getInt(lightIn4.substring(48, 50));
+    MinuteFrom4[2] = getInt(lightIn4.substring(50, 52));
+    HourFrom4[3]   = getInt(lightIn4.substring(52, 54));
+    MinuteFrom4[3] = getInt(lightIn4.substring(54, 56));
+    HourFrom4[4]   = getInt(lightIn4.substring(56, 58));
+    MinuteFrom4[4] = getInt(lightIn4.substring(58, 60));
+
+    Serial.println(lightIn4);
+    LightSet[12] = 1;
+  }
+
+
+  if (Serial.available() == 40 && InitialFlag == 0 && TimeSet == 1 && LightSet[1] == 1 && LightSet[2] == 1 && LightSet[3] == 1 && LightSet[4] == 1 && LightSet[5] == 1 && LightSet[6] == 1 && LightSet[7] == 1 && LightSet[8] == 1 && LightSet[9] == 1 && LightSet[10] == 1 && LightSet[11] == 1&& LightSet[12] == 1&& LightSet[13] == 0)
+  {
+    lightIn4 = Serial.readString();
+
+    date4[5]  = getInt(lightIn4.substring(0, 2));
+    month4[5] = getInt(lightIn4.substring(2, 4));
+    year4[5]  = getInt(lightIn4.substring(4, 8));
+    date4[6]  = getInt(lightIn4.substring(8, 10));
+    month4[6] = getInt(lightIn4.substring(10, 12));
+    year4[6]  = getInt(lightIn4.substring(12, 16));
+    date4[7]  = getInt(lightIn4.substring(16, 18));
+    month4[7] = getInt(lightIn4.substring(18, 20));
+    year4[7]  = getInt(lightIn4.substring(20, 24));
+    date4[8]  = getInt(lightIn4.substring(24, 26));
+    month4[8] = getInt(lightIn4.substring(26, 28));
+    year4[8]  = getInt(lightIn4.substring(28, 32));
+    date4[9]  = getInt(lightIn4.substring(32, 34));
+    month4[9] = getInt(lightIn4.substring(34, 36));
+    year4[9]  = getInt(lightIn4.substring(36, 40));
+    HourFrom4[5]   = getInt(lightIn4.substring(40, 42));
+    MinuteFrom4[5] = getInt(lightIn4.substring(42, 44));
+    HourFrom4[6]   = getInt(lightIn4.substring(44, 46));
+    MinuteFrom4[6] = getInt(lightIn4.substring(46, 48));
+    HourFrom4[7]   = getInt(lightIn4.substring(48, 50));
+    MinuteFrom4[7] = getInt(lightIn4.substring(50, 52));
+    HourFrom4[8]   = getInt(lightIn4.substring(52, 54));
+    MinuteFrom4[8] = getInt(lightIn4.substring(54, 56));
+    HourFrom4[9]   = getInt(lightIn4.substring(56, 58));
+    MinuteFrom4[9] = getInt(lightIn4.substring(58, 60));
+
+    Serial.println(lightIn4);
+    LightSet[13] = 1;
   }
 
   // Begin to print the headers and set light flag
-  if (InitialFlag == 0 && TimeSet == 1 && LightSet[0] == 1 && LightSet[1] == 1 && LightSet[2] == 1 && LightSet[3] == 1 && LightSet[4] == 1 && LightSet[5] == 1 && LightSet[6] == 1 && LightSet[7] == 1 && LightSet[8] == 1 && LightSet[9] == 1)
+  if (InitialFlag == 0 && TimeSet == 1 && LightSet[0] == 1 && LightSet[1] == 1 && LightSet[2] == 1 && LightSet[3] == 1 && LightSet[4] == 1 && LightSet[5] == 1 && LightSet[6] == 1 && LightSet[7] == 1 && LightSet[8] == 1 && LightSet[9] == 1 LightSet[10] == 1 LightSet[11] == 1 LightSet[12] == 1 LightSet[13] == 1)
   {
     Serial.println("HH:MM:SS MO/DY/YEAR LED01 PIR01 LED02 PIR02 LED03 PIR03 LED04 PIR04 LED05 PIR05 LED06 PIR06 LED07 PIR07 LED08 PIR08 LED09 PIR09 LED10 PIR10");
     InitialFlag = 1;
@@ -567,6 +710,13 @@ void loop()
     for (int i=0; i<10; i++){
       if (phase2[i] == 0 && clock.dayOfMonth == date3[i] && clock.month == month3[i] && clock.year + 2000 == year3[i] && clock.hour * 60 + clock.minute >= HourFrom3[i] * 60 + MinuteFrom3[i]){
          phase2[i] = 1;
+      }
+    }
+
+    // End phase 3 when
+    for (int i=0; i<10; i++){
+      if (phase3[i] == 0 && clock.dayOfMonth == date4[i] && clock.month == month4[i] && clock.year + 2000 == year4[i] && clock.hour * 60 + clock.minute >= HourFrom4[i] * 60 + MinuteFrom4[i]){
+         phase3[i] = 1;
       }
     }
     
@@ -697,6 +847,49 @@ void loop()
               }
           } //else
       } // if phase3
+    } // end of for loop
+
+    ///////For phase 4
+    for (int i=0; i<10; i++){
+      if (phase1[i] == 1 && phase2[i] == 1 phase3[i] == 1)
+      {
+        if (clock.hour * 60 + clock.minute >= HourOn4[i] * 60 + MinuteOn4[i] && clock.hour * 60 + clock.minute < HourOff4[i] * 60 + MinuteOff4[i])
+        {
+          if (light4[i] == 0 && dark4[i] == 0)
+          {
+            digitalWrite(DOut[i], HIGH);
+            LightFlag[i] = 1;
+          }
+            if (light4[i] == 0 && dark4[i] == 1)
+            {
+              digitalWrite(DOut[i], LOW);
+              LightFlag[i] = 0;
+            }
+              if (light4[i] == 1 && dark4[i] == 0)
+              {
+                digitalWrite(DOut[i], HIGH);
+                LightFlag[i] = 1;
+              }
+         } // if time condition is met
+        else
+        {
+          if (light4[i] == 0 && dark4[i] == 0)
+          {
+            digitalWrite(DOut[i], LOW);
+            LightFlag[i] = 0;
+          }
+            if (light4[i] == 0 && dark4[i] == 1)
+            {
+              digitalWrite(DOut[i], LOW);
+              LightFlag[i] = 0;
+            }
+              if (light4[i] == 1 && dark4[i] == 0)
+              {
+                digitalWrite(DOut[i], HIGH);
+                LightFlag[i] = 1;
+              }
+          } //else
+      } // if phase4
     } // end of for loop
 
     // If the after all of the settings (Time, Light, Initial header printing, Check schedule) begin to print time stamps and measurements

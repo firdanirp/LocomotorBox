@@ -38,6 +38,7 @@ global hourOn7_1, minOn7_1, hourOff7_1, minOff7_1, hourOn8_1, minOn8_1, hourOff8
 global hourOn9_1, minOn9_1, hourOff9_1, minOff9_1, hourOn10_1, minOn10_1, hourOff10_1, minOff10_1
 global dark1_1, light1_1, dark2_1, light2_1, dark3_1, light3_1, dark4_1, light4_1, dark5_1, light5_1  
 global dark6_1, light6_1, dark7_1, light7_1, dark8_1, light8_1, dark9_1, light9_1, dark10_1, light10_1  
+
 global hourOn3_2, minOn3_2, hourOff3_2, minOff3_2, hourOn1_2, minOn1_2, hourOff1_2, minOff1_2
 global hourOn2_2, minOn2_2, hourOff2_2, minOff2_2, hourOn4_2, minOn4_2, hourOff4_2, minOff4_2 
 global hourOn5_2, minOn5_2, hourOff5_2, minOff5_2, hourOn6_2, minOn6_2, hourOff6_2, minOff6_2 
@@ -51,6 +52,7 @@ global date8_2, month8_2, year8_2, date9_2, month9_2, year9_2, date10_2, month10
 global hourFrom1_2, minuteFrom1_2, hourFrom2_2, minuteFrom2_2, hourFrom3_2, minuteFrom3_2, hourFrom4_2, minuteFrom4_2
 global hourFrom5_2, minuteFrom5_2, hourFrom6_2, minuteFrom6_2, hourFrom7_2, minuteFrom7_2, hourFrom8_2, minuteFrom8_2
 global hourFrom9_2, minuteFrom9_2, hourFrom10_2, minuteFrom10_2
+
 global hourOn1_3, minOn1_3, hourOff1_3, minOff1_3, hourOn2_3, minOn2_3, hourOff2_3, minOff2_3
 global hourOn3_3, minOn3_3, hourOff3_3, minOff3_3, hourOn4_3, minOn4_3, hourOff4_3, minOff4_3 
 global hourOn5_3, minOn5_3, hourOff5_3, minOff5_3, hourOn6_3, minOn6_3, hourOff6_3, minOff6_3  
@@ -64,6 +66,23 @@ global date9_3, month9_3, year9_3, date10_3, month10_3, year10_3
 global hourFrom1_3, minuteFrom1_3, hourFrom2_3, minuteFrom2_3, hourFrom3_3, minuteFrom3_3, hourFrom4_3, minuteFrom4_3 
 global hourFrom5_3, minuteFrom5_3, hourFrom6_3, minuteFrom6_3, hourFrom7_3, minuteFrom7_3, hourFrom8_3, minuteFrom8_3 
 global hourFrom9_3, minuteFrom9_3, hourFrom10_3, minuteFrom10_3 
+
+global hourOn1_4, minOn1_4, hourOff1_4, minOff1_4, hourOn2_4, minOn2_4, hourOff2_4, minOff2_4
+global hourOn3_4, minOn3_4, hourOff3_4, minOff3_4, hourOn4_4, minOn4_4, hourOff4_4, minOff4_4 
+global hourOn5_4, minOn5_4, hourOff5_4, minOff5_4, hourOn6_4, minOn6_4, hourOff6_4, minOff6_4  
+global hourOn7_4, minOn7_4, hourOff7_4, minOff7_4, hourOn8_4, minOn8_4, hourOff8_4, minOff8_4 
+global hourOn9_4, minOn9_4, hourOff9_4, minOff9_4, hourOn10_4, minOn10_4, hourOff10_4, minOff10_4
+global dark1_4, light1_4, dark2_4, light2_4, dark3_4, light3_4, dark4_4, light4_4, dark5_4, light5_4
+global dark6_4, light6_4, dark7_4, light7_4, dark8_4, light8_4, dark9_4, light9_4, dark10_4, light10_4 
+global date1_4, month1_4, year1_4, date2_4, month2_4, year2_4, date3_4, month3_4, year3_4, date4_4, month4_4, year4_4 
+global date5_4, month5_4, year5_4, date6_4, month6_4, year6_4, date7_4, month7_4, year7_4, date8_4, month8_4, year8_4 
+global date9_4, month9_4, year9_4, date10_4, month10_4, year10_4 
+global hourFrom1_4, minuteFrom1_4, hourFrom2_4, minuteFrom2_4, hourFrom3_4, minuteFrom3_4, hourFrom4_4, minuteFrom4_4 
+global hourFrom5_4, minuteFrom5_4, hourFrom6_4, minuteFrom6_4, hourFrom7_4, minuteFrom7_4, hourFrom8_4, minuteFrom8_4 
+global hourFrom9_4, minuteFrom9_4, hourFrom10_4, minuteFrom10_4 
+
+
+
 global setBox1, setBox2, setBox3, setBox4, setBox5, setBox6, setBox7, setBox8, setBox9, setBox10
 
 # Preset values
@@ -254,6 +273,32 @@ def get_data(istate=0): # Start recording
                                             date10_3+month10_3+year10_3+hourFrom6_3+minuteFrom6_3+
                                             hourFrom7_3+minuteFrom7_3+hourFrom8_3+minuteFrom8_3+
                                             hourFrom9_3+minuteFrom9_3+hourFrom10_3+minuteFrom10_3))
+                status.pack(side='bottom', fill='x')
+                status.set('Phase 3 schedules sent.')   
+
+            if i==11:
+                serial_obj.write(str.encode(hourOn1_4+minOn1_4+hourOff1_4+minOff1_4+hourOn2_4+minOn2_4+hourOff2_4+minOff2_4+
+                                            hourOn3_4+minOn3_4+hourOff3_4+minOff3_4+hourOn4_4+minOn4_4+hourOff4_4+minOff4_4+
+                                            hourOn5_4+minOn5_4+hourOff5_4+minOff5_4))
+            if i==12:
+                serial_obj.write(str.encode(hourOn6_4+minOn6_4+hourOff6_4+minOff6_4+hourOn7_4+minOn7_4+hourOff7_4+minOff7_4+
+                                            hourOn8_4+minOn8_4+hourOff8_4+minOff8_4+hourOn9_4+minOn9_4+hourOff9_4+minOff9_4+
+                                            hourOn10_4+minOn10_4+hourOff10_4+minOff10_4+
+                                            dark1_4+light1_4+dark2_4+light2_4+dark3_4+light3_4+
+                                            dark4_4+light4_4+dark5_4+light5_4+dark6_4+light6_4+
+                                            dark7_4+light7_4+dark8_4+light8_4+dark9_4+light9_4+dark10_4+light10_4))
+            if i==13:
+                serial_obj.write(str.encode(date1_4+month1_4+year1_4+date2_4+month2_4+year2_4+
+                                            date3_4+month3_4+year3_4+date4_4+month4_4+year4_4+
+                                            date5_4+month5_4+year5_4+hourFrom1_4+minuteFrom1_4+
+                                            hourFrom2_4+minuteFrom2_4+hourFrom3_4+minuteFrom3_4+
+                                            hourFrom4_4+minuteFrom4_4+hourFrom5_4+minuteFrom5_4)) 
+            if i==14:
+                serial_obj.write(str.encode(date6_4+month6_4+year6_4+date7_4+month7_4+year7_4+
+                                            date8_4+month8_4+year8_4+date9_4+month9_4+year9_4+
+                                            date10_4+month10_4+year10_4+hourFrom6_4+minuteFrom6_4+
+                                            hourFrom7_4+minuteFrom7_4+hourFrom8_4+minuteFrom8_4+
+                                            hourFrom9_4+minuteFrom9_4+hourFrom10_4+minuteFrom10_4))
                 status.pack(side='bottom', fill='x')
                 status.set('All schedules transferred. Recording began.') 
                 box1rec_text.set('Recording on-going.')
@@ -476,6 +521,7 @@ def save_conf(): # Save schedule configuration
     config['minuteFrom9_2'] = minuteFrom9_2
     config['hourFrom10_2'] = hourFrom10_2
     config['minuteFrom10_2'] = minuteFrom10_2
+
     config['hourOn1_3'] = hourOn1_3
     config['minOn1_3'] = minOn1_3
     config['hourOff1_3'] = hourOff1_3
@@ -586,6 +632,118 @@ def save_conf(): # Save schedule configuration
     config['minuteFrom9_3'] = minuteFrom9_3
     config['hourFrom10_3'] = hourFrom10_3
     config['minuteFrom10_3'] = minuteFrom10_3
+
+    config['hourOn1_4'] = hourOn1_4
+    config['minOn1_4'] = minOn1_4
+    config['hourOff1_4'] = hourOff1_4
+    config['minOff1_4'] = minOff1_4
+    config['hourOn2_4'] = hourOn2_4
+    config['minOn2_4'] = minOn2_4
+    config['hourOff2_4'] = hourOff2_4
+    config['minOff2_4'] = minOff2_4
+    config['hourOn3_4'] = hourOn3_4
+    config['minOn3_4'] = minOn3_4
+    config['hourOff3_4'] = hourOff3_4
+    config['minOff3_4'] = minOff3_4
+    config['hourOn4_4'] = hourOn4_4
+    config['minOn4_4'] = minOn4_4
+    config['hourOff4_4'] = hourOff4_4
+    config['minOff4_4'] = minOff4_4
+    config['hourOn5_4'] = hourOn5_4
+    config['minOn5_4'] = minOn5_4
+    config['hourOff5_4'] = hourOff5_4
+    config['minOff5_4'] = minOff5_4
+    config['hourOn6_4'] = hourOn6_4
+    config['minOn6_4'] = minOn6_4
+    config['hourOff6_4'] = hourOff6_4
+    config['minOff6_4'] = minOff6_4
+    config['hourOn7_4'] = hourOn7_4
+    config['minOn7_4'] = minOn7_4
+    config['hourOff7_4'] = hourOff7_4
+    config['minOff7_4'] = minOff7_4
+    config['hourOn8_4'] = hourOn8_4
+    config['minOn8_4'] = minOn8_4
+    config['hourOff8_4'] = hourOff8_4
+    config['minOff8_4'] = minOff8_4
+    config['hourOn9_4'] = hourOn9_4
+    config['minOn9_4'] = minOn9_4
+    config['hourOff9_4'] = hourOff9_4
+    config['minOff9_4'] = minOff9_4
+    config['hourOn10_4'] = hourOn10_4
+    config['minOn10_4'] = minOn10_4
+    config['hourOff10_4'] = hourOff10_4
+    config['minOff10_4'] = minOff10_4
+    config['dark1_4'] = dark1_4
+    config['light1_4'] = light1_4
+    config['dark2_4'] = dark2_4
+    config['light2_4'] = light2_4
+    config['dark3_4'] = dark3_4
+    config['light3_4'] = light3_4
+    config['dark4_4'] = dark4_4
+    config['light4_4'] = light4_4
+    config['dark5_4'] = dark5_4
+    config['light5_4'] = light5_4
+    config['dark6_4'] = dark6_4
+    config['light6_4'] = light6_4
+    config['dark7_4'] = dark7_4
+    config['light7_4'] = light7_4
+    config['dark8_4'] = dark8_4
+    config['light8_4'] = light8_4
+    config['dark9_4'] = dark9_4
+    config['light9_4'] = light9_4
+    config['dark10_4'] = dark10_4
+    config['light10_4'] = light10_4
+    config['date1_4'] = date1_4
+    config['month1_4'] = month1_4
+    config['year1_4'] = year1_4
+    config['date2_4'] = date2_4
+    config['month2_4'] = month2_4
+    config['year2_4'] = year2_4
+    config['date3_4'] = date3_4
+    config['month3_4'] = month3_4
+    config['year3_4'] = year3_4
+    config['date4_4'] = date4_4
+    config['month4_4'] = month4_4
+    config['year4_4'] = year4_4
+    config['date5_4'] = date5_4
+    config['month5_4'] = month5_4
+    config['year5_4'] = year5_4
+    config['hourFrom1_4'] = hourFrom1_4
+    config['minuteFrom1_4'] = minuteFrom1_4
+    config['hourFrom2_4'] = hourFrom2_4
+    config['minuteFrom2_4'] = minuteFrom2_4
+    config['hourFrom3_4'] = hourFrom3_4
+    config['minuteFrom3_4'] = minuteFrom3_4
+    config['hourFrom4_4'] = hourFrom4_4
+    config['minuteFrom4_4'] = minuteFrom4_4
+    config['hourFrom5_4'] = hourFrom5_4
+    config['minuteFrom5_4'] = minuteFrom5_4
+    config['date6_4'] = date6_4
+    config['month6_4'] = month6_4
+    config['year6_4'] = year6_4
+    config['date7_4'] = date7_4
+    config['month7_4'] = month7_4
+    config['year7_4'] = year7_4
+    config['date8_4'] = date8_4
+    config['month8_4'] = month8_4
+    config['year8_4'] = year8_4
+    config['date9_4'] = date9_4
+    config['month9_4'] = month9_4
+    config['year9_4'] = year9_4
+    config['date10_4'] = date10_4
+    config['month10_4'] = month10_4
+    config['year10_4'] = year10_4
+    config['hourFrom6_4'] = hourFrom6_4
+    config['minuteFrom6_4'] = minuteFrom6_4
+    config['hourFrom7_4'] = hourFrom7_4
+    config['minuteFrom7_4'] = minuteFrom7_4
+    config['hourFrom8_4'] = hourFrom8_4
+    config['minuteFrom8_4'] = minuteFrom8_4
+    config['hourFrom9_4'] = hourFrom9_4
+    config['minuteFrom9_4'] = minuteFrom9_4
+    config['hourFrom10_4'] = hourFrom10_4
+    config['minuteFrom10_4'] = minuteFrom10_4
+
     configfilename = configfilename_entry.get()
     writeToJSONFile(configfilename, config)
     status.pack(side='bottom', fill='x')
@@ -613,14 +771,14 @@ def plot_box1():
                             format="%m/%d/%Y %H:%M:%S")
     df0 = pd.DataFrame(
         {'HH:MM:SS': ['00:00:00'],  'MO/DY/YEAR':  [df['MO/DY/YEAR'][0]],
-        'LED01': [0], 'PIR01': [0], 'LED02': [0], 'PIR02': [0], 'LED03': [0], 'PIR03': [0], 'LED04': [0], 'PIR04': [0], 'LED05': [0], 'PIR05': [0], 'LED06': [0], 'PIR06': [0], 'LED07': [0], 'PIR07': [0], 'LED08': [0], 'PIR08': [0], 'LED09': [0], 'PIR09': [0], 'LED10': [0], 'PIR10': [0]
+        'LED01': [1], 'PIR01': [0], 'LED02': [1], 'PIR02': [0], 'LED03': [1], 'PIR03': [0], 'LED04': [1], 'PIR04': [0], 'LED05': [1], 'PIR05': [0], 'LED06': [1], 'PIR06': [0], 'LED07': [1], 'PIR07': [0], 'LED08': [1], 'PIR08': [0], 'LED09': [1], 'PIR09': [0], 'LED10': [1], 'PIR10': [0]
         })
     df0.index = pd.to_datetime(df0['MO/DY/YEAR']+' ' + df0['HH:MM:SS'],
                             format="%m/%d/%Y %H:%M:%S")
 
     df1 = pd.DataFrame(
         {'HH:MM:SS': df['HH:MM:SS'][0],  'MO/DY/YEAR':  [df['MO/DY/YEAR'][0]],
-        'LED01': [0], 'PIR01': [0], 'LED02': [0], 'PIR02': [0], 'LED03': [0], 'PIR03': [0], 'LED04': [0], 'PIR04': [0], 'LED05': [0], 'PIR05': [0], 'LED06': [0], 'PIR06': [0], 'LED07': [0], 'PIR07': [0], 'LED08': [0], 'PIR08': [0], 'LED09': [0], 'PIR09': [0], 'LED10': [0], 'PIR10': [0]
+        'LED01': [1], 'PIR01': [0], 'LED02': [1], 'PIR02': [0], 'LED03': [1], 'PIR03': [0], 'LED04': [1], 'PIR04': [0], 'LED05': [1], 'PIR05': [0], 'LED06': [1], 'PIR06': [0], 'LED07': [1], 'PIR07': [0], 'LED08': [1], 'PIR08': [0], 'LED09': [1], 'PIR09': [0], 'LED10': [1], 'PIR10': [0]
         })
     df1.index = pd.to_datetime(df1['MO/DY/YEAR']+' ' + df1['HH:MM:SS'],
                             format="%m/%d/%Y %H:%M:%S")
@@ -629,7 +787,7 @@ def plot_box1():
 
     df2 = pd.DataFrame(
         {'HH:MM:SS': ['00:00:00'],  'MO/DY/YEAR':  [df['MO/DY/YEAR'][-1]],
-        'LED01': [0], 'PIR01': [0], 'LED02': [0], 'PIR02': [0], 'LED03': [0], 'PIR03': [0], 'LED04': [0], 'PIR04': [0], 'LED05': [0], 'PIR05': [0], 'LED06': [0], 'PIR06': [0], 'LED07': [0], 'PIR07': [0], 'LED08': [0], 'PIR08': [0], 'LED09': [0], 'PIR09': [0], 'LED10': [0], 'PIR10': [0]
+        'LED01': [1], 'PIR01': [0], 'LED02': [1], 'PIR02': [0], 'LED03': [1], 'PIR03': [0], 'LED04': [1], 'PIR04': [0], 'LED05': [1], 'PIR05': [0], 'LED06': [1], 'PIR06': [0], 'LED07': [1], 'PIR07': [0], 'LED08': [1], 'PIR08': [0], 'LED09': [1], 'PIR09': [0], 'LED10': [1], 'PIR10': [0]
         })
     df2.index = pd.to_datetime(df2['MO/DY/YEAR']+' ' + df2['HH:MM:SS'],
                             format="%m/%d/%Y %H:%M:%S")
@@ -638,7 +796,7 @@ def plot_box1():
 
     df3 = pd.DataFrame(
         {'HH:MM:SS': df['HH:MM:SS'][-1],  'MO/DY/YEAR':  [df['MO/DY/YEAR'][-1]],
-        'LED01': [0], 'PIR01': [0], 'LED02': [0], 'PIR02': [0], 'LED03': [0], 'PIR03': [0], 'LED04': [0], 'PIR04': [0], 'LED05': [0], 'PIR05': [0], 'LED06': [0], 'PIR06': [0], 'LED07': [0], 'PIR07': [0], 'LED08': [0], 'PIR08': [0], 'LED09': [0], 'PIR09': [0], 'LED10': [0], 'PIR10': [0]
+        'LED01': [1], 'PIR01': [0], 'LED02': [1], 'PIR02': [0], 'LED03': [1], 'PIR03': [0], 'LED04': [1], 'PIR04': [0], 'LED05': [1], 'PIR05': [0], 'LED06': [1], 'PIR06': [0], 'LED07': [1], 'PIR07': [0], 'LED08': [1], 'PIR08': [0], 'LED09': [1], 'PIR09': [0], 'LED10': [1], 'PIR10': [0]
         })
     df3.index = pd.to_datetime(df3['MO/DY/YEAR']+' ' + df3['HH:MM:SS'],
                             format="%m/%d/%Y %H:%M:%S")
@@ -731,14 +889,14 @@ def plot_box2():
                             format="%m/%d/%Y %H:%M:%S")
     df0 = pd.DataFrame(
         {'HH:MM:SS': ['00:00:00'],  'MO/DY/YEAR':  [df['MO/DY/YEAR'][0]],
-        'LED01': [0], 'PIR01': [0], 'LED02': [0], 'PIR02': [0], 'LED03': [0], 'PIR03': [0], 'LED04': [0], 'PIR04': [0], 'LED05': [0], 'PIR05': [0], 'LED06': [0], 'PIR06': [0], 'LED07': [0], 'PIR07': [0], 'LED08': [0], 'PIR08': [0], 'LED09': [0], 'PIR09': [0], 'LED10': [0], 'PIR10': [0]
+        'LED01': [1], 'PIR01': [0], 'LED02': [1], 'PIR02': [0], 'LED03': [1], 'PIR03': [0], 'LED04': [1], 'PIR04': [0], 'LED05': [1], 'PIR05': [0], 'LED06': [1], 'PIR06': [0], 'LED07': [1], 'PIR07': [0], 'LED08': [1], 'PIR08': [0], 'LED09': [1], 'PIR09': [0], 'LED10': [1], 'PIR10': [0]
         })
     df0.index = pd.to_datetime(df0['MO/DY/YEAR']+' ' + df0['HH:MM:SS'],
                             format="%m/%d/%Y %H:%M:%S")
 
     df1 = pd.DataFrame(
         {'HH:MM:SS': df['HH:MM:SS'][0],  'MO/DY/YEAR':  [df['MO/DY/YEAR'][0]],
-        'LED01': [0], 'PIR01': [0], 'LED02': [0], 'PIR02': [0], 'LED03': [0], 'PIR03': [0], 'LED04': [0], 'PIR04': [0], 'LED05': [0], 'PIR05': [0], 'LED06': [0], 'PIR06': [0], 'LED07': [0], 'PIR07': [0], 'LED08': [0], 'PIR08': [0], 'LED09': [0], 'PIR09': [0], 'LED10': [0], 'PIR10': [0]
+        'LED01': [1], 'PIR01': [0], 'LED02': [1], 'PIR02': [0], 'LED03': [1], 'PIR03': [0], 'LED04': [1], 'PIR04': [0], 'LED05': [1], 'PIR05': [0], 'LED06': [1], 'PIR06': [0], 'LED07': [1], 'PIR07': [0], 'LED08': [1], 'PIR08': [0], 'LED09': [1], 'PIR09': [0], 'LED10': [1], 'PIR10': [0]
         })
     df1.index = pd.to_datetime(df1['MO/DY/YEAR']+' ' + df1['HH:MM:SS'],
                             format="%m/%d/%Y %H:%M:%S")
@@ -747,7 +905,7 @@ def plot_box2():
 
     df2 = pd.DataFrame(
         {'HH:MM:SS': ['00:00:00'],  'MO/DY/YEAR':  [df['MO/DY/YEAR'][-1]],
-        'LED01': [0], 'PIR01': [0], 'LED02': [0], 'PIR02': [0], 'LED03': [0], 'PIR03': [0], 'LED04': [0], 'PIR04': [0], 'LED05': [0], 'PIR05': [0], 'LED06': [0], 'PIR06': [0], 'LED07': [0], 'PIR07': [0], 'LED08': [0], 'PIR08': [0], 'LED09': [0], 'PIR09': [0], 'LED10': [0], 'PIR10': [0]
+        'LED01': [1], 'PIR01': [0], 'LED02': [1], 'PIR02': [0], 'LED03': [1], 'PIR03': [0], 'LED04': [1], 'PIR04': [0], 'LED05': [1], 'PIR05': [0], 'LED06': [1], 'PIR06': [0], 'LED07': [1], 'PIR07': [0], 'LED08': [1], 'PIR08': [0], 'LED09': [1], 'PIR09': [0], 'LED10': [1], 'PIR10': [0]
         })
     df2.index = pd.to_datetime(df2['MO/DY/YEAR']+' ' + df2['HH:MM:SS'],
                             format="%m/%d/%Y %H:%M:%S")
@@ -756,7 +914,7 @@ def plot_box2():
 
     df3 = pd.DataFrame(
         {'HH:MM:SS': df['HH:MM:SS'][-1],  'MO/DY/YEAR':  [df['MO/DY/YEAR'][-1]],
-        'LED01': [0], 'PIR01': [0], 'LED02': [0], 'PIR02': [0], 'LED03': [0], 'PIR03': [0], 'LED04': [0], 'PIR04': [0], 'LED05': [0], 'PIR05': [0], 'LED06': [0], 'PIR06': [0], 'LED07': [0], 'PIR07': [0], 'LED08': [0], 'PIR08': [0], 'LED09': [0], 'PIR09': [0], 'LED10': [0], 'PIR10': [0]
+        'LED01': [1], 'PIR01': [0], 'LED02': [1], 'PIR02': [0], 'LED03': [1], 'PIR03': [0], 'LED04': [1], 'PIR04': [0], 'LED05': [1], 'PIR05': [0], 'LED06': [1], 'PIR06': [0], 'LED07': [1], 'PIR07': [0], 'LED08': [1], 'PIR08': [0], 'LED09': [1], 'PIR09': [0], 'LED10': [1], 'PIR10': [0]
         })
     df3.index = pd.to_datetime(df3['MO/DY/YEAR']+' ' + df3['HH:MM:SS'],
                             format="%m/%d/%Y %H:%M:%S")
@@ -849,14 +1007,14 @@ def plot_box3():
                             format="%m/%d/%Y %H:%M:%S")
     df0 = pd.DataFrame(
         {'HH:MM:SS': ['00:00:00'],  'MO/DY/YEAR':  [df['MO/DY/YEAR'][0]],
-        'LED01': [0], 'PIR01': [0], 'LED02': [0], 'PIR02': [0], 'LED03': [0], 'PIR03': [0], 'LED04': [0], 'PIR04': [0], 'LED05': [0], 'PIR05': [0], 'LED06': [0], 'PIR06': [0], 'LED07': [0], 'PIR07': [0], 'LED08': [0], 'PIR08': [0], 'LED09': [0], 'PIR09': [0], 'LED10': [0], 'PIR10': [0]
+        'LED01': [1], 'PIR01': [0], 'LED02': [1], 'PIR02': [0], 'LED03': [1], 'PIR03': [0], 'LED04': [1], 'PIR04': [0], 'LED05': [1], 'PIR05': [0], 'LED06': [1], 'PIR06': [0], 'LED07': [1], 'PIR07': [0], 'LED08': [1], 'PIR08': [0], 'LED09': [1], 'PIR09': [0], 'LED10': [1], 'PIR10': [0]
         })
     df0.index = pd.to_datetime(df0['MO/DY/YEAR']+' ' + df0['HH:MM:SS'],
                             format="%m/%d/%Y %H:%M:%S")
 
     df1 = pd.DataFrame(
         {'HH:MM:SS': df['HH:MM:SS'][0],  'MO/DY/YEAR':  [df['MO/DY/YEAR'][0]],
-        'LED01': [0], 'PIR01': [0], 'LED02': [0], 'PIR02': [0], 'LED03': [0], 'PIR03': [0], 'LED04': [0], 'PIR04': [0], 'LED05': [0], 'PIR05': [0], 'LED06': [0], 'PIR06': [0], 'LED07': [0], 'PIR07': [0], 'LED08': [0], 'PIR08': [0], 'LED09': [0], 'PIR09': [0], 'LED10': [0], 'PIR10': [0]
+        'LED01': [1], 'PIR01': [0], 'LED02': [1], 'PIR02': [0], 'LED03': [1], 'PIR03': [0], 'LED04': [1], 'PIR04': [0], 'LED05': [1], 'PIR05': [0], 'LED06': [1], 'PIR06': [0], 'LED07': [1], 'PIR07': [0], 'LED08': [1], 'PIR08': [0], 'LED09': [1], 'PIR09': [0], 'LED10': [1], 'PIR10': [0]
         })
     df1.index = pd.to_datetime(df1['MO/DY/YEAR']+' ' + df1['HH:MM:SS'],
                             format="%m/%d/%Y %H:%M:%S")
@@ -865,7 +1023,7 @@ def plot_box3():
 
     df2 = pd.DataFrame(
         {'HH:MM:SS': ['00:00:00'],  'MO/DY/YEAR':  [df['MO/DY/YEAR'][-1]],
-        'LED01': [0], 'PIR01': [0], 'LED02': [0], 'PIR02': [0], 'LED03': [0], 'PIR03': [0], 'LED04': [0], 'PIR04': [0], 'LED05': [0], 'PIR05': [0], 'LED06': [0], 'PIR06': [0], 'LED07': [0], 'PIR07': [0], 'LED08': [0], 'PIR08': [0], 'LED09': [0], 'PIR09': [0], 'LED10': [0], 'PIR10': [0]
+        'LED01': [1], 'PIR01': [0], 'LED02': [1], 'PIR02': [0], 'LED03': [1], 'PIR03': [0], 'LED04': [1], 'PIR04': [0], 'LED05': [1], 'PIR05': [0], 'LED06': [1], 'PIR06': [0], 'LED07': [1], 'PIR07': [0], 'LED08': [1], 'PIR08': [0], 'LED09': [1], 'PIR09': [0], 'LED10': [1], 'PIR10': [0]
         })
     df2.index = pd.to_datetime(df2['MO/DY/YEAR']+' ' + df2['HH:MM:SS'],
                             format="%m/%d/%Y %H:%M:%S")
@@ -874,7 +1032,7 @@ def plot_box3():
 
     df3 = pd.DataFrame(
         {'HH:MM:SS': df['HH:MM:SS'][-1],  'MO/DY/YEAR':  [df['MO/DY/YEAR'][-1]],
-        'LED01': [0], 'PIR01': [0], 'LED02': [0], 'PIR02': [0], 'LED03': [0], 'PIR03': [0], 'LED04': [0], 'PIR04': [0], 'LED05': [0], 'PIR05': [0], 'LED06': [0], 'PIR06': [0], 'LED07': [0], 'PIR07': [0], 'LED08': [0], 'PIR08': [0], 'LED09': [0], 'PIR09': [0], 'LED10': [0], 'PIR10': [0]
+        'LED01': [1], 'PIR01': [0], 'LED02': [1], 'PIR02': [0], 'LED03': [1], 'PIR03': [0], 'LED04': [1], 'PIR04': [0], 'LED05': [1], 'PIR05': [0], 'LED06': [1], 'PIR06': [0], 'LED07': [1], 'PIR07': [0], 'LED08': [1], 'PIR08': [0], 'LED09': [1], 'PIR09': [0], 'LED10': [1], 'PIR10': [0]
         })
     df3.index = pd.to_datetime(df3['MO/DY/YEAR']+' ' + df3['HH:MM:SS'],
                             format="%m/%d/%Y %H:%M:%S")
@@ -968,14 +1126,14 @@ def plot_box4():
                             format="%m/%d/%Y %H:%M:%S")
     df0 = pd.DataFrame(
         {'HH:MM:SS': ['00:00:00'],  'MO/DY/YEAR':  [df['MO/DY/YEAR'][0]],
-        'LED01': [0], 'PIR01': [0], 'LED02': [0], 'PIR02': [0], 'LED03': [0], 'PIR03': [0], 'LED04': [0], 'PIR04': [0], 'LED05': [0], 'PIR05': [0], 'LED06': [0], 'PIR06': [0], 'LED07': [0], 'PIR07': [0], 'LED08': [0], 'PIR08': [0], 'LED09': [0], 'PIR09': [0], 'LED10': [0], 'PIR10': [0]
+        'LED01': [1], 'PIR01': [0], 'LED02': [1], 'PIR02': [0], 'LED03': [1], 'PIR03': [0], 'LED04': [1], 'PIR04': [0], 'LED05': [1], 'PIR05': [0], 'LED06': [1], 'PIR06': [0], 'LED07': [1], 'PIR07': [0], 'LED08': [1], 'PIR08': [0], 'LED09': [1], 'PIR09': [0], 'LED10': [1], 'PIR10': [0]
         })
     df0.index = pd.to_datetime(df0['MO/DY/YEAR']+' ' + df0['HH:MM:SS'],
                             format="%m/%d/%Y %H:%M:%S")
 
     df1 = pd.DataFrame(
         {'HH:MM:SS': df['HH:MM:SS'][0],  'MO/DY/YEAR':  [df['MO/DY/YEAR'][0]],
-        'LED01': [0], 'PIR01': [0], 'LED02': [0], 'PIR02': [0], 'LED03': [0], 'PIR03': [0], 'LED04': [0], 'PIR04': [0], 'LED05': [0], 'PIR05': [0], 'LED06': [0], 'PIR06': [0], 'LED07': [0], 'PIR07': [0], 'LED08': [0], 'PIR08': [0], 'LED09': [0], 'PIR09': [0], 'LED10': [0], 'PIR10': [0]
+        'LED01': [1], 'PIR01': [0], 'LED02': [1], 'PIR02': [0], 'LED03': [1], 'PIR03': [0], 'LED04': [1], 'PIR04': [0], 'LED05': [1], 'PIR05': [0], 'LED06': [1], 'PIR06': [0], 'LED07': [1], 'PIR07': [0], 'LED08': [1], 'PIR08': [0], 'LED09': [1], 'PIR09': [0], 'LED10': [1], 'PIR10': [0]
         })
     df1.index = pd.to_datetime(df1['MO/DY/YEAR']+' ' + df1['HH:MM:SS'],
                             format="%m/%d/%Y %H:%M:%S")
@@ -984,7 +1142,7 @@ def plot_box4():
 
     df2 = pd.DataFrame(
         {'HH:MM:SS': ['00:00:00'],  'MO/DY/YEAR':  [df['MO/DY/YEAR'][-1]],
-        'LED01': [0], 'PIR01': [0], 'LED02': [0], 'PIR02': [0], 'LED03': [0], 'PIR03': [0], 'LED04': [0], 'PIR04': [0], 'LED05': [0], 'PIR05': [0], 'LED06': [0], 'PIR06': [0], 'LED07': [0], 'PIR07': [0], 'LED08': [0], 'PIR08': [0], 'LED09': [0], 'PIR09': [0], 'LED10': [0], 'PIR10': [0]
+        'LED01': [1], 'PIR01': [0], 'LED02': [1], 'PIR02': [0], 'LED03': [1], 'PIR03': [0], 'LED04': [1], 'PIR04': [0], 'LED05': [1], 'PIR05': [0], 'LED06': [1], 'PIR06': [0], 'LED07': [1], 'PIR07': [0], 'LED08': [1], 'PIR08': [0], 'LED09': [1], 'PIR09': [0], 'LED10': [1], 'PIR10': [0]
         })
     df2.index = pd.to_datetime(df2['MO/DY/YEAR']+' ' + df2['HH:MM:SS'],
                             format="%m/%d/%Y %H:%M:%S")
@@ -993,7 +1151,7 @@ def plot_box4():
 
     df3 = pd.DataFrame(
         {'HH:MM:SS': df['HH:MM:SS'][-1],  'MO/DY/YEAR':  [df['MO/DY/YEAR'][-1]],
-        'LED01': [0], 'PIR01': [0], 'LED02': [0], 'PIR02': [0], 'LED03': [0], 'PIR03': [0], 'LED04': [0], 'PIR04': [0], 'LED05': [0], 'PIR05': [0], 'LED06': [0], 'PIR06': [0], 'LED07': [0], 'PIR07': [0], 'LED08': [0], 'PIR08': [0], 'LED09': [0], 'PIR09': [0], 'LED10': [0], 'PIR10': [0]
+        'LED01': [1], 'PIR01': [0], 'LED02': [1], 'PIR02': [0], 'LED03': [1], 'PIR03': [0], 'LED04': [1], 'PIR04': [0], 'LED05': [1], 'PIR05': [0], 'LED06': [1], 'PIR06': [0], 'LED07': [1], 'PIR07': [0], 'LED08': [1], 'PIR08': [0], 'LED09': [1], 'PIR09': [0], 'LED10': [1], 'PIR10': [0]
         })
     df3.index = pd.to_datetime(df3['MO/DY/YEAR']+' ' + df3['HH:MM:SS'],
                             format="%m/%d/%Y %H:%M:%S")
@@ -1086,14 +1244,14 @@ def plot_box5():
                             format="%m/%d/%Y %H:%M:%S")
     df0 = pd.DataFrame(
         {'HH:MM:SS': ['00:00:00'],  'MO/DY/YEAR':  [df['MO/DY/YEAR'][0]],
-        'LED01': [0], 'PIR01': [0], 'LED02': [0], 'PIR02': [0], 'LED03': [0], 'PIR03': [0], 'LED04': [0], 'PIR04': [0], 'LED05': [0], 'PIR05': [0], 'LED06': [0], 'PIR06': [0], 'LED07': [0], 'PIR07': [0], 'LED08': [0], 'PIR08': [0], 'LED09': [0], 'PIR09': [0], 'LED10': [0], 'PIR10': [0]
+        'LED01': [1], 'PIR01': [0], 'LED02': [1], 'PIR02': [0], 'LED03': [1], 'PIR03': [0], 'LED04': [1], 'PIR04': [0], 'LED05': [1], 'PIR05': [0], 'LED06': [1], 'PIR06': [0], 'LED07': [1], 'PIR07': [0], 'LED08': [1], 'PIR08': [0], 'LED09': [1], 'PIR09': [0], 'LED10': [1], 'PIR10': [0]
         })
     df0.index = pd.to_datetime(df0['MO/DY/YEAR']+' ' + df0['HH:MM:SS'],
                             format="%m/%d/%Y %H:%M:%S")
 
     df1 = pd.DataFrame(
         {'HH:MM:SS': df['HH:MM:SS'][0],  'MO/DY/YEAR':  [df['MO/DY/YEAR'][0]],
-        'LED01': [0], 'PIR01': [0], 'LED02': [0], 'PIR02': [0], 'LED03': [0], 'PIR03': [0], 'LED04': [0], 'PIR04': [0], 'LED05': [0], 'PIR05': [0], 'LED06': [0], 'PIR06': [0], 'LED07': [0], 'PIR07': [0], 'LED08': [0], 'PIR08': [0], 'LED09': [0], 'PIR09': [0], 'LED10': [0], 'PIR10': [0]
+        'LED01': [1], 'PIR01': [0], 'LED02': [1], 'PIR02': [0], 'LED03': [1], 'PIR03': [0], 'LED04': [1], 'PIR04': [0], 'LED05': [1], 'PIR05': [0], 'LED06': [1], 'PIR06': [0], 'LED07': [1], 'PIR07': [0], 'LED08': [1], 'PIR08': [0], 'LED09': [1], 'PIR09': [0], 'LED10': [1], 'PIR10': [0]
         })
     df1.index = pd.to_datetime(df1['MO/DY/YEAR']+' ' + df1['HH:MM:SS'],
                             format="%m/%d/%Y %H:%M:%S")
@@ -1102,7 +1260,7 @@ def plot_box5():
 
     df2 = pd.DataFrame(
         {'HH:MM:SS': ['00:00:00'],  'MO/DY/YEAR':  [df['MO/DY/YEAR'][-1]],
-        'LED01': [0], 'PIR01': [0], 'LED02': [0], 'PIR02': [0], 'LED03': [0], 'PIR03': [0], 'LED04': [0], 'PIR04': [0], 'LED05': [0], 'PIR05': [0], 'LED06': [0], 'PIR06': [0], 'LED07': [0], 'PIR07': [0], 'LED08': [0], 'PIR08': [0], 'LED09': [0], 'PIR09': [0], 'LED10': [0], 'PIR10': [0]
+        'LED01': [1], 'PIR01': [0], 'LED02': [1], 'PIR02': [0], 'LED03': [1], 'PIR03': [0], 'LED04': [1], 'PIR04': [0], 'LED05': [1], 'PIR05': [0], 'LED06': [1], 'PIR06': [0], 'LED07': [1], 'PIR07': [0], 'LED08': [1], 'PIR08': [0], 'LED09': [1], 'PIR09': [0], 'LED10': [1], 'PIR10': [0]
         })
     df2.index = pd.to_datetime(df2['MO/DY/YEAR']+' ' + df2['HH:MM:SS'],
                             format="%m/%d/%Y %H:%M:%S")
@@ -1111,7 +1269,7 @@ def plot_box5():
 
     df3 = pd.DataFrame(
         {'HH:MM:SS': df['HH:MM:SS'][-1],  'MO/DY/YEAR':  [df['MO/DY/YEAR'][-1]],
-        'LED01': [0], 'PIR01': [0], 'LED02': [0], 'PIR02': [0], 'LED03': [0], 'PIR03': [0], 'LED04': [0], 'PIR04': [0], 'LED05': [0], 'PIR05': [0], 'LED06': [0], 'PIR06': [0], 'LED07': [0], 'PIR07': [0], 'LED08': [0], 'PIR08': [0], 'LED09': [0], 'PIR09': [0], 'LED10': [0], 'PIR10': [0]
+        'LED01': [1], 'PIR01': [0], 'LED02': [1], 'PIR02': [0], 'LED03': [1], 'PIR03': [0], 'LED04': [1], 'PIR04': [0], 'LED05': [1], 'PIR05': [0], 'LED06': [1], 'PIR06': [0], 'LED07': [1], 'PIR07': [0], 'LED08': [1], 'PIR08': [0], 'LED09': [1], 'PIR09': [0], 'LED10': [1], 'PIR10': [0]
         })
     df3.index = pd.to_datetime(df3['MO/DY/YEAR']+' ' + df3['HH:MM:SS'],
                             format="%m/%d/%Y %H:%M:%S")
@@ -1205,14 +1363,14 @@ def plot_box6():
                             format="%m/%d/%Y %H:%M:%S")
     df0 = pd.DataFrame(
         {'HH:MM:SS': ['00:00:00'],  'MO/DY/YEAR':  [df['MO/DY/YEAR'][0]],
-        'LED01': [0], 'PIR01': [0], 'LED02': [0], 'PIR02': [0], 'LED03': [0], 'PIR03': [0], 'LED04': [0], 'PIR04': [0], 'LED05': [0], 'PIR05': [0], 'LED06': [0], 'PIR06': [0], 'LED07': [0], 'PIR07': [0], 'LED08': [0], 'PIR08': [0], 'LED09': [0], 'PIR09': [0], 'LED10': [0], 'PIR10': [0]
+        'LED01': [1], 'PIR01': [0], 'LED02': [1], 'PIR02': [0], 'LED03': [1], 'PIR03': [0], 'LED04': [1], 'PIR04': [0], 'LED05': [1], 'PIR05': [0], 'LED06': [1], 'PIR06': [0], 'LED07': [1], 'PIR07': [0], 'LED08': [1], 'PIR08': [0], 'LED09': [1], 'PIR09': [0], 'LED10': [1], 'PIR10': [0]
         })
     df0.index = pd.to_datetime(df0['MO/DY/YEAR']+' ' + df0['HH:MM:SS'],
                             format="%m/%d/%Y %H:%M:%S")
 
     df1 = pd.DataFrame(
         {'HH:MM:SS': df['HH:MM:SS'][0],  'MO/DY/YEAR':  [df['MO/DY/YEAR'][0]],
-        'LED01': [0], 'PIR01': [0], 'LED02': [0], 'PIR02': [0], 'LED03': [0], 'PIR03': [0], 'LED04': [0], 'PIR04': [0], 'LED05': [0], 'PIR05': [0], 'LED06': [0], 'PIR06': [0], 'LED07': [0], 'PIR07': [0], 'LED08': [0], 'PIR08': [0], 'LED09': [0], 'PIR09': [0], 'LED10': [0], 'PIR10': [0]
+        'LED01': [1], 'PIR01': [0], 'LED02': [1], 'PIR02': [0], 'LED03': [1], 'PIR03': [0], 'LED04': [1], 'PIR04': [0], 'LED05': [1], 'PIR05': [0], 'LED06': [1], 'PIR06': [0], 'LED07': [1], 'PIR07': [0], 'LED08': [1], 'PIR08': [0], 'LED09': [1], 'PIR09': [0], 'LED10': [1], 'PIR10': [0]
         })
     df1.index = pd.to_datetime(df1['MO/DY/YEAR']+' ' + df1['HH:MM:SS'],
                             format="%m/%d/%Y %H:%M:%S")
@@ -1221,7 +1379,7 @@ def plot_box6():
 
     df2 = pd.DataFrame(
         {'HH:MM:SS': ['00:00:00'],  'MO/DY/YEAR':  [df['MO/DY/YEAR'][-1]],
-        'LED01': [0], 'PIR01': [0], 'LED02': [0], 'PIR02': [0], 'LED03': [0], 'PIR03': [0], 'LED04': [0], 'PIR04': [0], 'LED05': [0], 'PIR05': [0], 'LED06': [0], 'PIR06': [0], 'LED07': [0], 'PIR07': [0], 'LED08': [0], 'PIR08': [0], 'LED09': [0], 'PIR09': [0], 'LED10': [0], 'PIR10': [0]
+        'LED01': [1], 'PIR01': [0], 'LED02': [1], 'PIR02': [0], 'LED03': [1], 'PIR03': [0], 'LED04': [1], 'PIR04': [0], 'LED05': [1], 'PIR05': [0], 'LED06': [1], 'PIR06': [0], 'LED07': [1], 'PIR07': [0], 'LED08': [1], 'PIR08': [0], 'LED09': [1], 'PIR09': [0], 'LED10': [1], 'PIR10': [0]
         })
     df2.index = pd.to_datetime(df2['MO/DY/YEAR']+' ' + df2['HH:MM:SS'],
                             format="%m/%d/%Y %H:%M:%S")
@@ -1230,7 +1388,7 @@ def plot_box6():
 
     df3 = pd.DataFrame(
         {'HH:MM:SS': df['HH:MM:SS'][-1],  'MO/DY/YEAR':  [df['MO/DY/YEAR'][-1]],
-        'LED01': [0], 'PIR01': [0], 'LED02': [0], 'PIR02': [0], 'LED03': [0], 'PIR03': [0], 'LED04': [0], 'PIR04': [0], 'LED05': [0], 'PIR05': [0], 'LED06': [0], 'PIR06': [0], 'LED07': [0], 'PIR07': [0], 'LED08': [0], 'PIR08': [0], 'LED09': [0], 'PIR09': [0], 'LED10': [0], 'PIR10': [0]
+        'LED01': [1], 'PIR01': [0], 'LED02': [1], 'PIR02': [0], 'LED03': [1], 'PIR03': [0], 'LED04': [1], 'PIR04': [0], 'LED05': [1], 'PIR05': [0], 'LED06': [1], 'PIR06': [0], 'LED07': [1], 'PIR07': [0], 'LED08': [1], 'PIR08': [0], 'LED09': [1], 'PIR09': [0], 'LED10': [1], 'PIR10': [0]
         })
     df3.index = pd.to_datetime(df3['MO/DY/YEAR']+' ' + df3['HH:MM:SS'],
                             format="%m/%d/%Y %H:%M:%S")
@@ -1324,15 +1482,15 @@ def plot_box7():
                               format="%m/%d/%Y %H:%M:%S")
     df0 = pd.DataFrame(
         {'HH:MM:SS': ['00:00:00'],  'MO/DY/YEAR':  [df['MO/DY/YEAR'][0]],
-         'LED01': [0], 'PIR01': [0], 'LED02': [0], 'PIR02': [0], 'LED03': [0], 'PIR03': [0], 'LED04': [0], 'PIR04': [0], 'LED05': [0], 'PIR05': [0], 'LED06': [0], 'PIR06': [0], 'LED07': [0], 'PIR07': [0], 'LED08': [0], 'PIR08': [0], 'LED09': [0], 'PIR09': [0], 'LED10': [0], 'PIR10': [0]
-         })
+        'LED01': [1], 'PIR01': [0], 'LED02': [1], 'PIR02': [0], 'LED03': [1], 'PIR03': [0], 'LED04': [1], 'PIR04': [0], 'LED05': [1], 'PIR05': [0], 'LED06': [1], 'PIR06': [0], 'LED07': [1], 'PIR07': [0], 'LED08': [1], 'PIR08': [0], 'LED09': [1], 'PIR09': [0], 'LED10': [1], 'PIR10': [0]
+        })
     df0.index = pd.to_datetime(df0['MO/DY/YEAR']+' ' + df0['HH:MM:SS'],
                                format="%m/%d/%Y %H:%M:%S")
 
     df1 = pd.DataFrame(
         {'HH:MM:SS': df['HH:MM:SS'][0],  'MO/DY/YEAR':  [df['MO/DY/YEAR'][0]],
-         'LED01': [0], 'PIR01': [0], 'LED02': [0], 'PIR02': [0], 'LED03': [0], 'PIR03': [0], 'LED04': [0], 'PIR04': [0], 'LED05': [0], 'PIR05': [0], 'LED06': [0], 'PIR06': [0], 'LED07': [0], 'PIR07': [0], 'LED08': [0], 'PIR08': [0], 'LED09': [0], 'PIR09': [0], 'LED10': [0], 'PIR10': [0]
-         })
+        'LED01': [1], 'PIR01': [0], 'LED02': [1], 'PIR02': [0], 'LED03': [1], 'PIR03': [0], 'LED04': [1], 'PIR04': [0], 'LED05': [1], 'PIR05': [0], 'LED06': [1], 'PIR06': [0], 'LED07': [1], 'PIR07': [0], 'LED08': [1], 'PIR08': [0], 'LED09': [1], 'PIR09': [0], 'LED10': [1], 'PIR10': [0]
+        })
     df1.index = pd.to_datetime(df1['MO/DY/YEAR']+' ' + df1['HH:MM:SS'],
                                format="%m/%d/%Y %H:%M:%S")
     df1.index.set_value(df1.index, df1.index[0], pd.Timestamp(
@@ -1340,8 +1498,8 @@ def plot_box7():
 
     df2 = pd.DataFrame(
         {'HH:MM:SS': ['00:00:00'],  'MO/DY/YEAR':  [df['MO/DY/YEAR'][-1]],
-         'LED01': [0], 'PIR01': [0], 'LED02': [0], 'PIR02': [0], 'LED03': [0], 'PIR03': [0], 'LED04': [0], 'PIR04': [0], 'LED05': [0], 'PIR05': [0], 'LED06': [0], 'PIR06': [0], 'LED07': [0], 'PIR07': [0], 'LED08': [0], 'PIR08': [0], 'LED09': [0], 'PIR09': [0], 'LED10': [0], 'PIR10': [0]
-         })
+        'LED01': [1], 'PIR01': [0], 'LED02': [1], 'PIR02': [0], 'LED03': [1], 'PIR03': [0], 'LED04': [1], 'PIR04': [0], 'LED05': [1], 'PIR05': [0], 'LED06': [1], 'PIR06': [0], 'LED07': [1], 'PIR07': [0], 'LED08': [1], 'PIR08': [0], 'LED09': [1], 'PIR09': [0], 'LED10': [1], 'PIR10': [0]
+        })
     df2.index = pd.to_datetime(df2['MO/DY/YEAR']+' ' + df2['HH:MM:SS'],
                                format="%m/%d/%Y %H:%M:%S")
     df2.index.set_value(df2.index, df2.index[0], pd.Timestamp(
@@ -1349,8 +1507,8 @@ def plot_box7():
 
     df3 = pd.DataFrame(
         {'HH:MM:SS': df['HH:MM:SS'][-1],  'MO/DY/YEAR':  [df['MO/DY/YEAR'][-1]],
-         'LED01': [0], 'PIR01': [0], 'LED02': [0], 'PIR02': [0], 'LED03': [0], 'PIR03': [0], 'LED04': [0], 'PIR04': [0], 'LED05': [0], 'PIR05': [0], 'LED06': [0], 'PIR06': [0], 'LED07': [0], 'PIR07': [0], 'LED08': [0], 'PIR08': [0], 'LED09': [0], 'PIR09': [0], 'LED10': [0], 'PIR10': [0]
-         })
+        'LED01': [1], 'PIR01': [0], 'LED02': [1], 'PIR02': [0], 'LED03': [1], 'PIR03': [0], 'LED04': [1], 'PIR04': [0], 'LED05': [1], 'PIR05': [0], 'LED06': [1], 'PIR06': [0], 'LED07': [1], 'PIR07': [0], 'LED08': [1], 'PIR08': [0], 'LED09': [1], 'PIR09': [0], 'LED10': [1], 'PIR10': [0]
+        })
     df3.index = pd.to_datetime(df3['MO/DY/YEAR']+' ' + df3['HH:MM:SS'],
                                format="%m/%d/%Y %H:%M:%S")
     df3.index.set_value(df3.index, df3.index[0], pd.Timestamp(
@@ -1443,14 +1601,14 @@ def plot_box8():
                             format="%m/%d/%Y %H:%M:%S")
     df0 = pd.DataFrame(
         {'HH:MM:SS': ['00:00:00'],  'MO/DY/YEAR':  [df['MO/DY/YEAR'][0]],
-        'LED01': [0], 'PIR01': [0], 'LED02': [0], 'PIR02': [0], 'LED03': [0], 'PIR03': [0], 'LED04': [0], 'PIR04': [0], 'LED05': [0], 'PIR05': [0], 'LED06': [0], 'PIR06': [0], 'LED07': [0], 'PIR07': [0], 'LED08': [0], 'PIR08': [0], 'LED09': [0], 'PIR09': [0], 'LED10': [0], 'PIR10': [0]
+        'LED01': [1], 'PIR01': [0], 'LED02': [1], 'PIR02': [0], 'LED03': [1], 'PIR03': [0], 'LED04': [1], 'PIR04': [0], 'LED05': [1], 'PIR05': [0], 'LED06': [1], 'PIR06': [0], 'LED07': [1], 'PIR07': [0], 'LED08': [1], 'PIR08': [0], 'LED09': [1], 'PIR09': [0], 'LED10': [1], 'PIR10': [0]
         })
     df0.index = pd.to_datetime(df0['MO/DY/YEAR']+' ' + df0['HH:MM:SS'],
                             format="%m/%d/%Y %H:%M:%S")
 
     df1 = pd.DataFrame(
         {'HH:MM:SS': df['HH:MM:SS'][0],  'MO/DY/YEAR':  [df['MO/DY/YEAR'][0]],
-        'LED01': [0], 'PIR01': [0], 'LED02': [0], 'PIR02': [0], 'LED03': [0], 'PIR03': [0], 'LED04': [0], 'PIR04': [0], 'LED05': [0], 'PIR05': [0], 'LED06': [0], 'PIR06': [0], 'LED07': [0], 'PIR07': [0], 'LED08': [0], 'PIR08': [0], 'LED09': [0], 'PIR09': [0], 'LED10': [0], 'PIR10': [0]
+        'LED01': [1], 'PIR01': [0], 'LED02': [1], 'PIR02': [0], 'LED03': [1], 'PIR03': [0], 'LED04': [1], 'PIR04': [0], 'LED05': [1], 'PIR05': [0], 'LED06': [1], 'PIR06': [0], 'LED07': [1], 'PIR07': [0], 'LED08': [1], 'PIR08': [0], 'LED09': [1], 'PIR09': [0], 'LED10': [1], 'PIR10': [0]
         })
     df1.index = pd.to_datetime(df1['MO/DY/YEAR']+' ' + df1['HH:MM:SS'],
                             format="%m/%d/%Y %H:%M:%S")
@@ -1459,7 +1617,7 @@ def plot_box8():
 
     df2 = pd.DataFrame(
         {'HH:MM:SS': ['00:00:00'],  'MO/DY/YEAR':  [df['MO/DY/YEAR'][-1]],
-        'LED01': [0], 'PIR01': [0], 'LED02': [0], 'PIR02': [0], 'LED03': [0], 'PIR03': [0], 'LED04': [0], 'PIR04': [0], 'LED05': [0], 'PIR05': [0], 'LED06': [0], 'PIR06': [0], 'LED07': [0], 'PIR07': [0], 'LED08': [0], 'PIR08': [0], 'LED09': [0], 'PIR09': [0], 'LED10': [0], 'PIR10': [0]
+        'LED01': [1], 'PIR01': [0], 'LED02': [1], 'PIR02': [0], 'LED03': [1], 'PIR03': [0], 'LED04': [1], 'PIR04': [0], 'LED05': [1], 'PIR05': [0], 'LED06': [1], 'PIR06': [0], 'LED07': [1], 'PIR07': [0], 'LED08': [1], 'PIR08': [0], 'LED09': [1], 'PIR09': [0], 'LED10': [1], 'PIR10': [0]
         })
     df2.index = pd.to_datetime(df2['MO/DY/YEAR']+' ' + df2['HH:MM:SS'],
                             format="%m/%d/%Y %H:%M:%S")
@@ -1468,7 +1626,7 @@ def plot_box8():
 
     df3 = pd.DataFrame(
         {'HH:MM:SS': df['HH:MM:SS'][-1],  'MO/DY/YEAR':  [df['MO/DY/YEAR'][-1]],
-        'LED01': [0], 'PIR01': [0], 'LED02': [0], 'PIR02': [0], 'LED03': [0], 'PIR03': [0], 'LED04': [0], 'PIR04': [0], 'LED05': [0], 'PIR05': [0], 'LED06': [0], 'PIR06': [0], 'LED07': [0], 'PIR07': [0], 'LED08': [0], 'PIR08': [0], 'LED09': [0], 'PIR09': [0], 'LED10': [0], 'PIR10': [0]
+        'LED01': [1], 'PIR01': [0], 'LED02': [1], 'PIR02': [0], 'LED03': [1], 'PIR03': [0], 'LED04': [1], 'PIR04': [0], 'LED05': [1], 'PIR05': [0], 'LED06': [1], 'PIR06': [0], 'LED07': [1], 'PIR07': [0], 'LED08': [1], 'PIR08': [0], 'LED09': [1], 'PIR09': [0], 'LED10': [1], 'PIR10': [0]
         })
     df3.index = pd.to_datetime(df3['MO/DY/YEAR']+' ' + df3['HH:MM:SS'],
                             format="%m/%d/%Y %H:%M:%S")
@@ -1561,14 +1719,14 @@ def plot_box9():
                             format="%m/%d/%Y %H:%M:%S")
     df0 = pd.DataFrame(
         {'HH:MM:SS': ['00:00:00'],  'MO/DY/YEAR':  [df['MO/DY/YEAR'][0]],
-        'LED01': [0], 'PIR01': [0], 'LED02': [0], 'PIR02': [0], 'LED03': [0], 'PIR03': [0], 'LED04': [0], 'PIR04': [0], 'LED05': [0], 'PIR05': [0], 'LED06': [0], 'PIR06': [0], 'LED07': [0], 'PIR07': [0], 'LED08': [0], 'PIR08': [0], 'LED09': [0], 'PIR09': [0], 'LED10': [0], 'PIR10': [0]
+        'LED01': [1], 'PIR01': [0], 'LED02': [1], 'PIR02': [0], 'LED03': [1], 'PIR03': [0], 'LED04': [1], 'PIR04': [0], 'LED05': [1], 'PIR05': [0], 'LED06': [1], 'PIR06': [0], 'LED07': [1], 'PIR07': [0], 'LED08': [1], 'PIR08': [0], 'LED09': [1], 'PIR09': [0], 'LED10': [1], 'PIR10': [0]
         })
     df0.index = pd.to_datetime(df0['MO/DY/YEAR']+' ' + df0['HH:MM:SS'],
                             format="%m/%d/%Y %H:%M:%S")
 
     df1 = pd.DataFrame(
         {'HH:MM:SS': df['HH:MM:SS'][0],  'MO/DY/YEAR':  [df['MO/DY/YEAR'][0]],
-        'LED01': [0], 'PIR01': [0], 'LED02': [0], 'PIR02': [0], 'LED03': [0], 'PIR03': [0], 'LED04': [0], 'PIR04': [0], 'LED05': [0], 'PIR05': [0], 'LED06': [0], 'PIR06': [0], 'LED07': [0], 'PIR07': [0], 'LED08': [0], 'PIR08': [0], 'LED09': [0], 'PIR09': [0], 'LED10': [0], 'PIR10': [0]
+        'LED01': [1], 'PIR01': [0], 'LED02': [1], 'PIR02': [0], 'LED03': [1], 'PIR03': [0], 'LED04': [1], 'PIR04': [0], 'LED05': [1], 'PIR05': [0], 'LED06': [1], 'PIR06': [0], 'LED07': [1], 'PIR07': [0], 'LED08': [1], 'PIR08': [0], 'LED09': [1], 'PIR09': [0], 'LED10': [1], 'PIR10': [0]
         })
     df1.index = pd.to_datetime(df1['MO/DY/YEAR']+' ' + df1['HH:MM:SS'],
                             format="%m/%d/%Y %H:%M:%S")
@@ -1577,7 +1735,7 @@ def plot_box9():
 
     df2 = pd.DataFrame(
         {'HH:MM:SS': ['00:00:00'],  'MO/DY/YEAR':  [df['MO/DY/YEAR'][-1]],
-        'LED01': [0], 'PIR01': [0], 'LED02': [0], 'PIR02': [0], 'LED03': [0], 'PIR03': [0], 'LED04': [0], 'PIR04': [0], 'LED05': [0], 'PIR05': [0], 'LED06': [0], 'PIR06': [0], 'LED07': [0], 'PIR07': [0], 'LED08': [0], 'PIR08': [0], 'LED09': [0], 'PIR09': [0], 'LED10': [0], 'PIR10': [0]
+        'LED01': [1], 'PIR01': [0], 'LED02': [1], 'PIR02': [0], 'LED03': [1], 'PIR03': [0], 'LED04': [1], 'PIR04': [0], 'LED05': [1], 'PIR05': [0], 'LED06': [1], 'PIR06': [0], 'LED07': [1], 'PIR07': [0], 'LED08': [1], 'PIR08': [0], 'LED09': [1], 'PIR09': [0], 'LED10': [1], 'PIR10': [0]
         })
     df2.index = pd.to_datetime(df2['MO/DY/YEAR']+' ' + df2['HH:MM:SS'],
                             format="%m/%d/%Y %H:%M:%S")
@@ -1586,7 +1744,7 @@ def plot_box9():
 
     df3 = pd.DataFrame(
         {'HH:MM:SS': df['HH:MM:SS'][-1],  'MO/DY/YEAR':  [df['MO/DY/YEAR'][-1]],
-        'LED01': [0], 'PIR01': [0], 'LED02': [0], 'PIR02': [0], 'LED03': [0], 'PIR03': [0], 'LED04': [0], 'PIR04': [0], 'LED05': [0], 'PIR05': [0], 'LED06': [0], 'PIR06': [0], 'LED07': [0], 'PIR07': [0], 'LED08': [0], 'PIR08': [0], 'LED09': [0], 'PIR09': [0], 'LED10': [0], 'PIR10': [0]
+        'LED01': [1], 'PIR01': [0], 'LED02': [1], 'PIR02': [0], 'LED03': [1], 'PIR03': [0], 'LED04': [1], 'PIR04': [0], 'LED05': [1], 'PIR05': [0], 'LED06': [1], 'PIR06': [0], 'LED07': [1], 'PIR07': [0], 'LED08': [1], 'PIR08': [0], 'LED09': [1], 'PIR09': [0], 'LED10': [1], 'PIR10': [0]
         })
     df3.index = pd.to_datetime(df3['MO/DY/YEAR']+' ' + df3['HH:MM:SS'],
                             format="%m/%d/%Y %H:%M:%S")
@@ -1680,14 +1838,14 @@ def plot_box10():
                             format="%m/%d/%Y %H:%M:%S")
     df0 = pd.DataFrame(
         {'HH:MM:SS': ['00:00:00'],  'MO/DY/YEAR':  [df['MO/DY/YEAR'][0]],
-        'LED01': [0], 'PIR01': [0], 'LED02': [0], 'PIR02': [0], 'LED03': [0], 'PIR03': [0], 'LED04': [0], 'PIR04': [0], 'LED05': [0], 'PIR05': [0], 'LED06': [0], 'PIR06': [0], 'LED07': [0], 'PIR07': [0], 'LED08': [0], 'PIR08': [0], 'LED09': [0], 'PIR09': [0], 'LED10': [0], 'PIR10': [0]
+        'LED01': [1], 'PIR01': [0], 'LED02': [1], 'PIR02': [0], 'LED03': [1], 'PIR03': [0], 'LED04': [1], 'PIR04': [0], 'LED05': [1], 'PIR05': [0], 'LED06': [1], 'PIR06': [0], 'LED07': [1], 'PIR07': [0], 'LED08': [1], 'PIR08': [0], 'LED09': [1], 'PIR09': [0], 'LED10': [1], 'PIR10': [0]
         })
     df0.index = pd.to_datetime(df0['MO/DY/YEAR']+' ' + df0['HH:MM:SS'],
                             format="%m/%d/%Y %H:%M:%S")
 
     df1 = pd.DataFrame(
         {'HH:MM:SS': df['HH:MM:SS'][0],  'MO/DY/YEAR':  [df['MO/DY/YEAR'][0]],
-        'LED01': [0], 'PIR01': [0], 'LED02': [0], 'PIR02': [0], 'LED03': [0], 'PIR03': [0], 'LED04': [0], 'PIR04': [0], 'LED05': [0], 'PIR05': [0], 'LED06': [0], 'PIR06': [0], 'LED07': [0], 'PIR07': [0], 'LED08': [0], 'PIR08': [0], 'LED09': [0], 'PIR09': [0], 'LED10': [0], 'PIR10': [0]
+        'LED01': [1], 'PIR01': [0], 'LED02': [1], 'PIR02': [0], 'LED03': [1], 'PIR03': [0], 'LED04': [1], 'PIR04': [0], 'LED05': [1], 'PIR05': [0], 'LED06': [1], 'PIR06': [0], 'LED07': [1], 'PIR07': [0], 'LED08': [1], 'PIR08': [0], 'LED09': [1], 'PIR09': [0], 'LED10': [1], 'PIR10': [0]
         })
     df1.index = pd.to_datetime(df1['MO/DY/YEAR']+' ' + df1['HH:MM:SS'],
                             format="%m/%d/%Y %H:%M:%S")
@@ -1696,7 +1854,7 @@ def plot_box10():
 
     df2 = pd.DataFrame(
         {'HH:MM:SS': ['00:00:00'],  'MO/DY/YEAR':  [df['MO/DY/YEAR'][-1]],
-        'LED01': [0], 'PIR01': [0], 'LED02': [0], 'PIR02': [0], 'LED03': [0], 'PIR03': [0], 'LED04': [0], 'PIR04': [0], 'LED05': [0], 'PIR05': [0], 'LED06': [0], 'PIR06': [0], 'LED07': [0], 'PIR07': [0], 'LED08': [0], 'PIR08': [0], 'LED09': [0], 'PIR09': [0], 'LED10': [0], 'PIR10': [0]
+        'LED01': [1], 'PIR01': [0], 'LED02': [1], 'PIR02': [0], 'LED03': [1], 'PIR03': [0], 'LED04': [1], 'PIR04': [0], 'LED05': [1], 'PIR05': [0], 'LED06': [1], 'PIR06': [0], 'LED07': [1], 'PIR07': [0], 'LED08': [1], 'PIR08': [0], 'LED09': [1], 'PIR09': [0], 'LED10': [1], 'PIR10': [0]
         })
     df2.index = pd.to_datetime(df2['MO/DY/YEAR']+' ' + df2['HH:MM:SS'],
                             format="%m/%d/%Y %H:%M:%S")
@@ -1705,7 +1863,7 @@ def plot_box10():
 
     df3 = pd.DataFrame(
         {'HH:MM:SS': df['HH:MM:SS'][-1],  'MO/DY/YEAR':  [df['MO/DY/YEAR'][-1]],
-        'LED01': [0], 'PIR01': [0], 'LED02': [0], 'PIR02': [0], 'LED03': [0], 'PIR03': [0], 'LED04': [0], 'PIR04': [0], 'LED05': [0], 'PIR05': [0], 'LED06': [0], 'PIR06': [0], 'LED07': [0], 'PIR07': [0], 'LED08': [0], 'PIR08': [0], 'LED09': [0], 'PIR09': [0], 'LED10': [0], 'PIR10': [0]
+        'LED01': [1], 'PIR01': [0], 'LED02': [1], 'PIR02': [0], 'LED03': [1], 'PIR03': [0], 'LED04': [1], 'PIR04': [0], 'LED05': [1], 'PIR05': [0], 'LED06': [1], 'PIR06': [0], 'LED07': [1], 'PIR07': [0], 'LED08': [1], 'PIR08': [0], 'LED09': [1], 'PIR09': [0], 'LED10': [1], 'PIR10': [0]
         })
     df3.index = pd.to_datetime(df3['MO/DY/YEAR']+' ' + df3['HH:MM:SS'],
                             format="%m/%d/%Y %H:%M:%S")
@@ -1827,6 +1985,19 @@ def read_conf(): # Read schedule configuration
     global hourFrom1_3, minuteFrom1_3, hourFrom2_3, minuteFrom2_3, hourFrom3_3, minuteFrom3_3, hourFrom4_3, minuteFrom4_3 
     global hourFrom5_3, minuteFrom5_3, hourFrom6_3, minuteFrom6_3, hourFrom7_3, minuteFrom7_3, hourFrom8_3, minuteFrom8_3 
     global hourFrom9_3, minuteFrom9_3, hourFrom10_3, minuteFrom10_3 
+    global hourOn1_4, minOn1_4, hourOff1_4, minOff1_4, hourOn2_4, minOn2_4, hourOff2_4, minOff2_4
+    global hourOn3_4, minOn3_4, hourOff3_4, minOff3_4, hourOn4_4, minOn4_4, hourOff4_4, minOff4_4 
+    global hourOn5_4, minOn5_4, hourOff5_4, minOff5_4, hourOn6_4, minOn6_4, hourOff6_4, minOff6_4  
+    global hourOn7_4, minOn7_4, hourOff7_4, minOff7_4, hourOn8_4, minOn8_4, hourOff8_4, minOff8_4 
+    global hourOn9_4, minOn9_4, hourOff9_4, minOff9_4, hourOn10_4, minOn10_4, hourOff10_4, minOff10_4
+    global dark1_4, light1_4, dark2_4, light2_4, dark3_4, light3_4, dark4_4, light4_4, dark5_4, light5_4
+    global dark6_4, light6_4, dark7_4, light7_4, dark8_4, light8_4, dark9_4, light9_4, dark10_4, light10_4 
+    global date1_4, month1_4, year1_4, date2_4, month2_4, year2_4, date3_4, month3_4, year3_4, date4_4, month4_4, year4_4 
+    global date5_4, month5_4, year5_4, date6_4, month6_4, year6_4, date7_4, month7_4, year7_4, date8_4, month8_4, year8_4 
+    global date9_4, month9_4, year9_4, date10_4, month10_4, year10_4 
+    global hourFrom1_4, minuteFrom1_4, hourFrom2_4, minuteFrom2_4, hourFrom3_4, minuteFrom3_4, hourFrom4_4, minuteFrom4_4 
+    global hourFrom5_4, minuteFrom5_4, hourFrom6_4, minuteFrom6_4, hourFrom7_4, minuteFrom7_4, hourFrom8_4, minuteFrom8_4 
+    global hourFrom9_4, minuteFrom9_4, hourFrom10_4, minuteFrom10_4 
 
     hourOn1_1 = config['hourOn1_1'] 
     minOn1_1 = config['minOn1_1'] 
@@ -2109,6 +2280,117 @@ def read_conf(): # Read schedule configuration
     hourFrom10_3 = config['hourFrom10_3'] 
     minuteFrom10_3 = config['minuteFrom10_3'] 
 
+    hourOn1_4 = config['hourOn1_4'] 
+    minOn1_4 = config['minOn1_4'] 
+    hourOff1_4 = config['hourOff1_4'] 
+    minOff1_4 = config['minOff1_4'] 
+    hourOn2_4 = config['hourOn2_4'] 
+    minOn2_4 = config['minOn2_4'] 
+    hourOff2_4 = config['hourOff2_4'] 
+    minOff2_4 = config['minOff2_4']
+    hourOn3_4 = config['hourOn3_4'] 
+    minOn3_4 = config['minOn3_4'] 
+    hourOff3_4 = config['hourOff3_4'] 
+    minOff3_4 = config['minOff3_4'] 
+    hourOn4_4 = config['hourOn4_4'] 
+    minOn4_4 = config['minOn4_4'] 
+    hourOff4_4 = config['hourOff4_4'] 
+    minOff4_4 = config['minOff4_4'] 
+    hourOn5_4 = config['hourOn5_4'] 
+    minOn5_4 = config['minOn5_4'] 
+    hourOff5_4 = config['hourOff5_4'] 
+    minOff5_4 = config['minOff5_4'] 
+    hourOn6_4 = config['hourOn6_4'] 
+    minOn6_4 = config['minOn6_4'] 
+    hourOff6_4 = config['hourOff6_4'] 
+    minOff6_4 = config['minOff6_4'] 
+    hourOn7_4 = config['hourOn7_4'] 
+    minOn7_4 = config['minOn7_4'] 
+    hourOff7_4 = config['hourOff7_4'] 
+    minOff7_4 = config['minOff7_4'] 
+    hourOn8_4 = config['hourOn8_4'] 
+    minOn8_4 = config['minOn8_4'] 
+    hourOff8_4 = config['hourOff8_4'] 
+    minOff8_4 = config['minOff8_4'] 
+    hourOn9_4 = config['hourOn9_4'] 
+    minOn9_4 = config['minOn9_4'] 
+    hourOff9_4 = config['hourOff9_4'] 
+    minOff9_4 = config['minOff9_4'] 
+    hourOn10_4 = config['hourOn10_4'] 
+    minOn10_4 = config['minOn10_4'] 
+    hourOff10_4 = config['hourOff10_4'] 
+    minOff10_4 = config['minOff10_4'] 
+    dark1_4 = config['dark1_4'] 
+    light1_4 = config['light1_4'] 
+    dark2_4 = config['dark2_4'] 
+    light2_4 = config['light2_4'] 
+    dark3_4 = config['dark3_4'] 
+    light3_4 = config['light3_4'] 
+    dark4_4 = config['dark4_4'] 
+    light4_4 = config['light4_4'] 
+    dark5_4 = config['dark5_4'] 
+    light5_4 = config['light5_4'] 
+    dark6_4 = config['dark6_4'] 
+    light6_4 = config['light6_4'] 
+    dark7_4 = config['dark7_4'] 
+    light7_4 = config['light7_4'] 
+    dark8_4 = config['dark8_4'] 
+    light8_4 = config['light8_4'] 
+    dark9_4 = config['dark9_4'] 
+    light9_4 = config['light9_4'] 
+    dark10_4 = config['dark10_4'] 
+    light10_4 = config['light10_4'] 
+    date1_4 = config['date1_4']
+    month1_4 = config['month1_4'] 
+    year1_4 = config['year1_4'] 
+    date2_4 = config['date2_4'] 
+    month2_4 = config['month2_4'] 
+    year2_4 = config['year2_4'] 
+    date3_4 = config['date3_4'] 
+    month3_4 = config['month3_4'] 
+    year3_4 = config['year3_4'] 
+    date4_4 = config['date4_4'] 
+    month4_4 = config['month4_4'] 
+    year4_4 = config['year4_4']
+    date5_4 = config['date5_4'] 
+    month5_4 = config['month5_4'] 
+    year5_4 = config['year5_4'] 
+    hourFrom1_4 = config['hourFrom1_4'] 
+    minuteFrom1_4 = config['minuteFrom1_4'] 
+    hourFrom2_4 = config['hourFrom2_4'] 
+    minuteFrom2_4 = config['minuteFrom2_4'] 
+    hourFrom3_4 = config['hourFrom3_4'] 
+    minuteFrom3_4 = config['minuteFrom3_4'] 
+    hourFrom4_4 = config['hourFrom4_4'] 
+    minuteFrom4_4 = config['minuteFrom4_4'] 
+    hourFrom5_4 = config['hourFrom5_4'] 
+    minuteFrom5_4 = config['minuteFrom5_4'] 
+    date6_4 = config['date6_4'] 
+    month6_4 = config['month6_4'] 
+    year6_4 = config['year6_4'] 
+    date7_4 = config['date7_4'] 
+    month7_4 = config['month7_4'] 
+    year7_4 = config['year7_4'] 
+    date8_4 = config['date8_4'] 
+    month8_4 = config['month8_4'] 
+    year8_4 = config['year8_4'] 
+    date9_4 = config['date9_4'] 
+    month9_4 = config['month9_4'] 
+    year9_4 = config['year9_4'] 
+    date10_4 = config['date10_4'] 
+    month10_4 = config['month10_4'] 
+    year10_4 = config['year10_4'] 
+    hourFrom6_4 = config['hourFrom6_4'] 
+    minuteFrom6_4 = config['minuteFrom6_4'] 
+    hourFrom7_4 = config['hourFrom7_4'] 
+    minuteFrom7_4 = config['minuteFrom7_4'] 
+    hourFrom8_4 = config['hourFrom8_4'] 
+    minuteFrom8_4 = config['minuteFrom8_4'] 
+    hourFrom9_4 = config['hourFrom9_4'] 
+    minuteFrom9_4 = config['minuteFrom9_4'] 
+    hourFrom10_4 = config['hourFrom10_4'] 
+    minuteFrom10_4 = config['minuteFrom10_4'] 
+
     btnRun['state']='normal'
     recordingmenu.entryconfig('Start new', state='normal')
     show_conf()
@@ -2162,10 +2444,24 @@ def show_conf(): # Show schedule configuration
     global hourFrom1_3, minuteFrom1_3, hourFrom2_3, minuteFrom2_3, hourFrom3_3, minuteFrom3_3, hourFrom4_3, minuteFrom4_3 
     global hourFrom5_3, minuteFrom5_3, hourFrom6_3, minuteFrom6_3, hourFrom7_3, minuteFrom7_3, hourFrom8_3, minuteFrom8_3 
     global hourFrom9_3, minuteFrom9_3, hourFrom10_3, minuteFrom10_3 
+    global hourOn1_4, minOn1_4, hourOff1_4, minOff1_4, hourOn2_4, minOn2_4, hourOff2_4, minOff2_4
+    global hourOn3_4, minOn3_4, hourOff3_4, minOff3_4, hourOn4_4, minOn4_4, hourOff4_4, minOff4_4 
+    global hourOn5_4, minOn5_4, hourOff5_4, minOff5_4, hourOn6_4, minOn6_4, hourOff6_4, minOff6_4  
+    global hourOn7_4, minOn7_4, hourOff7_4, minOff7_4, hourOn8_4, minOn8_4, hourOff8_4, minOff8_4 
+    global hourOn9_4, minOn9_4, hourOff9_4, minOff9_4, hourOn10_4, minOn10_4, hourOff10_4, minOff10_4
+    global dark1_4, light1_4, dark2_4, light2_4, dark3_4, light3_4, dark4_4, light4_4, dark5_4, light5_4
+    global dark6_4, light6_4, dark7_4, light7_4, dark8_4, light8_4, dark9_4, light9_4, dark10_4, light10_4 
+    global date1_4, month1_4, year1_4, date2_4, month2_4, year2_4, date3_4, month3_4, year3_4, date4_4, month4_4, year4_4 
+    global date5_4, month5_4, year5_4, date6_4, month6_4, year6_4, date7_4, month7_4, year7_4, date8_4, month8_4, year8_4 
+    global date9_4, month9_4, year9_4, date10_4, month10_4, year10_4 
+    global hourFrom1_4, minuteFrom1_4, hourFrom2_4, minuteFrom2_4, hourFrom3_4, minuteFrom3_4, hourFrom4_4, minuteFrom4_4 
+    global hourFrom5_4, minuteFrom5_4, hourFrom6_4, minuteFrom6_4, hourFrom7_4, minuteFrom7_4, hourFrom8_4, minuteFrom8_4 
+    global hourFrom9_4, minuteFrom9_4, hourFrom10_4, minuteFrom10_4 
 
     col11_1 = Label(tab11, text='Phase 1')
     col11_2 = Label(tab11, text='Phase 2')
     col11_3 = Label(tab11, text='Phase 3')
+    col11_4 = Label(tab11, text='Phase 4')
 
     row11_1 = Label(tab11, text='Box1')
     row11_2 = Label(tab11, text='Box2')
@@ -2181,6 +2477,7 @@ def show_conf(): # Show schedule configuration
     col11_1.grid(column=2,row=0,padx=5)
     col11_2.grid(column=4,row=0,padx=5)
     col11_3.grid(column=6,row=0,padx=5)
+    col11_4.grid(column=8,row=0,padx=5)
 
     schedSep = ttk.Separator(tab11, orient=HORIZONTAL)
     schedSep.grid(column=0, row = 1, columnspan='8', sticky='we')
@@ -2190,6 +2487,8 @@ def show_conf(): # Show schedule configuration
     schedSep3.grid(column=3, row = 2, rowspan='10', sticky='ns')
     schedSep4 = ttk.Separator(tab11, orient=VERTICAL)
     schedSep4.grid(column=5, row = 2, rowspan='10', sticky='ns')
+    schedSep5 = ttk.Separator(tab11, orient=VERTICAL)
+    schedSep5.grid(column=7, row = 2, rowspan='10', sticky='ns')
     row11_1.grid(column=0,row=2,padx=2,pady=0)
     row11_2.grid(column=0,row=3,padx=2,pady=0)
     row11_3.grid(column=0,row=4,padx=2,pady=0)
@@ -2213,6 +2512,11 @@ def show_conf(): # Show schedule configuration
     box1pha3text.set('                                ')
     box1pha3_LD=Label(tab11, textvariable=box1pha3text, width=32, anchor=W, justify=LEFT)
     box1pha3_LD.grid(column=6,row=2,padx=2,pady=0)
+    box1pha4text=StringVar()
+    box1pha4text.set('                                ')
+    box1pha4_LD=Label(tab11, textvariable=box1pha4text, width=32, anchor=W, justify=LEFT)
+    box1pha4_LD.grid(column=8,row=2,padx=2,pady=0)
+
     window.update_idletasks()
 
     box2pha1text=StringVar()
@@ -2227,6 +2531,10 @@ def show_conf(): # Show schedule configuration
     box2pha3text.set('                                ')
     box2pha3_LD=Label(tab11, textvariable=box2pha3text, width=32, anchor=W, justify=LEFT)
     box2pha3_LD.grid(column=6,row=3,padx=2,pady=0)
+    box2pha4text=StringVar()
+    box2pha4text.set('                                ')
+    box2pha4_LD=Label(tab11, textvariable=box2pha4text, width=32, anchor=W, justify=LEFT)
+    box2pha4_LD.grid(column=8,row=3,padx=2,pady=0)
     window.update_idletasks()
 
     box3pha1text=StringVar()
@@ -2241,6 +2549,10 @@ def show_conf(): # Show schedule configuration
     box3pha3text.set('                                ')
     box3pha3_LD=Label(tab11, textvariable=box3pha3text, width=32, anchor=W, justify=LEFT)
     box3pha3_LD.grid(column=6,row=4,padx=2,pady=0)
+    box3pha4text=StringVar()
+    box3pha4text.set('                                ')
+    box3pha4_LD=Label(tab11, textvariable=box3pha4text, width=32, anchor=W, justify=LEFT)
+    box3pha4_LD.grid(column=8,row=4,padx=2,pady=0)
     window.update_idletasks()
 
     box4pha1text=StringVar()
@@ -2255,6 +2567,10 @@ def show_conf(): # Show schedule configuration
     box4pha3text.set('                                ')
     box4pha3_LD=Label(tab11, textvariable=box4pha3text, width=32, anchor=W, justify=LEFT)
     box4pha3_LD.grid(column=6,row=5,padx=2,pady=0)
+    box4pha4text=StringVar()
+    box4pha4text.set('                                ')
+    box4pha4_LD=Label(tab11, textvariable=box4pha4text, width=32, anchor=W, justify=LEFT)
+    box4pha4_LD.grid(column=8,row=5,padx=2,pady=0)
     window.update_idletasks()
 
     box5pha1text=StringVar()
@@ -2269,6 +2585,10 @@ def show_conf(): # Show schedule configuration
     box5pha3text.set('                                ')
     box5pha3_LD=Label(tab11, textvariable=box5pha3text, width=32, anchor=W, justify=LEFT)
     box5pha3_LD.grid(column=6,row=6,padx=2,pady=0)
+    box5pha4text=StringVar()
+    box5pha4text.set('                                ')
+    box5pha4_LD=Label(tab11, textvariable=box5pha4text, width=32, anchor=W, justify=LEFT)
+    box5pha4_LD.grid(column=8,row=6,padx=2,pady=0)
     window.update_idletasks()
 
     box6pha1text=StringVar()
@@ -2283,6 +2603,10 @@ def show_conf(): # Show schedule configuration
     box6pha3text.set('                                ')
     box6pha3_LD=Label(tab11, textvariable=box6pha3text, width=32, anchor=W, justify=LEFT)
     box6pha3_LD.grid(column=6,row=7,padx=2,pady=0)
+    box6pha4text=StringVar()
+    box6pha4text.set('                                ')
+    box6pha4_LD=Label(tab11, textvariable=box6pha4text, width=32, anchor=W, justify=LEFT)
+    box6pha4_LD.grid(column=8,row=7,padx=2,pady=0)
     window.update_idletasks()
 
     box7pha1text=StringVar()
@@ -2297,6 +2621,10 @@ def show_conf(): # Show schedule configuration
     box7pha3text.set('                                ')
     box7pha3_LD=Label(tab11, textvariable=box7pha3text, width=32, anchor=W, justify=LEFT)
     box7pha3_LD.grid(column=6,row=8,padx=2,pady=0)
+    box7pha4text=StringVar()
+    box7pha4text.set('                                ')
+    box7pha4_LD=Label(tab11, textvariable=box7pha4text, width=32, anchor=W, justify=LEFT)
+    box7pha4_LD.grid(column=8,row=8,padx=2,pady=0)
     window.update_idletasks()
 
     box8pha1text=StringVar()
@@ -2311,6 +2639,10 @@ def show_conf(): # Show schedule configuration
     box8pha3text.set('                                ')
     box8pha3_LD=Label(tab11, textvariable=box8pha3text, width=32, anchor=W, justify=LEFT)
     box8pha3_LD.grid(column=6,row=9,padx=2,pady=0)
+    box8pha4text=StringVar()
+    box8pha4text.set('                                ')
+    box8pha4_LD=Label(tab11, textvariable=box8pha4text, width=32, anchor=W, justify=LEFT)
+    box8pha4_LD.grid(column=8,row=9,padx=2,pady=0)
     window.update_idletasks()
 
     box9pha1text=StringVar()
@@ -2325,6 +2657,10 @@ def show_conf(): # Show schedule configuration
     box9pha3text.set('                                ')
     box9pha3_LD=Label(tab11, textvariable=box9pha3text, width=32, anchor=W, justify=LEFT)
     box9pha3_LD.grid(column=6,row=10,padx=2,pady=0)
+    box9pha4text=StringVar()
+    box9pha4text.set('                                ')
+    box9pha4_LD=Label(tab11, textvariable=box9pha4text, width=32, anchor=W, justify=LEFT)
+    box9pha4_LD.grid(column=8,row=10,padx=2,pady=0)
     window.update_idletasks()
 
     box10pha1text=StringVar()
@@ -2339,6 +2675,10 @@ def show_conf(): # Show schedule configuration
     box10pha3text.set('                                ')
     box10pha3_LD=Label(tab11, textvariable=box10pha3text, width=32, anchor=W, justify=LEFT)
     box10pha3_LD.grid(column=6,row=11,padx=2,pady=0)
+    box10pha4text=StringVar()
+    box10pha4text.set('                                ')
+    box10pha4_LD=Label(tab11, textvariable=box10pha4text, width=32, anchor=W, justify=LEFT)
+    box10pha4_LD.grid(column=8,row=11,padx=2,pady=0)
     window.update_idletasks()
 
     if light1_1=='0' and dark1_1=='0':
@@ -2356,6 +2696,13 @@ def show_conf(): # Show schedule configuration
         window.update_idletasks()
         box1pha3text.set(year1_3+'/'+month1_3+'/'+date1_3+' '+hourFrom2_3+':'+minuteFrom1_3+' | '+hourOn1_3+':'+minOn1_3+' on>'+hourOff1_3+':'+minOff1_3+' off')
         window.update_idletasks()
+    if light1_4=='0' and dark1_4=='0':
+        box1pha4text.set('                                ')
+        window.update_idletasks()
+        box1pha4text.set(year1_4+'/'+month1_4+'/'+date1_4+' '+hourFrom2_4+':'+minuteFrom1_4+' | '+hourOn1_4+':'+minOn1_4+' on>'+hourOff1_4+':'+minOff1_4+' off')
+        window.update_idletasks()
+
+
     if light1_1=='0' and dark1_1=='1':
         box1pha1text.set('                                ')
         window.update_idletasks()
@@ -2371,6 +2718,12 @@ def show_conf(): # Show schedule configuration
         window.update_idletasks()
         box1pha3text.set(year1_3+'/'+month1_3+'/'+date1_3+' '+hourFrom2_3+':'+minuteFrom1_3+' | '+'DD')
         window.update_idletasks()
+    if light1_4=='0' and dark1_4=='1':
+        box1pha4text.set('                                ')
+        window.update_idletasks()
+        box1pha4text.set(year1_4+'/'+month1_4+'/'+date1_4+' '+hourFrom2_4+':'+minuteFrom1_4+' | '+'DD')
+        window.update_idletasks()
+
     if light1_1=='1' and dark1_1=='0':
         box1pha1text.set('                                ')
         window.update_idletasks()
@@ -2386,6 +2739,12 @@ def show_conf(): # Show schedule configuration
         window.update_idletasks()
         box1pha3text.set(year1_3+'/'+month1_3+'/'+date1_3+' '+hourFrom2_3+':'+minuteFrom1_3+' | '+'LL')
         window.update_idletasks()
+    if light1_4=='1' and dark1_4=='0':
+        box1pha4text.set('                                 ')
+        window.update_idletasks()
+        box1pha4text.set(year1_4+'/'+month1_4+'/'+date1_4+' '+hourFrom2_4+':'+minuteFrom1_4+' | '+'LL')
+        window.update_idletasks()
+
 
     if light2_1=='0' and dark2_1=='0':
         box2pha1text.set('                                ')
@@ -2402,6 +2761,13 @@ def show_conf(): # Show schedule configuration
         window.update_idletasks()
         box2pha3text.set(year2_3+'/'+month2_3+'/'+date2_3+' '+hourFrom2_3+':'+minuteFrom2_3+' | '+hourOn2_3+':'+minOn2_3+' on>'+hourOff2_3+':'+minOff2_3+' off')
         window.update_idletasks()
+    if light2_4=='0' and dark2_4=='0':
+        box2pha4text.set('                                ')
+        window.update_idletasks()
+        box2pha4text.set(year2_4+'/'+month2_4+'/'+date2_4+' '+hourFrom2_4+':'+minuteFrom2_4+' | '+hourOn2_4+':'+minOn2_4+' on>'+hourOff2_4+':'+minOff2_4+' off')
+        window.update_idletasks()
+
+
     if light2_1=='0' and dark2_1=='1':
         box2pha1text.set('                                ')
         window.update_idletasks()
@@ -2417,6 +2783,13 @@ def show_conf(): # Show schedule configuration
         window.update_idletasks()
         box2pha3text.set(year2_3+'/'+month2_3+'/'+date2_3+' '+hourFrom2_3+':'+minuteFrom2_3+' | '+'DD')
         window.update_idletasks()
+    if light2_4=='0' and dark2_4=='1':
+        box2pha4text.set('                                ')
+        window.update_idletasks()
+        box2pha4text.set(year2_4+'/'+month2_4+'/'+date2_4+' '+hourFrom2_4+':'+minuteFrom2_4+' | '+'DD')
+        window.update_idletasks()
+
+
     if light2_1=='1' and dark2_1=='0':
         box2pha1text.set('                                ')
         window.update_idletasks()
@@ -2431,6 +2804,11 @@ def show_conf(): # Show schedule configuration
         box2pha3text.set('                                 ')
         window.update_idletasks()
         box2pha3text.set(year2_3+'/'+month2_3+'/'+date2_3+' '+hourFrom2_3+':'+minuteFrom2_3+' | '+'LL')
+        window.update_idletasks()
+    if light2_4=='1' and dark2_4=='0':
+        box2pha4text.set('                                 ')
+        window.update_idletasks()
+        box2pha4text.set(year2_4+'/'+month2_4+'/'+date2_4+' '+hourFrom2_4+':'+minuteFrom2_4+' | '+'LL')
         window.update_idletasks()
 
     if light3_1=='0' and dark3_1=='0':
@@ -2448,6 +2826,12 @@ def show_conf(): # Show schedule configuration
         window.update_idletasks()
         box3pha3text.set(year3_3+'/'+month3_3+'/'+date3_3+' '+hourFrom3_3+':'+minuteFrom3_3+' | '+hourOn3_3+':'+minOn3_3+' on>'+hourOff3_3+':'+minOff3_3+' off')
         window.update_idletasks()
+    if light3_4=='0' and dark3_4=='0':
+        box3pha4text.set('                                ')
+        window.update_idletasks()
+        box3pha4text.set(year3_4+'/'+month3_4+'/'+date3_4+' '+hourFrom3_4+':'+minuteFrom3_4+' | '+hourOn3_4+':'+minOn3_4+' on>'+hourOff3_4+':'+minOff3_4+' off')
+        window.update_idletasks()
+
     if light3_1=='0' and dark3_1=='1':
         box3pha1text.set('                                ')
         window.update_idletasks()
@@ -2463,6 +2847,12 @@ def show_conf(): # Show schedule configuration
         window.update_idletasks()
         box3pha3text.set(year3_3+'/'+month3_3+'/'+date3_3+' '+hourFrom3_3+':'+minuteFrom3_3+' | '+'DD')
         window.update_idletasks()
+    if light3_4=='0' and dark3_4=='1':
+        box3pha4text.set('                                ')
+        window.update_idletasks()
+        box3pha4text.set(year3_4+'/'+month3_4+'/'+date3_4+' '+hourFrom3_4+':'+minuteFrom3_4+' | '+'DD')
+        window.update_idletasks()
+
     if light3_1=='1' and dark3_1=='0':
         box3pha1text.set('                                ')
         window.update_idletasks()
@@ -2477,6 +2867,11 @@ def show_conf(): # Show schedule configuration
         box3pha3text.set('                                 ')
         window.update_idletasks()
         box3pha3text.set(year3_3+'/'+month3_3+'/'+date3_3+' '+hourFrom3_3+':'+minuteFrom3_3+' | '+'LL')
+        window.update_idletasks()
+    if light3_4=='1' and dark3_4=='0':
+        box3pha4text.set('                                 ')
+        window.update_idletasks()
+        box3pha4text.set(year3_4+'/'+month3_4+'/'+date3_4+' '+hourFrom3_4+':'+minuteFrom3_4+' | '+'LL')
         window.update_idletasks()
 
     if light4_1=='0' and dark4_1=='0':
@@ -2494,6 +2889,12 @@ def show_conf(): # Show schedule configuration
         window.update_idletasks()
         box4pha3text.set(year4_3+'/'+month4_3+'/'+date4_3+' '+hourFrom4_3+':'+minuteFrom4_3+' | '+hourOn4_3+':'+minOn4_3+' on>'+hourOff4_3+':'+minOff4_3+' off')
         window.update_idletasks()
+    if light4_4=='0' and dark4_4=='0':
+        box4pha4text.set('                                ')
+        window.update_idletasks()
+        box4pha4text.set(year4_4+'/'+month4_4+'/'+date4_4+' '+hourFrom4_4+':'+minuteFrom4_4+' | '+hourOn4_4+':'+minOn4_4+' on>'+hourOff4_4+':'+minOff4_4+' off')
+        window.update_idletasks()
+
     if light4_1=='0' and dark4_1=='1':
         box4pha1text.set('                                ')
         window.update_idletasks()
@@ -2509,6 +2910,12 @@ def show_conf(): # Show schedule configuration
         window.update_idletasks()
         box4pha3text.set(year4_3+'/'+month4_3+'/'+date4_3+' '+hourFrom4_3+':'+minuteFrom4_3+' | '+'DD')
         window.update_idletasks()
+    if light4_4=='0' and dark4_4=='1':
+        box4pha4text.set('                                ')
+        window.update_idletasks()
+        box4pha4text.set(year4_4+'/'+month4_4+'/'+date4_4+' '+hourFrom4_4+':'+minuteFrom4_4+' | '+'DD')
+        window.update_idletasks()
+
     if light4_1=='1' and dark4_1=='0':
         box4pha1text.set('                                ')
         window.update_idletasks()
@@ -2523,6 +2930,11 @@ def show_conf(): # Show schedule configuration
         box4pha3text.set('                                 ')
         window.update_idletasks()
         box4pha3text.set(year4_3+'/'+month4_3+'/'+date4_3+' '+hourFrom4_3+':'+minuteFrom4_3+' | '+'LL')
+        window.update_idletasks()
+    if light4_4=='1' and dark4_4=='0':
+        box4pha4text.set('                                 ')
+        window.update_idletasks()
+        box4pha4text.set(year4_4+'/'+month4_4+'/'+date4_4+' '+hourFrom4_4+':'+minuteFrom4_4+' | '+'LL')
         window.update_idletasks()
 
     if light5_1=='0' and dark5_1=='0':
@@ -2540,6 +2952,13 @@ def show_conf(): # Show schedule configuration
         window.update_idletasks()
         box5pha3text.set(year5_3+'/'+month5_3+'/'+date5_3+' '+hourFrom5_3+':'+minuteFrom5_3+' | '+hourOn5_3+':'+minOn5_3+' on>'+hourOff5_3+':'+minOff5_3+' off')
         window.update_idletasks()
+    if light5_4=='0' and dark5_4=='0':
+        box5pha4text.set('                                ')
+        window.update_idletasks()
+        box5pha4text.set(year5_4+'/'+month5_4+'/'+date5_4+' '+hourFrom5_4+':'+minuteFrom5_4+' | '+hourOn5_4+':'+minOn5_4+' on>'+hourOff5_4+':'+minOff5_4+' off')
+        window.update_idletasks()
+
+
     if light5_1=='0' and dark5_1=='1':
         box5pha1text.set('                                ')
         window.update_idletasks()
@@ -2555,6 +2974,12 @@ def show_conf(): # Show schedule configuration
         window.update_idletasks()
         box5pha3text.set(year5_3+'/'+month5_3+'/'+date5_3+' '+hourFrom5_3+':'+minuteFrom5_3+' | '+'DD')
         window.update_idletasks()
+    if light5_4=='0' and dark5_4=='1':
+        box5pha4text.set('                                ')
+        window.update_idletasks()
+        box5pha4text.set(year5_4+'/'+month5_4+'/'+date5_4+' '+hourFrom5_4+':'+minuteFrom5_4+' | '+'DD')
+        window.update_idletasks()
+
     if light5_1=='1' and dark5_1=='0':
         box5pha1text.set('                                ')
         window.update_idletasks()
@@ -2569,6 +2994,11 @@ def show_conf(): # Show schedule configuration
         box5pha3text.set('                                 ')
         window.update_idletasks()
         box5pha3text.set(year5_3+'/'+month5_3+'/'+date5_3+' '+hourFrom5_3+':'+minuteFrom5_3+' | '+'LL')
+        window.update_idletasks()
+    if light5_4=='1' and dark5_4=='0':
+        box5pha4text.set('                                 ')
+        window.update_idletasks()
+        box5pha4text.set(year5_4+'/'+month5_4+'/'+date5_4+' '+hourFrom5_4+':'+minuteFrom5_4+' | '+'LL')
         window.update_idletasks()
 
     if light6_1=='0' and dark6_1=='0':
@@ -2586,6 +3016,12 @@ def show_conf(): # Show schedule configuration
         window.update_idletasks()
         box6pha3text.set(year6_3+'/'+month6_3+'/'+date6_3+' '+hourFrom6_3+':'+minuteFrom6_3+' | '+hourOn6_3+':'+minOn6_3+' on>'+hourOff6_3+':'+minOff6_3+' off')
         window.update_idletasks()
+    if light6_4=='0' and dark6_4=='0':
+        box6pha4text.set('                                ')
+        window.update_idletasks()
+        box6pha4text.set(year6_4+'/'+month6_4+'/'+date6_4+' '+hourFrom6_4+':'+minuteFrom6_4+' | '+hourOn6_4+':'+minOn6_4+' on>'+hourOff6_4+':'+minOff6_4+' off')
+        window.update_idletasks()
+
     if light6_1=='0' and dark6_1=='1':
         box6pha1text.set('                                ')
         window.update_idletasks()
@@ -2601,6 +3037,12 @@ def show_conf(): # Show schedule configuration
         window.update_idletasks()
         box6pha3text.set(year6_3+'/'+month6_3+'/'+date6_3+' '+hourFrom6_3+':'+minuteFrom6_3+' | '+'DD')
         window.update_idletasks()
+    if light6_4=='0' and dark6_4=='1':
+        box6pha4text.set('                                ')
+        window.update_idletasks()
+        box6pha4text.set(year6_4+'/'+month6_4+'/'+date6_4+' '+hourFrom6_4+':'+minuteFrom6_4+' | '+'DD')
+        window.update_idletasks()
+
     if light6_1=='1' and dark6_1=='0':
         box6pha1text.set('                                ')
         window.update_idletasks()
@@ -2615,6 +3057,11 @@ def show_conf(): # Show schedule configuration
         box6pha3text.set('                                 ')
         window.update_idletasks()
         box6pha3text.set(year6_3+'/'+month6_3+'/'+date6_3+' '+hourFrom6_3+':'+minuteFrom6_3+' | '+'LL')
+        window.update_idletasks()
+    if light6_4=='1' and dark6_4=='0':
+        box6pha4text.set('                                 ')
+        window.update_idletasks()
+        box6pha4text.set(year6_4+'/'+month6_4+'/'+date6_4+' '+hourFrom6_4+':'+minuteFrom6_4+' | '+'LL')
         window.update_idletasks()
 
     if light7_1=='0' and dark7_1=='0':
@@ -2632,6 +3079,12 @@ def show_conf(): # Show schedule configuration
         window.update_idletasks()
         box7pha3text.set(year7_3+'/'+month7_3+'/'+date7_3+' '+hourFrom7_3+':'+minuteFrom7_3+' | '+hourOn7_3+':'+minOn7_3+' on>'+hourOff7_3+':'+minOff7_3+' off')
         window.update_idletasks()
+    if light7_4=='0' and dark7_4=='0':
+        box7pha4text.set('                                ')
+        window.update_idletasks()
+        box7pha4text.set(year7_4+'/'+month7_4+'/'+date7_4+' '+hourFrom7_4+':'+minuteFrom7_4+' | '+hourOn7_4+':'+minOn7_4+' on>'+hourOff7_4+':'+minOff7_4+' off')
+        window.update_idletasks()
+
     if light7_1=='0' and dark7_1=='1':
         box7pha1text.set('                                ')
         window.update_idletasks()
@@ -2647,6 +3100,12 @@ def show_conf(): # Show schedule configuration
         window.update_idletasks()
         box7pha3text.set(year7_3+'/'+month7_3+'/'+date7_3+' '+hourFrom7_3+':'+minuteFrom7_3+' | '+'DD')
         window.update_idletasks()
+    if light7_4=='0' and dark7_4=='1':
+        box7pha4text.set('                                ')
+        window.update_idletasks()
+        box7pha4text.set(year7_4+'/'+month7_4+'/'+date7_4+' '+hourFrom7_4+':'+minuteFrom7_4+' | '+'DD')
+        window.update_idletasks()
+
     if light7_1=='1' and dark7_1=='0':
         box7pha1text.set('                                ')
         window.update_idletasks()
@@ -2661,6 +3120,11 @@ def show_conf(): # Show schedule configuration
         box7pha3text.set('                                 ')
         window.update_idletasks()
         box7pha3text.set(year7_3+'/'+month7_3+'/'+date7_3+' '+hourFrom7_3+':'+minuteFrom7_3+' | '+'LL')
+        window.update_idletasks()
+    if light7_4=='1' and dark7_4=='0':
+        box7pha4text.set('                                 ')
+        window.update_idletasks()
+        box7pha4text.set(year7_4+'/'+month7_4+'/'+date7_4+' '+hourFrom7_4+':'+minuteFrom7_4+' | '+'LL')
         window.update_idletasks()
 
     if light8_1=='0' and dark8_1=='0':
@@ -2678,6 +3142,12 @@ def show_conf(): # Show schedule configuration
         window.update_idletasks()
         box8pha3text.set(year8_3+'/'+month8_3+'/'+date8_3+' '+hourFrom8_3+':'+minuteFrom8_3+' | '+hourOn8_3+':'+minOn8_3+' on>'+hourOff8_3+':'+minOff8_3+' off')
         window.update_idletasks()
+    if light8_4=='0' and dark8_4=='0':
+        box8pha4text.set('                                ')
+        window.update_idletasks()
+        box8pha4text.set(year8_4+'/'+month8_4+'/'+date8_4+' '+hourFrom8_4+':'+minuteFrom8_4+' | '+hourOn8_4+':'+minOn8_4+' on>'+hourOff8_4+':'+minOff8_4+' off')
+        window.update_idletasks()
+
     if light8_1=='0' and dark8_1=='1':
         box8pha1text.set('                                ')
         window.update_idletasks()
@@ -2693,6 +3163,13 @@ def show_conf(): # Show schedule configuration
         window.update_idletasks()
         box8pha3text.set(year8_3+'/'+month8_3+'/'+date8_3+' '+hourFrom8_3+':'+minuteFrom8_3+' | '+'DD')
         window.update_idletasks()
+    if light8_4=='0' and dark8_4=='1':
+        box8pha4text.set('                                ')
+        window.update_idletasks()
+        box8pha4text.set(year8_4+'/'+month8_4+'/'+date8_4+' '+hourFrom8_4+':'+minuteFrom8_4+' | '+'DD')
+        window.update_idletasks()
+
+
     if light8_1=='1' and dark8_1=='0':
         box8pha1text.set('                                ')
         window.update_idletasks()
@@ -2707,6 +3184,11 @@ def show_conf(): # Show schedule configuration
         box8pha3text.set('                                 ')
         window.update_idletasks()
         box8pha3text.set(year8_3+'/'+month8_3+'/'+date8_3+' '+hourFrom8_3+':'+minuteFrom8_3+' | '+'LL')
+        window.update_idletasks()
+    if light8_4=='1' and dark8_4=='0':
+        box8pha4text.set('                                 ')
+        window.update_idletasks()
+        box8pha4text.set(year8_4+'/'+month8_4+'/'+date8_4+' '+hourFrom8_4+':'+minuteFrom8_4+' | '+'LL')
         window.update_idletasks()
 
     if light9_1=='0' and dark9_1=='0':
@@ -2724,6 +3206,12 @@ def show_conf(): # Show schedule configuration
         window.update_idletasks()
         box9pha3text.set(year9_3+'/'+month9_3+'/'+date9_3+' '+hourFrom9_3+':'+minuteFrom9_3+' | '+hourOn9_3+':'+minOn9_3+' on>'+hourOff9_3+':'+minOff9_3+' off')
         window.update_idletasks()
+    if light9_4=='0' and dark9_4=='0':
+        box9pha4text.set('                                ')
+        window.update_idletasks()
+        box9pha4text.set(year9_4+'/'+month9_4+'/'+date9_4+' '+hourFrom9_4+':'+minuteFrom9_4+' | '+hourOn9_4+':'+minOn9_4+' on>'+hourOff9_4+':'+minOff9_4+' off')
+        window.update_idletasks()
+
     if light9_1=='0' and dark9_1=='1':
         box9pha1text.set('                                ')
         window.update_idletasks()
@@ -2739,6 +3227,13 @@ def show_conf(): # Show schedule configuration
         window.update_idletasks()
         box9pha3text.set(year9_3+'/'+month9_3+'/'+date9_3+' '+hourFrom9_3+':'+minuteFrom9_3+' | '+'DD')
         window.update_idletasks()
+    if light9_4=='0' and dark9_4=='1':
+        box9pha4text.set('                                ')
+        window.update_idletasks()
+        box9pha4text.set(year9_4+'/'+month9_4+'/'+date9_4+' '+hourFrom9_4+':'+minuteFrom9_4+' | '+'DD')
+        window.update_idletasks()
+
+
     if light9_1=='1' and dark9_1=='0':
         box9pha1text.set('                                ')
         window.update_idletasks()
@@ -2753,6 +3248,11 @@ def show_conf(): # Show schedule configuration
         box9pha3text.set('                                 ')
         window.update_idletasks()
         box9pha3text.set(year9_3+'/'+month9_3+'/'+date9_3+' '+hourFrom9_3+':'+minuteFrom9_3+' | '+'LL')
+        window.update_idletasks()
+    if light9_4=='1' and dark9_4=='0':
+        box9pha4text.set('                                 ')
+        window.update_idletasks()
+        box9pha4text.set(year9_4+'/'+month9_4+'/'+date9_4+' '+hourFrom9_4+':'+minuteFrom9_4+' | '+'LL')
         window.update_idletasks()
 
     if light10_1=='0' and dark10_1=='0':
@@ -2770,6 +3270,12 @@ def show_conf(): # Show schedule configuration
         window.update_idletasks()
         box10pha3text.set(year10_3+'/'+month10_3+'/'+date10_3+' '+hourFrom10_3+':'+minuteFrom10_3+' | '+hourOn10_3+':'+minOn10_3+' on>'+hourOff10_3+':'+minOff10_3+' off')
         window.update_idletasks()
+    if light10_4=='0' and dark10_4=='0':
+        box10pha4text.set('                                ')
+        window.update_idletasks()
+        box10pha4text.set(year10_4+'/'+month10_4+'/'+date10_4+' '+hourFrom10_4+':'+minuteFrom10_4+' | '+hourOn10_4+':'+minOn10_4+' on>'+hourOff10_4+':'+minOff10_4+' off')
+        window.update_idletasks()
+
     if light10_1=='0' and dark10_1=='1':
         box10pha1text.set('                                ')
         window.update_idletasks()
@@ -2785,6 +3291,12 @@ def show_conf(): # Show schedule configuration
         window.update_idletasks()
         box10pha3text.set(year10_3+'/'+month10_3+'/'+date10_3+' '+hourFrom10_3+':'+minuteFrom10_3+' | '+'DD')
         window.update_idletasks()
+    if light10_4=='0' and dark10_4=='1':
+        box10pha4text.set('                                ')
+        window.update_idletasks()
+        box10pha4text.set(year10_4+'/'+month10_4+'/'+date10_4+' '+hourFrom10_4+':'+minuteFrom10_4+' | '+'DD')
+        window.update_idletasks()
+
     if light10_1=='1' and dark10_1=='0':
         box10pha1text.set('                                ')
         window.update_idletasks()
@@ -2799,6 +3311,11 @@ def show_conf(): # Show schedule configuration
         box10pha3text.set('                                 ')
         window.update_idletasks()
         box10pha3text.set(year10_3+'/'+month10_3+'/'+date10_3+' '+hourFrom10_3+':'+minuteFrom10_3+' | '+'LL')
+        window.update_idletasks()
+    if light10_4=='1' and dark10_4=='0':
+        box10pha4text.set('                                 ')
+        window.update_idletasks()
+        box10pha4text.set(year10_4+'/'+month10_4+'/'+date10_4+' '+hourFrom10_4+':'+minuteFrom10_4+' | '+'LL')
         window.update_idletasks()
 
 def connect():  # Start to connect and call get_data - Link to Start in Recording menu
@@ -2934,6 +3451,27 @@ def getBox1Schedule():
     if var1_3.get()==3:
         dark1_3='0'
         light1_3='1'
+
+    global date1_4, month1_4, year1_4, hourFrom1_4, minuteFrom1_4, hourOn1_4, minOn1_4, hourOff1_4, minOff1_4, dark1_4, light1_4
+    date1_4 = date1_4_entry.get()
+    month1_4 = month1_4_entry.get()
+    year1_4 = year1_4_entry.get()
+    hourFrom1_4= spin1_E_4.get()
+    minuteFrom1_4= spin1_F_4.get()
+    hourOn1_4=spin1_A_4.get()
+    minOn1_4=spin1_B_4.get()
+    hourOff1_4=spin1_C_4.get()
+    minOff1_4=spin1_D_4.get()                            
+    if var1_4.get()==1:
+        dark1_4='0'
+        light1_4='0'
+    if var1_4.get()==2:
+        dark1_4='1'
+        light1_4='0'
+    if var1_4.get()==3:
+        dark1_4='0'
+        light1_4='1'
+
     status.pack(side='bottom', fill='x')
     status.set('Box1 schedule is set.')
     box1sched_text.set('Box1 schedule set.')
@@ -2999,6 +3537,25 @@ def getBox2Schedule():
     if var2_3.get()==3:
         dark2_3='0'
         light2_3='1'
+    global date2_4, month2_4, year2_4, hourFrom2_4, minuteFrom2_4, hourOn2_4, minOn2_4, hourOff2_4, minOff2_4, dark2_4, light2_4
+    date2_4 = date2_4_entry.get()
+    month2_4 = month2_4_entry.get()
+    year2_4 = year2_4_entry.get()
+    hourFrom2_4= spin2_E_4.get()
+    minuteFrom2_4= spin2_F_4.get()
+    hourOn2_4=spin2_A_4.get()
+    minOn2_4=spin2_B_4.get()
+    hourOff2_4=spin2_C_4.get()
+    minOff2_4=spin2_D_4.get()                            
+    if var2_4.get()==1:
+        dark2_4='0'
+        light2_4='0'
+    if var2_4.get()==2:
+        dark2_4='1'
+        light2_4='0'
+    if var2_4.get()==3:
+        dark2_4='0'
+        light2_4='1'
     status.pack(side='bottom', fill='x')
     status.set('Box2 schedule is set.')
     box2sched_text.set('Box2 schedule set.')
@@ -3064,6 +3621,25 @@ def getBox3Schedule():
     if var3_3.get()==3:
         dark3_3='0'
         light3_3='1'
+    global date3_4, month3_4, year3_4, hourFrom3_4, minuteFrom3_4, hourOn3_4, minOn3_4, hourOff3_4, minOff3_4, dark3_4, light3_4
+    date3_4 = date3_4_entry.get()
+    month3_4 = month3_4_entry.get()
+    year3_4 = year3_4_entry.get()
+    hourFrom3_4= spin3_E_4.get()
+    minuteFrom3_4= spin3_F_4.get()
+    hourOn3_4=spin3_A_4.get()
+    minOn3_4=spin3_B_4.get()
+    hourOff3_4=spin3_C_4.get()
+    minOff3_4=spin3_D_4.get()                            
+    if var3_4.get()==1:
+        dark3_4='0'
+        light3_4='0'
+    if var3_4.get()==2:
+        dark3_4='1'
+        light3_4='0'
+    if var3_4.get()==3:
+        dark3_4='0'
+        light3_4='1'
     status.pack(side='bottom', fill='x')
     status.set('Box3 schedule is set.')
     box3sched_text.set('Box3 schedule set.')
@@ -3129,6 +3705,25 @@ def getBox4Schedule():
     if var4_3.get()==3:
         dark4_3='0'
         light4_3='1'
+    global date4_4, month4_4, year4_4, hourFrom4_4, minuteFrom4_4, hourOn4_4, minOn4_4, hourOff4_4, minOff4_4, dark4_4, light4_4
+    date4_4 = date4_4_entry.get()
+    month4_4 = month4_4_entry.get()
+    year4_4 = year4_4_entry.get()
+    hourFrom4_4= spin4_E_4.get()
+    minuteFrom4_4= spin4_F_4.get()
+    hourOn4_4=spin4_A_4.get()
+    minOn4_4=spin4_B_4.get()
+    hourOff4_4=spin4_C_4.get()
+    minOff4_4=spin4_D_4.get()                            
+    if var4_4.get()==1:
+        dark4_4='0'
+        light4_4='0'
+    if var4_4.get()==2:
+        dark4_4='1'
+        light4_4='0'
+    if var4_4.get()==3:
+        dark4_4='0'
+        light4_4='1'
     status.pack(side='bottom', fill='x')
     status.set('Box4 schedule is set.')
     box4sched_text.set('Box4 schedule set.')
@@ -3194,6 +3789,25 @@ def getBox5Schedule():
     if var5_3.get()==3:
         dark5_3='0'
         light5_3='1'
+    global date5_4, month5_4, year5_4, hourFrom5_4, minuteFrom5_4, hourOn5_4, minOn5_4, hourOff5_4, minOff5_4, dark5_4, light5_4
+    date5_4 = date5_4_entry.get()
+    month5_4 = month5_4_entry.get()
+    year5_4 = year5_4_entry.get()
+    hourFrom5_4= spin5_E_4.get()
+    minuteFrom5_4= spin5_F_4.get()
+    hourOn5_4=spin5_A_4.get()
+    minOn5_4=spin5_B_4.get()
+    hourOff5_4=spin5_C_4.get()
+    minOff5_4=spin5_D_4.get()                            
+    if var5_4.get()==1:
+        dark5_4='0'
+        light5_4='0'
+    if var5_4.get()==2:
+        dark5_4='1'
+        light5_4='0'
+    if var5_4.get()==3:
+        dark5_4='0'
+        light5_4='1'
     status.pack(side='bottom', fill='x')
     status.set('Box5 schedule is set.')
     box5sched_text.set('Box5 schedule set.')
@@ -3259,6 +3873,25 @@ def getBox6Schedule():
     if var6_3.get()==3:
         dark6_3='0'
         light6_3='1'
+    global date6_4, month6_4, year6_4, hourFrom6_4, minuteFrom6_4, hourOn6_4, minOn6_4, hourOff6_4, minOff6_4, dark6_4, light6_4
+    date6_4 = date6_4_entry.get()
+    month6_4 = month6_4_entry.get()
+    year6_4 = year6_4_entry.get()
+    hourFrom6_4= spin6_E_4.get()
+    minuteFrom6_4= spin6_F_4.get()
+    hourOn6_4=spin6_A_4.get()
+    minOn6_4=spin6_B_4.get()
+    hourOff6_4=spin6_C_4.get()
+    minOff6_4=spin6_D_4.get()                            
+    if var6_4.get()==1:
+        dark6_4='0'
+        light6_4='0'
+    if var6_4.get()==2:
+        dark6_4='1'
+        light6_4='0'
+    if var6_4.get()==3:
+        dark6_4='0'
+        light6_4='1'
     status.pack(side='bottom', fill='x')
     status.set('Box6 schedule is set.')
     box6sched_text.set('Box6 schedule set.')
@@ -3324,6 +3957,25 @@ def getBox7Schedule():
     if var7_3.get()==3:
         dark7_3='0'
         light7_3='1'
+    global date7_4, month7_4, year7_4, hourFrom7_4, minuteFrom7_4, hourOn7_4, minOn7_4, hourOff7_4, minOff7_4, dark7_4, light7_4
+    date7_4 = date7_4_entry.get()
+    month7_4 = month7_4_entry.get()
+    year7_4 = year7_4_entry.get()
+    hourFrom7_4= spin7_E_4.get()
+    minuteFrom7_4= spin7_F_4.get()
+    hourOn7_4=spin7_A_4.get()
+    minOn7_4=spin7_B_4.get()
+    hourOff7_4=spin7_C_4.get()
+    minOff7_4=spin7_D_4.get()                            
+    if var7_4.get()==1:
+        dark7_4='0'
+        light7_4='0'
+    if var7_4.get()==2:
+        dark7_4='1'
+        light7_4='0'
+    if var7_4.get()==3:
+        dark7_4='0'
+        light7_4='1'
     status.pack(side='bottom', fill='x')
     status.set('Box7 schedule is set.')
     box7sched_text.set('Box7 schedule set.')
@@ -3389,6 +4041,25 @@ def getBox8Schedule():
     if var8_3.get()==3:
         dark8_3='0'
         light8_3='1'
+    global date8_4, month8_4, year8_4, hourFrom8_4, minuteFrom8_4, hourOn8_4, minOn8_4, hourOff8_4, minOff8_4, dark8_4, light8_4
+    date8_4 = date8_4_entry.get()
+    month8_4 = month8_4_entry.get()
+    year8_4 = year8_4_entry.get()
+    hourFrom8_4= spin8_E_4.get()
+    minuteFrom8_4= spin8_F_4.get()
+    hourOn8_4=spin8_A_4.get()
+    minOn8_4=spin8_B_4.get()
+    hourOff8_4=spin8_C_4.get()
+    minOff8_4=spin8_D_4.get()                            
+    if var8_4.get()==1:
+        dark8_4='0'
+        light8_4='0'
+    if var8_4.get()==2:
+        dark8_4='1'
+        light8_4='0'
+    if var8_4.get()==3:
+        dark8_4='0'
+        light8_4='1'
     status.pack(side='bottom', fill='x')
     status.set('Box8 schedule is set.')
     box8sched_text.set('Box8 schedule set.')
@@ -3454,6 +4125,25 @@ def getBox9Schedule():
     if var9_3.get()==3:
         dark9_3='0'
         light9_3='1'
+    global date9_4, month9_4, year9_4, hourFrom9_4, minuteFrom9_4, hourOn9_4, minOn9_4, hourOff9_4, minOff9_4, dark9_4, light9_4
+    date9_4 = date9_4_entry.get()
+    month9_4 = month9_4_entry.get()
+    year9_4 = year9_4_entry.get()
+    hourFrom9_4= spin9_E_4.get()
+    minuteFrom9_4= spin9_F_4.get()
+    hourOn9_4=spin9_A_4.get()
+    minOn9_4=spin9_B_4.get()
+    hourOff9_4=spin9_C_4.get()
+    minOff9_4=spin9_D_4.get()                            
+    if var9_4.get()==1:
+        dark9_4='0'
+        light9_4='0'
+    if var9_4.get()==2:
+        dark9_4='1'
+        light9_4='0'
+    if var9_4.get()==3:
+        dark9_4='0'
+        light9_4='1'
     status.pack(side='bottom', fill='x')
     status.set('Box9 schedule is set.')
     box9sched_text.set('Box9 schedule set.')
@@ -3517,6 +4207,25 @@ def getBox10Schedule():
     if var10_3.get()==3:
         dark10_3='0'
         light10_3='1'
+    global date10_4, month10_4, year10_4, hourFrom10_4, minuteFrom10_4, hourOn10_4, minOn10_4, hourOff10_4, minOff10_4, dark10_4, light10_4
+    date10_4 = date10_4_entry.get()
+    month10_4 = month10_4_entry.get()
+    year10_4 = year10_4_entry.get()
+    hourFrom10_4= spin10_E_4.get()
+    minuteFrom10_4= spin10_F_4.get()
+    hourOn10_4=spin10_A_4.get()
+    minOn10_4=spin10_B_4.get()
+    hourOff10_4=spin10_C_4.get()
+    minOff10_4=spin10_D_4.get()                            
+    if var10_4.get()==1:
+        dark10_4='0'
+        light10_4='0'
+    if var10_4.get()==2:
+        dark10_4='1'
+        light10_4='0'
+    if var10_4.get()==3:
+        dark10_4='0'
+        light10_4='1'
     status.pack(side='bottom', fill='x') # Ackowledge in the Status Bar
     status.set('Box10 schedule is set.')
     box10sched_text.set('Box10 schedule set.')
@@ -3559,33 +4268,43 @@ if __name__ == '__main__':
     var1_1 = IntVar(value=1) 
     var1_2 = IntVar(value=1)
     var1_3 = IntVar(value=1)
+    var1_4 = IntVar(value=1)
     var2_1 = IntVar(value=1) 
     var2_2 = IntVar(value=1)
     var2_3 = IntVar(value=1)
+    var2_4 = IntVar(value=1)
     var3_1 = IntVar(value=1) 
     var3_2 = IntVar(value=1)
     var3_3 = IntVar(value=1)
+    var3_4 = IntVar(value=1)
     var4_1 = IntVar(value=1) 
     var4_2 = IntVar(value=1)
     var4_3 = IntVar(value=1)
+    var4_4 = IntVar(value=1)
     var5_1 = IntVar(value=1) 
     var5_2 = IntVar(value=1)
     var5_3 = IntVar(value=1)
+    var5_4 = IntVar(value=1)
     var6_1 = IntVar(value=1) 
     var6_2 = IntVar(value=1)
     var6_3 = IntVar(value=1)
+    var6_4 = IntVar(value=1)
     var7_1 = IntVar(value=1) 
     var7_2 = IntVar(value=1)
     var7_3 = IntVar(value=1)
+    var7_4 = IntVar(value=1)
     var8_1 = IntVar(value=1) 
     var8_2 = IntVar(value=1)
     var8_3 = IntVar(value=1)
+    var8_4 = IntVar(value=1)
     var9_1 = IntVar(value=1) 
     var9_2 = IntVar(value=1)
     var9_3 = IntVar(value=1)
+    var9_4 = IntVar(value=1)
     var10_1 = IntVar(value=1) 
     var10_2 = IntVar(value=1)
     var10_3 = IntVar(value=1)
+    var10_4 = IntVar(value=1)
 
     #Create file menu
     filemenu = Menu(menu)
@@ -3913,16 +4632,91 @@ if __name__ == '__main__':
     label1_m2_3.grid(column=23,row=3+row_adj, pady=5)
     rad1_B_3.grid(column=24, row=3+row_adj, padx=15, pady=5)
     rad1_C_3.grid(column=25, row=3+row_adj, pady=5)
-    btn1.grid(column=0, row=4+row_adj, padx=25, pady=5, columnspan='2', sticky='w')
-    btnAll1.grid(column=1, row=4+row_adj, pady=5, columnspan='1', sticky='w')
-    box1sched_stat.grid(column=3, row=4+row_adj, columnspan='8', sticky='w')
+
+        # phase 4
+    phaseLabel1_4 = Label(tab1, text='Phase 4')
+    fromLabel1_4 = Label(tab1, text='From:')
+    space1_4 = Label(tab1, text=' ')
+    space1_4_2 = Label(tab1, text=' ')
+    spin1_E_4 = Spinbox(tab1, from_=00, to=24, width=3, format='%02.0f')
+    spin1_F_4 = Spinbox(tab1, from_=00, to=59, width=3, format='%02.0f')
+    spin1_E_4.delete(0,'end')
+    spin1_E_4.insert(0,'07')
+    spin1_F_4.delete(0,'end')
+    spin1_F_4.insert(0,'00')
+    label1_h0_4 = Label(tab1, text=':')
+    label1_m0_4 = Label(tab1, text='')
+    date1_4_entry = Spinbox(tab1, from_=00, to=31, width=3, format='%02.0f')
+    month1_4_entry = Spinbox(tab1, from_=00, to=12, width=3, format='%02.0f')
+    year1_4_entry = Spinbox(tab1, from_=2018, to=2030, width=5)
+    today=datetime.date.today() # today
+    day_phase4 = day_phase3 + datetime.timedelta(days=21) # calculate dates for 21 days after recording initiation
+    date1_4_entry.delete(0,'end')
+    date1_4_entry.insert(0,'{:02d}'.format(day_phase4.day))
+    month1_4_entry.delete(0,'end')
+    month1_4_entry.insert(0,'{:02d}'.format(day_phase4.month))
+    year1_4_entry.delete(0,'end')
+    year1_4_entry.insert(0,day_phase4.year)
+    label1_d_4 = Label(tab1, text= '/')
+    label1_m_4 = Label(tab1, text= '/')
+    rad1_A_4 = Radiobutton(tab1, text='LD', variable=var1_4, value=1)
+    lbl1_A_4 = Label(tab1, text= 'On:')
+    spin1_A_4 = Spinbox(tab1, from_=00, to=24, width=3, format='%02.0f')
+    spin1_B_4 = Spinbox(tab1, from_=00, to=59, width=3, format='%02.0f')
+    spin1_A_4.delete(0,'end')
+    spin1_A_4.insert(0,'07')
+    spin1_B_4.delete(0,'end')
+    spin1_B_4.insert(0,'00')
+    label1_h1_4 = Label(tab1, text=':')
+    label1_m1_4 = Label(tab1, text='')
+    lbl1_B_4 = Label(tab1, text= 'Off:')
+    spin1_C_4 = Spinbox(tab1, from_=00, to=24, width=3, format='%02.0f')
+    spin1_D_4 = Spinbox(tab1, from_=00, to=59, width=3, format='%02.0f')
+    spin1_C_4.delete(0,'end')
+    spin1_C_4.insert(0,'19')
+    spin1_D_4.delete(0,'end')
+    spin1_D_4.insert(0,'00')
+    label1_h2_4 = Label(tab1, text=':')
+    label1_m2_4 = Label(tab1, text='')
+    rad1_B_4 = Radiobutton(tab1, text='DD', variable=var1_4, value=2)
+    rad1_C_4 = Radiobutton(tab1, text='LL', variable=var1_4, value=3)
+    phaseLabel1_4.grid(column=0, row=4+row_adj, padx=15, pady=5)
+    fromLabel1_4.grid(column=1,row=4+row_adj)
+    spin1_E_4.grid(column=2,row=4+row_adj)
+    label1_h0_4.grid(column=3,row=4+row_adj)
+    spin1_F_4.grid(column=4,row=4+row_adj)
+    label1_m0_4.grid(column=5,row=4+row_adj)
+    space1_4.grid(column=6,row=4+row_adj)
+    date1_4_entry.grid(column=11, row=4+row_adj)
+    label1_d_4.grid(column=8,row=4+row_adj)
+    month1_4_entry.grid(column=9, row=4+row_adj)
+    label1_m_4.grid(column=10,row=4+row_adj)
+    year1_4_entry.grid(column=7, row=4+row_adj) # ISO format
+    space1_4_2.grid(column=12,row=4+row_adj,padx=5)
+    rad1_A_4.grid(column=13, row=4+row_adj, pady=5)
+    lbl1_A_4.grid(column=14, row=4+row_adj, pady=5)
+    spin1_A_4.grid(column=15,row=4+row_adj, pady=5)
+    label1_h1_4.grid(column=16,row=4+row_adj, pady=5)
+    spin1_B_4.grid(column=17,row=4+row_adj, pady=5)
+    label1_m1_4.grid(column=18,row=4+row_adj, pady=5)
+    lbl1_B_4.grid(column=19, row=4+row_adj, pady=5)
+    spin1_C_4.grid(column=20,row=4+row_adj, pady=5)
+    label1_h2_4.grid(column=21,row=4+row_adj, pady=5)
+    spin1_D_4.grid(column=22,row=4+row_adj, pady=5)
+    label1_m2_4.grid(column=23,row=4+row_adj, pady=5)
+    rad1_B_4.grid(column=24, row=4+row_adj, padx=15, pady=5)
+    rad1_C_4.grid(column=25, row=4+row_adj, pady=5)
+
+    btn1.grid(column=0, row=6+row_adj, padx=25, pady=5, columnspan='2', sticky='w')
+    btnAll1.grid(column=1, row=6+row_adj, pady=5, columnspan='1', sticky='w')
+    box1sched_stat.grid(column=3, row=6+row_adj, columnspan='8', sticky='w')
     window.update_idletasks()
     tab1_title2 = Label(tab1, text= 'Recording status', anchor='center')
-    tab1_title2.grid(column=0, row= row_adj+6, columnspan='27', sticky='we')
+    tab1_title2.grid(column=0, row= row_adj+7, columnspan='27', sticky='we')
     box1rec_text=StringVar()
     box1rec_text.set('Recording not started yet.')
     box1rec_stat=Label(tab1, textvariable=box1rec_text, anchor='center', justify=LEFT)
-    box1rec_stat.grid(column=0, row= row_adj+7, columnspan='27', sticky='we')
+    box1rec_stat.grid(column=0, row= row_adj+8, columnspan='27', sticky='we')
     window.update_idletasks()
 
     # Box2
@@ -4121,16 +4915,91 @@ if __name__ == '__main__':
     label2_m2_3.grid(column=23,row=3+row_adj, pady=5)
     rad2_B_3.grid(column=24, row=3+row_adj, padx=15, pady=5)
     rad2_C_3.grid(column=25, row=3+row_adj, pady=5)
-    btn2.grid(column=0, row=4+row_adj, padx=25, pady=5, columnspan='2', sticky='w')
-    btnAll2.grid(column=1, row=4+row_adj, pady=5, columnspan='1', sticky='w')
-    box2sched_stat.grid(column=3, row=4+row_adj, columnspan='8', sticky='w')
+
+        # phase 4
+    phaseLabel2_4 = Label(tab2, text='Phase 4')
+    fromLabel2_4 = Label(tab2, text='From:')
+    space2_4 = Label(tab2, text=' ')
+    space2_4_2 = Label(tab2, text=' ')
+    spin2_E_4 = Spinbox(tab2, from_=00, to=24, width=3, format='%02.0f')
+    spin2_F_4 = Spinbox(tab2, from_=00, to=59, width=3, format='%02.0f')
+    spin2_E_4.delete(0,'end')
+    spin2_E_4.insert(0,'07')
+    spin2_F_4.delete(0,'end')
+    spin2_F_4.insert(0,'00')
+    label2_h0_4 = Label(tab2, text=':')
+    label2_m0_4 = Label(tab2, text='')
+    date2_4_entry = Spinbox(tab2, from_=00, to=31, width=3, format='%02.0f')
+    month2_4_entry = Spinbox(tab2, from_=00, to=12, width=3, format='%02.0f')
+    year2_4_entry = Spinbox(tab2, from_=2018, to=2030, width=5)
+    today=datetime.date.today() # today
+    day_phase4 = day_phase3 + datetime.timedelta(days=21) # calculate dates for 21 days after recording initiation
+    date2_4_entry.delete(0,'end')
+    date2_4_entry.insert(0,'{:02d}'.format(day_phase4.day))
+    month2_4_entry.delete(0,'end')
+    month2_4_entry.insert(0,'{:02d}'.format(day_phase4.month))
+    year2_4_entry.delete(0,'end')
+    year2_4_entry.insert(0,day_phase4.year)
+    label2_d_4 = Label(tab1, text= '/')
+    label2_m_4 = Label(tab1, text= '/')
+    rad2_A_4 = Radiobutton(tab2, text='LD', variable=var2_4, value=1)
+    lbl2_A_4 = Label(tab2, text= 'On:')
+    spin2_A_4 = Spinbox(tab2, from_=00, to=24, width=3, format='%02.0f')
+    spin2_B_4 = Spinbox(tab2, from_=00, to=59, width=3, format='%02.0f')
+    spin2_A_4.delete(0,'end')
+    spin2_A_4.insert(0,'07')
+    spin2_B_4.delete(0,'end')
+    spin2_B_4.insert(0,'00')
+    label2_h1_4 = Label(tab2, text=':')
+    label2_m1_4 = Label(tab2, text='')
+    lbl2_B_4 = Label(tab2, text= 'Off:')
+    spin2_C_4 = Spinbox(tab2, from_=00, to=24, width=3, format='%02.0f')
+    spin2_D_4 = Spinbox(tab2, from_=00, to=59, width=3, format='%02.0f')
+    spin2_C_4.delete(0,'end')
+    spin2_C_4.insert(0,'19')
+    spin2_D_4.delete(0,'end')
+    spin2_D_4.insert(0,'00')
+    label2_h2_4 = Label(tab2, text=':')
+    label2_m2_4 = Label(tab2, text='')
+    rad2_B_4 = Radiobutton(tab2, text='DD', variable=var2_4, value=2)
+    rad2_C_4 = Radiobutton(tab2, text='LL', variable=var2_4, value=3)
+    phaseLabel2_4.grid(column=0, row=4+row_adj, padx=15, pady=5)
+    fromLabel2_4.grid(column=1,row=4+row_adj)
+    spin2_E_4.grid(column=2,row=4+row_adj)
+    label2_h0_4.grid(column=3,row=4+row_adj)
+    spin2_F_4.grid(column=4,row=4+row_adj)
+    label2_m0_4.grid(column=5,row=4+row_adj)
+    space2_4.grid(column=6,row=4+row_adj)
+    date2_4_entry.grid(column=11, row=4+row_adj)
+    label2_d_4.grid(column=8,row=4+row_adj)
+    month2_4_entry.grid(column=9, row=4+row_adj)
+    label2_m_4.grid(column=10,row=4+row_adj)
+    year2_4_entry.grid(column=7, row=4+row_adj) # ISO format
+    space2_4_2.grid(column=12,row=4+row_adj,padx=5)
+    rad2_A_4.grid(column=13, row=4+row_adj, pady=5)
+    lbl2_A_4.grid(column=14, row=4+row_adj, pady=5)
+    spin2_A_4.grid(column=15,row=4+row_adj, pady=5)
+    label2_h1_4.grid(column=16,row=4+row_adj, pady=5)
+    spin2_B_4.grid(column=17,row=4+row_adj, pady=5)
+    label2_m1_4.grid(column=18,row=4+row_adj, pady=5)
+    lbl2_B_4.grid(column=19, row=4+row_adj, pady=5)
+    spin2_C_4.grid(column=20,row=4+row_adj, pady=5)
+    label2_h2_4.grid(column=21,row=4+row_adj, pady=5)
+    spin2_D_4.grid(column=22,row=4+row_adj, pady=5)
+    label2_m2_4.grid(column=23,row=4+row_adj, pady=5)
+    rad2_B_4.grid(column=24, row=4+row_adj, padx=15, pady=5)
+    rad2_C_4.grid(column=25, row=4+row_adj, pady=5)
+
+    btn2.grid(column=0, row=6+row_adj, padx=25, pady=5, columnspan='2', sticky='w')
+    btnAll2.grid(column=1, row=6+row_adj, pady=5, columnspan='1', sticky='w')
+    box2sched_stat.grid(column=3, row=6+row_adj, columnspan='8', sticky='w')
     window.update_idletasks()
-    tab2_title2 = Label(tab2, text= 'Recording status', anchor='center')
-    tab2_title2.grid(column=0, row= row_adj+6, columnspan='27', sticky='we')
+    tab2_title2 = Label(tab1, text= 'Recording status', anchor='center')
+    tab2_title2.grid(column=0, row= row_adj+7, columnspan='27', sticky='we')
     box2rec_text=StringVar()
     box2rec_text.set('Recording not started yet.')
-    box2rec_stat=Label(tab2, textvariable=box2rec_text, anchor='center', justify=LEFT)
-    box2rec_stat.grid(column=0, row= row_adj+7, columnspan='27', sticky='we')
+    box2rec_stat=Label(tab1, textvariable=box2rec_text, anchor='center', justify=LEFT)
+    box2rec_stat.grid(column=0, row= row_adj+8, columnspan='27', sticky='we')
     window.update_idletasks()
 
     # Box3
@@ -4329,16 +5198,91 @@ if __name__ == '__main__':
     label3_m2_3.grid(column=23,row=3+row_adj, pady=5)
     rad3_B_3.grid(column=24, row=3+row_adj, padx=15, pady=5)
     rad3_C_3.grid(column=25, row=3+row_adj, pady=5)
-    btn3.grid(column=0, row=4+row_adj, padx=25, pady=5, columnspan='2', sticky='w')
-    btnAll3.grid(column=1, row=4+row_adj, pady=5, columnspan='1', sticky='w')
-    box3sched_stat.grid(column=3, row=4+row_adj, columnspan='8', sticky='w')
+
+        # phase 4
+    phaseLabel3_4 = Label(tab3, text='Phase 4')
+    fromLabel3_4 = Label(tab3, text='From:')
+    space3_4 = Label(tab3, text=' ')
+    space3_4_2 = Label(tab3, text=' ')
+    spin3_E_4 = Spinbox(tab3, from_=00, to=24, width=3, format='%02.0f')
+    spin3_F_4 = Spinbox(tab3, from_=00, to=59, width=3, format='%02.0f')
+    spin3_E_4.delete(0,'end')
+    spin3_E_4.insert(0,'07')
+    spin3_F_4.delete(0,'end')
+    spin3_F_4.insert(0,'00')
+    label3_h0_4 = Label(tab3, text=':')
+    label3_m0_4 = Label(tab3, text='')
+    date3_4_entry = Spinbox(tab3, from_=00, to=31, width=3, format='%02.0f')
+    month3_4_entry = Spinbox(tab3, from_=00, to=12, width=3, format='%02.0f')
+    year3_4_entry = Spinbox(tab3, from_=2018, to=2030, width=5)
+    today=datetime.date.today() # today
+    day_phase4 = day_phase3 + datetime.timedelta(days=21) # calculate dates for 21 days after recording initiation
+    date3_4_entry.delete(0,'end')
+    date3_4_entry.insert(0,'{:02d}'.format(day_phase4.day))
+    month3_4_entry.delete(0,'end')
+    month3_4_entry.insert(0,'{:02d}'.format(day_phase4.month))
+    year3_4_entry.delete(0,'end')
+    year3_4_entry.insert(0,day_phase4.year)
+    label3_d_4 = Label(tab1, text= '/')
+    label3_m_4 = Label(tab1, text= '/')
+    rad3_A_4 = Radiobutton(tab3, text='LD', variable=var3_4, value=1)
+    lbl3_A_4 = Label(tab3, text= 'On:')
+    spin3_A_4 = Spinbox(tab3, from_=00, to=24, width=3, format='%02.0f')
+    spin3_B_4 = Spinbox(tab3, from_=00, to=59, width=3, format='%02.0f')
+    spin3_A_4.delete(0,'end')
+    spin3_A_4.insert(0,'07')
+    spin3_B_4.delete(0,'end')
+    spin3_B_4.insert(0,'00')
+    label3_h1_4 = Label(tab3, text=':')
+    label3_m1_4 = Label(tab3, text='')
+    lbl3_B_4 = Label(tab3, text= 'Off:')
+    spin3_C_4 = Spinbox(tab3, from_=00, to=24, width=3, format='%02.0f')
+    spin3_D_4 = Spinbox(tab3, from_=00, to=59, width=3, format='%02.0f')
+    spin3_C_4.delete(0,'end')
+    spin3_C_4.insert(0,'19')
+    spin3_D_4.delete(0,'end')
+    spin3_D_4.insert(0,'00')
+    label3_h2_4 = Label(tab3, text=':')
+    label3_m2_4 = Label(tab3, text='')
+    rad3_B_4 = Radiobutton(tab3, text='DD', variable=var3_4, value=2)
+    rad3_C_4 = Radiobutton(tab3, text='LL', variable=var3_4, value=3)
+    phaseLabel3_4.grid(column=0, row=4+row_adj, padx=15, pady=5)
+    fromLabel3_4.grid(column=1,row=4+row_adj)
+    spin3_E_4.grid(column=2,row=4+row_adj)
+    label3_h0_4.grid(column=3,row=4+row_adj)
+    spin3_F_4.grid(column=4,row=4+row_adj)
+    label3_m0_4.grid(column=5,row=4+row_adj)
+    space3_4.grid(column=6,row=4+row_adj)
+    date3_4_entry.grid(column=11, row=4+row_adj)
+    label3_d_4.grid(column=8,row=4+row_adj)
+    month3_4_entry.grid(column=9, row=4+row_adj)
+    label3_m_4.grid(column=10,row=4+row_adj)
+    year3_4_entry.grid(column=7, row=4+row_adj) # ISO format
+    space3_4_2.grid(column=12,row=4+row_adj,padx=5)
+    rad3_A_4.grid(column=13, row=4+row_adj, pady=5)
+    lbl3_A_4.grid(column=14, row=4+row_adj, pady=5)
+    spin3_A_4.grid(column=15,row=4+row_adj, pady=5)
+    label3_h1_4.grid(column=16,row=4+row_adj, pady=5)
+    spin3_B_4.grid(column=17,row=4+row_adj, pady=5)
+    label3_m1_4.grid(column=18,row=4+row_adj, pady=5)
+    lbl3_B_4.grid(column=19, row=4+row_adj, pady=5)
+    spin3_C_4.grid(column=20,row=4+row_adj, pady=5)
+    label3_h2_4.grid(column=21,row=4+row_adj, pady=5)
+    spin3_D_4.grid(column=22,row=4+row_adj, pady=5)
+    label3_m2_4.grid(column=23,row=4+row_adj, pady=5)
+    rad3_B_4.grid(column=24, row=4+row_adj, padx=15, pady=5)
+    rad3_C_4.grid(column=25, row=4+row_adj, pady=5)
+
+    btn3.grid(column=0, row=6+row_adj, padx=25, pady=5, columnspan='2', sticky='w')
+    btnAll3.grid(column=1, row=6+row_adj, pady=5, columnspan='1', sticky='w')
+    box3sched_stat.grid(column=3, row=6+row_adj, columnspan='8', sticky='w')
     window.update_idletasks()
-    tab3_title2 = Label(tab3, text= 'Recording status', anchor='center')
-    tab3_title2.grid(column=0, row= row_adj+6, columnspan='27', sticky='we')
+    tab3_title2 = Label(tab1, text= 'Recording status', anchor='center')
+    tab3_title2.grid(column=0, row= row_adj+7, columnspan='27', sticky='we')
     box3rec_text=StringVar()
     box3rec_text.set('Recording not started yet.')
-    box3rec_stat=Label(tab3, textvariable=box3rec_text, anchor='center', justify=LEFT)
-    box3rec_stat.grid(column=0, row= row_adj+7, columnspan='27', sticky='we')
+    box3rec_stat=Label(tab1, textvariable=box3rec_text, anchor='center', justify=LEFT)
+    box3rec_stat.grid(column=0, row= row_adj+8, columnspan='27', sticky='we')
     window.update_idletasks()
     
     # Box4
@@ -4537,16 +5481,91 @@ if __name__ == '__main__':
     label4_m2_3.grid(column=23,row=3+row_adj, pady=5)
     rad4_B_3.grid(column=24, row=3+row_adj, padx=15, pady=5)
     rad4_C_3.grid(column=25, row=3+row_adj, pady=5)
-    btn4.grid(column=0, row=4+row_adj, padx=25, pady=5, columnspan='2', sticky='w')
-    btnAll4.grid(column=1, row=4+row_adj, pady=5, columnspan='1', sticky='w')
-    box4sched_stat.grid(column=3, row=4+row_adj, columnspan='8', sticky='w')
+
+        # phase 4
+    phaseLabel4_4 = Label(tab4, text='Phase 4')
+    fromLabel4_4 = Label(tab4, text='From:')
+    space4_4 = Label(tab4, text=' ')
+    space4_4_2 = Label(tab4, text=' ')
+    spin4_E_4 = Spinbox(tab4, from_=00, to=24, width=3, format='%02.0f')
+    spin4_F_4 = Spinbox(tab4, from_=00, to=59, width=3, format='%02.0f')
+    spin4_E_4.delete(0,'end')
+    spin4_E_4.insert(0,'07')
+    spin4_F_4.delete(0,'end')
+    spin4_F_4.insert(0,'00')
+    label4_h0_4 = Label(tab4, text=':')
+    label4_m0_4 = Label(tab4, text='')
+    date4_4_entry = Spinbox(tab4, from_=00, to=31, width=3, format='%02.0f')
+    month4_4_entry = Spinbox(tab4, from_=00, to=12, width=3, format='%02.0f')
+    year4_4_entry = Spinbox(tab4, from_=2018, to=2030, width=5)
+    today=datetime.date.today() # today
+    day_phase4 = day_phase3 + datetime.timedelta(days=21) # calculate dates for 21 days after recording initiation
+    date4_4_entry.delete(0,'end')
+    date4_4_entry.insert(0,'{:02d}'.format(day_phase4.day))
+    month4_4_entry.delete(0,'end')
+    month4_4_entry.insert(0,'{:02d}'.format(day_phase4.month))
+    year4_4_entry.delete(0,'end')
+    year4_4_entry.insert(0,day_phase4.year)
+    label4_d_4 = Label(tab1, text= '/')
+    label4_m_4 = Label(tab1, text= '/')
+    rad4_A_4 = Radiobutton(tab4, text='LD', variable=var4_4, value=1)
+    lbl4_A_4 = Label(tab4, text= 'On:')
+    spin4_A_4 = Spinbox(tab4, from_=00, to=24, width=3, format='%02.0f')
+    spin4_B_4 = Spinbox(tab4, from_=00, to=59, width=3, format='%02.0f')
+    spin4_A_4.delete(0,'end')
+    spin4_A_4.insert(0,'07')
+    spin4_B_4.delete(0,'end')
+    spin4_B_4.insert(0,'00')
+    label4_h1_4 = Label(tab4, text=':')
+    label4_m1_4 = Label(tab4, text='')
+    lbl4_B_4 = Label(tab4, text= 'Off:')
+    spin4_C_4 = Spinbox(tab4, from_=00, to=24, width=3, format='%02.0f')
+    spin4_D_4 = Spinbox(tab4, from_=00, to=59, width=3, format='%02.0f')
+    spin4_C_4.delete(0,'end')
+    spin4_C_4.insert(0,'19')
+    spin4_D_4.delete(0,'end')
+    spin4_D_4.insert(0,'00')
+    label4_h2_4 = Label(tab4, text=':')
+    label4_m2_4 = Label(tab4, text='')
+    rad4_B_4 = Radiobutton(tab4, text='DD', variable=var4_4, value=2)
+    rad4_C_4 = Radiobutton(tab4, text='LL', variable=var4_4, value=3)
+    phaseLabel4_4.grid(column=0, row=4+row_adj, padx=15, pady=5)
+    fromLabel4_4.grid(column=1,row=4+row_adj)
+    spin4_E_4.grid(column=2,row=4+row_adj)
+    label4_h0_4.grid(column=3,row=4+row_adj)
+    spin4_F_4.grid(column=4,row=4+row_adj)
+    label4_m0_4.grid(column=5,row=4+row_adj)
+    space4_4.grid(column=6,row=4+row_adj)
+    date4_4_entry.grid(column=11, row=4+row_adj)
+    label4_d_4.grid(column=8,row=4+row_adj)
+    month4_4_entry.grid(column=9, row=4+row_adj)
+    label4_m_4.grid(column=10,row=4+row_adj)
+    year4_4_entry.grid(column=7, row=4+row_adj) # ISO format
+    space4_4_2.grid(column=12,row=4+row_adj,padx=5)
+    rad4_A_4.grid(column=13, row=4+row_adj, pady=5)
+    lbl4_A_4.grid(column=14, row=4+row_adj, pady=5)
+    spin4_A_4.grid(column=15,row=4+row_adj, pady=5)
+    label4_h1_4.grid(column=16,row=4+row_adj, pady=5)
+    spin4_B_4.grid(column=17,row=4+row_adj, pady=5)
+    label4_m1_4.grid(column=18,row=4+row_adj, pady=5)
+    lbl4_B_4.grid(column=19, row=4+row_adj, pady=5)
+    spin4_C_4.grid(column=20,row=4+row_adj, pady=5)
+    label4_h2_4.grid(column=21,row=4+row_adj, pady=5)
+    spin4_D_4.grid(column=22,row=4+row_adj, pady=5)
+    label4_m2_4.grid(column=23,row=4+row_adj, pady=5)
+    rad4_B_4.grid(column=24, row=4+row_adj, padx=15, pady=5)
+    rad4_C_4.grid(column=25, row=4+row_adj, pady=5)
+
+    btn4.grid(column=0, row=6+row_adj, padx=25, pady=5, columnspan='2', sticky='w')
+    btnAll4.grid(column=1, row=6+row_adj, pady=5, columnspan='1', sticky='w')
+    box4sched_stat.grid(column=3, row=6+row_adj, columnspan='8', sticky='w')
     window.update_idletasks()
-    tab4_title2 = Label(tab4, text= 'Recording status', anchor='center')
-    tab4_title2.grid(column=0, row= row_adj+6, columnspan='27', sticky='we')
+    tab4_title2 = Label(tab1, text= 'Recording status', anchor='center')
+    tab4_title2.grid(column=0, row= row_adj+7, columnspan='27', sticky='we')
     box4rec_text=StringVar()
     box4rec_text.set('Recording not started yet.')
-    box4rec_stat=Label(tab4, textvariable=box4rec_text, anchor='center', justify=LEFT)
-    box4rec_stat.grid(column=0, row= row_adj+7, columnspan='27', sticky='we')
+    box4rec_stat=Label(tab1, textvariable=box4rec_text, anchor='center', justify=LEFT)
+    box4rec_stat.grid(column=0, row= row_adj+8, columnspan='27', sticky='we')
     window.update_idletasks()
 
     # Box5
@@ -4745,18 +5764,92 @@ if __name__ == '__main__':
     label5_m2_3.grid(column=23,row=3+row_adj, pady=5)
     rad5_B_3.grid(column=24, row=3+row_adj, padx=15, pady=5)
     rad5_C_3.grid(column=25, row=3+row_adj, pady=5)
-    btn5.grid(column=0, row=4+row_adj, padx=25, pady=5, columnspan='2', sticky='w')
-    btnAll5.grid(column=1, row=4+row_adj, pady=5, columnspan='1', sticky='w')
-    box5sched_stat.grid(column=3, row=4+row_adj, columnspan='8', sticky='w')
+
+        # phase 4
+    phaseLabel5_4 = Label(tab5, text='Phase 4')
+    fromLabel5_4 = Label(tab5, text='From:')
+    space5_4 = Label(tab5, text=' ')
+    space5_4_2 = Label(tab5, text=' ')
+    spin5_E_4 = Spinbox(tab5, from_=00, to=24, width=3, format='%02.0f')
+    spin5_F_4 = Spinbox(tab5, from_=00, to=59, width=3, format='%02.0f')
+    spin5_E_4.delete(0,'end')
+    spin5_E_4.insert(0,'07')
+    spin5_F_4.delete(0,'end')
+    spin5_F_4.insert(0,'00')
+    label5_h0_4 = Label(tab5, text=':')
+    label5_m0_4 = Label(tab5, text='')
+    date5_4_entry = Spinbox(tab5, from_=00, to=31, width=3, format='%02.0f')
+    month5_4_entry = Spinbox(tab5, from_=00, to=12, width=3, format='%02.0f')
+    year5_4_entry = Spinbox(tab5, from_=2018, to=2030, width=5)
+    today=datetime.date.today() # today
+    day_phase4 = day_phase3 + datetime.timedelta(days=21) # calculate dates for 21 days after recording initiation
+    date5_4_entry.delete(0,'end')
+    date5_4_entry.insert(0,'{:02d}'.format(day_phase4.day))
+    month5_4_entry.delete(0,'end')
+    month5_4_entry.insert(0,'{:02d}'.format(day_phase4.month))
+    year5_4_entry.delete(0,'end')
+    year5_4_entry.insert(0,day_phase4.year)
+    label5_d_4 = Label(tab1, text= '/')
+    label5_m_4 = Label(tab1, text= '/')
+    rad5_A_4 = Radiobutton(tab5, text='LD', variable=var5_4, value=1)
+    lbl5_A_4 = Label(tab5, text= 'On:')
+    spin5_A_4 = Spinbox(tab5, from_=00, to=24, width=3, format='%02.0f')
+    spin5_B_4 = Spinbox(tab5, from_=00, to=59, width=3, format='%02.0f')
+    spin5_A_4.delete(0,'end')
+    spin5_A_4.insert(0,'07')
+    spin5_B_4.delete(0,'end')
+    spin5_B_4.insert(0,'00')
+    label5_h1_4 = Label(tab5, text=':')
+    label5_m1_4 = Label(tab5, text='')
+    lbl5_B_4 = Label(tab5, text= 'Off:')
+    spin5_C_4 = Spinbox(tab5, from_=00, to=24, width=3, format='%02.0f')
+    spin5_D_4 = Spinbox(tab5, from_=00, to=59, width=3, format='%02.0f')
+    spin5_C_4.delete(0,'end')
+    spin5_C_4.insert(0,'19')
+    spin5_D_4.delete(0,'end')
+    spin5_D_4.insert(0,'00')
+    label5_h2_4 = Label(tab5, text=':')
+    label5_m2_4 = Label(tab5, text='')
+    rad5_B_4 = Radiobutton(tab5, text='DD', variable=var5_4, value=2)
+    rad5_C_4 = Radiobutton(tab5, text='LL', variable=var5_4, value=3)
+    phaseLabel5_4.grid(column=0, row=4+row_adj, padx=15, pady=5)
+    fromLabel5_4.grid(column=1,row=4+row_adj)
+    spin5_E_4.grid(column=2,row=4+row_adj)
+    label5_h0_4.grid(column=3,row=4+row_adj)
+    spin5_F_4.grid(column=4,row=4+row_adj)
+    label5_m0_4.grid(column=5,row=4+row_adj)
+    space5_4.grid(column=6,row=4+row_adj)
+    date5_4_entry.grid(column=11, row=4+row_adj)
+    label5_d_4.grid(column=8,row=4+row_adj)
+    month5_4_entry.grid(column=9, row=4+row_adj)
+    label5_m_4.grid(column=10,row=4+row_adj)
+    year5_4_entry.grid(column=7, row=4+row_adj) # ISO format
+    space5_4_2.grid(column=12,row=4+row_adj,padx=5)
+    rad5_A_4.grid(column=13, row=4+row_adj, pady=5)
+    lbl5_A_4.grid(column=14, row=4+row_adj, pady=5)
+    spin5_A_4.grid(column=15,row=4+row_adj, pady=5)
+    label5_h1_4.grid(column=16,row=4+row_adj, pady=5)
+    spin5_B_4.grid(column=17,row=4+row_adj, pady=5)
+    label5_m1_4.grid(column=18,row=4+row_adj, pady=5)
+    lbl5_B_4.grid(column=19, row=4+row_adj, pady=5)
+    spin5_C_4.grid(column=20,row=4+row_adj, pady=5)
+    label5_h2_4.grid(column=21,row=4+row_adj, pady=5)
+    spin5_D_4.grid(column=22,row=4+row_adj, pady=5)
+    label5_m2_4.grid(column=23,row=4+row_adj, pady=5)
+    rad5_B_4.grid(column=24, row=4+row_adj, padx=15, pady=5)
+    rad5_C_4.grid(column=25, row=4+row_adj, pady=5)
+
+    btn5.grid(column=0, row=6+row_adj, padx=25, pady=5, columnspan='2', sticky='w')
+    btnAll5.grid(column=1, row=6+row_adj, pady=5, columnspan='1', sticky='w')
+    box5sched_stat.grid(column=3, row=6+row_adj, columnspan='8', sticky='w')
     window.update_idletasks()
-    tab5_title2 = Label(tab5, text= 'Recording status', anchor='center')
-    tab5_title2.grid(column=0, row= row_adj+6, columnspan='27', sticky='we')
+    tab5_title2 = Label(tab1, text= 'Recording status', anchor='center')
+    tab5_title2.grid(column=0, row= row_adj+7, columnspan='27', sticky='we')
     box5rec_text=StringVar()
     box5rec_text.set('Recording not started yet.')
-    box5rec_stat=Label(tab5, textvariable=box5rec_text, anchor='center', justify=LEFT)
-    box5rec_stat.grid(column=0, row= row_adj+7, columnspan='27', sticky='we')
+    box5rec_stat=Label(tab1, textvariable=box5rec_text, anchor='center', justify=LEFT)
+    box5rec_stat.grid(column=0, row= row_adj+8, columnspan='27', sticky='we')
     window.update_idletasks()
-
     # Box6
     btn6 = Button(tab6, text='  Set  ', command=lambda: OnButtonClick(6))
     btnAll6 = Button(tab6, text='Set All', command=getAllBoxSchedule)
@@ -4953,16 +6046,91 @@ if __name__ == '__main__':
     label6_m2_3.grid(column=23,row=3+row_adj, pady=5)
     rad6_B_3.grid(column=24, row=3+row_adj, padx=15, pady=5)
     rad6_C_3.grid(column=25, row=3+row_adj, pady=5)
-    btn6.grid(column=0, row=4+row_adj, padx=25, pady=5, columnspan='2', sticky='w')
-    btnAll6.grid(column=1, row=4+row_adj, pady=5, columnspan='1', sticky='w')
-    box6sched_stat.grid(column=3, row=4+row_adj, columnspan='8', sticky='w')
+
+        # phase 4
+    phaseLabel6_4 = Label(tab6, text='Phase 4')
+    fromLabel6_4 = Label(tab6, text='From:')
+    space6_4 = Label(tab6, text=' ')
+    space6_4_2 = Label(tab6, text=' ')
+    spin6_E_4 = Spinbox(tab6, from_=00, to=24, width=3, format='%02.0f')
+    spin6_F_4 = Spinbox(tab6, from_=00, to=59, width=3, format='%02.0f')
+    spin6_E_4.delete(0,'end')
+    spin6_E_4.insert(0,'07')
+    spin6_F_4.delete(0,'end')
+    spin6_F_4.insert(0,'00')
+    label6_h0_4 = Label(tab6, text=':')
+    label6_m0_4 = Label(tab6, text='')
+    date6_4_entry = Spinbox(tab6, from_=00, to=31, width=3, format='%02.0f')
+    month6_4_entry = Spinbox(tab6, from_=00, to=12, width=3, format='%02.0f')
+    year6_4_entry = Spinbox(tab6, from_=2018, to=2030, width=5)
+    today=datetime.date.today() # today
+    day_phase4 = day_phase3 + datetime.timedelta(days=21) # calculate dates for 21 days after recording initiation
+    date6_4_entry.delete(0,'end')
+    date6_4_entry.insert(0,'{:02d}'.format(day_phase4.day))
+    month6_4_entry.delete(0,'end')
+    month6_4_entry.insert(0,'{:02d}'.format(day_phase4.month))
+    year6_4_entry.delete(0,'end')
+    year6_4_entry.insert(0,day_phase4.year)
+    label6_d_4 = Label(tab1, text= '/')
+    label6_m_4 = Label(tab1, text= '/')
+    rad6_A_4 = Radiobutton(tab6, text='LD', variable=var6_4, value=1)
+    lbl6_A_4 = Label(tab6, text= 'On:')
+    spin6_A_4 = Spinbox(tab6, from_=00, to=24, width=3, format='%02.0f')
+    spin6_B_4 = Spinbox(tab6, from_=00, to=59, width=3, format='%02.0f')
+    spin6_A_4.delete(0,'end')
+    spin6_A_4.insert(0,'07')
+    spin6_B_4.delete(0,'end')
+    spin6_B_4.insert(0,'00')
+    label6_h1_4 = Label(tab6, text=':')
+    label6_m1_4 = Label(tab6, text='')
+    lbl6_B_4 = Label(tab6, text= 'Off:')
+    spin6_C_4 = Spinbox(tab6, from_=00, to=24, width=3, format='%02.0f')
+    spin6_D_4 = Spinbox(tab6, from_=00, to=59, width=3, format='%02.0f')
+    spin6_C_4.delete(0,'end')
+    spin6_C_4.insert(0,'19')
+    spin6_D_4.delete(0,'end')
+    spin6_D_4.insert(0,'00')
+    label6_h2_4 = Label(tab6, text=':')
+    label6_m2_4 = Label(tab6, text='')
+    rad6_B_4 = Radiobutton(tab6, text='DD', variable=var6_4, value=2)
+    rad6_C_4 = Radiobutton(tab6, text='LL', variable=var6_4, value=3)
+    phaseLabel6_4.grid(column=0, row=4+row_adj, padx=15, pady=5)
+    fromLabel6_4.grid(column=1,row=4+row_adj)
+    spin6_E_4.grid(column=2,row=4+row_adj)
+    label6_h0_4.grid(column=3,row=4+row_adj)
+    spin6_F_4.grid(column=4,row=4+row_adj)
+    label6_m0_4.grid(column=5,row=4+row_adj)
+    space6_4.grid(column=6,row=4+row_adj)
+    date6_4_entry.grid(column=11, row=4+row_adj)
+    label6_d_4.grid(column=8,row=4+row_adj)
+    month6_4_entry.grid(column=9, row=4+row_adj)
+    label6_m_4.grid(column=10,row=4+row_adj)
+    year6_4_entry.grid(column=7, row=4+row_adj) # ISO format
+    space6_4_2.grid(column=12,row=4+row_adj,padx=5)
+    rad6_A_4.grid(column=13, row=4+row_adj, pady=5)
+    lbl6_A_4.grid(column=14, row=4+row_adj, pady=5)
+    spin6_A_4.grid(column=15,row=4+row_adj, pady=5)
+    label6_h1_4.grid(column=16,row=4+row_adj, pady=5)
+    spin6_B_4.grid(column=17,row=4+row_adj, pady=5)
+    label6_m1_4.grid(column=18,row=4+row_adj, pady=5)
+    lbl6_B_4.grid(column=19, row=4+row_adj, pady=5)
+    spin6_C_4.grid(column=20,row=4+row_adj, pady=5)
+    label6_h2_4.grid(column=21,row=4+row_adj, pady=5)
+    spin6_D_4.grid(column=22,row=4+row_adj, pady=5)
+    label6_m2_4.grid(column=23,row=4+row_adj, pady=5)
+    rad6_B_4.grid(column=24, row=4+row_adj, padx=15, pady=5)
+    rad6_C_4.grid(column=25, row=4+row_adj, pady=5)
+
+    btn6.grid(column=0, row=6+row_adj, padx=25, pady=5, columnspan='2', sticky='w')
+    btnAll6.grid(column=1, row=6+row_adj, pady=5, columnspan='1', sticky='w')
+    box6sched_stat.grid(column=3, row=6+row_adj, columnspan='8', sticky='w')
     window.update_idletasks()
-    tab6_title2 = Label(tab6, text= 'Recording status', anchor='center')
-    tab6_title2.grid(column=0, row= row_adj+6, columnspan='27', sticky='we')
+    tab6_title2 = Label(tab1, text= 'Recording status', anchor='center')
+    tab6_title2.grid(column=0, row= row_adj+7, columnspan='27', sticky='we')
     box6rec_text=StringVar()
     box6rec_text.set('Recording not started yet.')
-    box6rec_stat=Label(tab6, textvariable=box6rec_text, anchor='center', justify=LEFT)
-    box6rec_stat.grid(column=0, row= row_adj+7, columnspan='27', sticky='we')
+    box6rec_stat=Label(tab1, textvariable=box6rec_text, anchor='center', justify=LEFT)
+    box6rec_stat.grid(column=0, row= row_adj+8, columnspan='27', sticky='we')
     window.update_idletasks()
 
     # Box7
@@ -5161,16 +6329,91 @@ if __name__ == '__main__':
     label7_m2_3.grid(column=23,row=3+row_adj, pady=5)
     rad7_B_3.grid(column=24, row=3+row_adj, padx=15, pady=5)
     rad7_C_3.grid(column=25, row=3+row_adj, pady=5)
-    btn7.grid(column=0, row=4+row_adj, padx=25, pady=5, columnspan='2', sticky='w')
-    btnAll7.grid(column=1, row=4+row_adj, pady=5, columnspan='1', sticky='w')
-    box7sched_stat.grid(column=3, row=4+row_adj, columnspan='8', sticky='w')
+
+        # phase 4
+    phaseLabel7_4 = Label(tab7, text='Phase 4')
+    fromLabel7_4 = Label(tab7, text='From:')
+    space7_4 = Label(tab7, text=' ')
+    space7_4_2 = Label(tab7, text=' ')
+    spin7_E_4 = Spinbox(tab7, from_=00, to=24, width=3, format='%02.0f')
+    spin7_F_4 = Spinbox(tab7, from_=00, to=59, width=3, format='%02.0f')
+    spin7_E_4.delete(0,'end')
+    spin7_E_4.insert(0,'07')
+    spin7_F_4.delete(0,'end')
+    spin7_F_4.insert(0,'00')
+    label7_h0_4 = Label(tab7, text=':')
+    label7_m0_4 = Label(tab7, text='')
+    date7_4_entry = Spinbox(tab7, from_=00, to=31, width=3, format='%02.0f')
+    month7_4_entry = Spinbox(tab7, from_=00, to=12, width=3, format='%02.0f')
+    year7_4_entry = Spinbox(tab7, from_=2018, to=2030, width=5)
+    today=datetime.date.today() # today
+    day_phase4 = day_phase3 + datetime.timedelta(days=21) # calculate dates for 21 days after recording initiation
+    date7_4_entry.delete(0,'end')
+    date7_4_entry.insert(0,'{:02d}'.format(day_phase4.day))
+    month7_4_entry.delete(0,'end')
+    month7_4_entry.insert(0,'{:02d}'.format(day_phase4.month))
+    year7_4_entry.delete(0,'end')
+    year7_4_entry.insert(0,day_phase4.year)
+    label7_d_4 = Label(tab1, text= '/')
+    label7_m_4 = Label(tab1, text= '/')
+    rad7_A_4 = Radiobutton(tab7, text='LD', variable=var7_4, value=1)
+    lbl7_A_4 = Label(tab7, text= 'On:')
+    spin7_A_4 = Spinbox(tab7, from_=00, to=24, width=3, format='%02.0f')
+    spin7_B_4 = Spinbox(tab7, from_=00, to=59, width=3, format='%02.0f')
+    spin7_A_4.delete(0,'end')
+    spin7_A_4.insert(0,'07')
+    spin7_B_4.delete(0,'end')
+    spin7_B_4.insert(0,'00')
+    label7_h1_4 = Label(tab7, text=':')
+    label7_m1_4 = Label(tab7, text='')
+    lbl7_B_4 = Label(tab7, text= 'Off:')
+    spin7_C_4 = Spinbox(tab7, from_=00, to=24, width=3, format='%02.0f')
+    spin7_D_4 = Spinbox(tab7, from_=00, to=59, width=3, format='%02.0f')
+    spin7_C_4.delete(0,'end')
+    spin7_C_4.insert(0,'19')
+    spin7_D_4.delete(0,'end')
+    spin7_D_4.insert(0,'00')
+    label7_h2_4 = Label(tab7, text=':')
+    label7_m2_4 = Label(tab7, text='')
+    rad7_B_4 = Radiobutton(tab7, text='DD', variable=var7_4, value=2)
+    rad7_C_4 = Radiobutton(tab7, text='LL', variable=var7_4, value=3)
+    phaseLabel7_4.grid(column=0, row=4+row_adj, padx=15, pady=5)
+    fromLabel7_4.grid(column=1,row=4+row_adj)
+    spin7_E_4.grid(column=2,row=4+row_adj)
+    label7_h0_4.grid(column=3,row=4+row_adj)
+    spin7_F_4.grid(column=4,row=4+row_adj)
+    label7_m0_4.grid(column=5,row=4+row_adj)
+    space7_4.grid(column=6,row=4+row_adj)
+    date7_4_entry.grid(column=11, row=4+row_adj)
+    label7_d_4.grid(column=8,row=4+row_adj)
+    month7_4_entry.grid(column=9, row=4+row_adj)
+    label7_m_4.grid(column=10,row=4+row_adj)
+    year7_4_entry.grid(column=7, row=4+row_adj) # ISO format
+    space7_4_2.grid(column=12,row=4+row_adj,padx=5)
+    rad7_A_4.grid(column=13, row=4+row_adj, pady=5)
+    lbl7_A_4.grid(column=14, row=4+row_adj, pady=5)
+    spin7_A_4.grid(column=15,row=4+row_adj, pady=5)
+    label7_h1_4.grid(column=16,row=4+row_adj, pady=5)
+    spin7_B_4.grid(column=17,row=4+row_adj, pady=5)
+    label7_m1_4.grid(column=18,row=4+row_adj, pady=5)
+    lbl7_B_4.grid(column=19, row=4+row_adj, pady=5)
+    spin7_C_4.grid(column=20,row=4+row_adj, pady=5)
+    label7_h2_4.grid(column=21,row=4+row_adj, pady=5)
+    spin7_D_4.grid(column=22,row=4+row_adj, pady=5)
+    label7_m2_4.grid(column=23,row=4+row_adj, pady=5)
+    rad7_B_4.grid(column=24, row=4+row_adj, padx=15, pady=5)
+    rad7_C_4.grid(column=25, row=4+row_adj, pady=5)
+
+    btn7.grid(column=0, row=6+row_adj, padx=25, pady=5, columnspan='2', sticky='w')
+    btnAll7.grid(column=1, row=6+row_adj, pady=5, columnspan='1', sticky='w')
+    box7sched_stat.grid(column=3, row=6+row_adj, columnspan='8', sticky='w')
     window.update_idletasks()
-    tab7_title2 = Label(tab7, text= 'Recording status', anchor='center')
-    tab7_title2.grid(column=0, row= row_adj+6, columnspan='27', sticky='we')
+    tab7_title2 = Label(tab1, text= 'Recording status', anchor='center')
+    tab7_title2.grid(column=0, row= row_adj+7, columnspan='27', sticky='we')
     box7rec_text=StringVar()
     box7rec_text.set('Recording not started yet.')
-    box7rec_stat=Label(tab7, textvariable=box7rec_text, anchor='center', justify=LEFT)
-    box7rec_stat.grid(column=0, row= row_adj+7, columnspan='27', sticky='we')
+    box7rec_stat=Label(tab1, textvariable=box7rec_text, anchor='center', justify=LEFT)
+    box7rec_stat.grid(column=0, row= row_adj+8, columnspan='27', sticky='we')
     window.update_idletasks()
 
     # Box8
@@ -5369,16 +6612,91 @@ if __name__ == '__main__':
     label8_m2_3.grid(column=23,row=3+row_adj, pady=5)
     rad8_B_3.grid(column=24, row=3+row_adj, padx=15, pady=5)
     rad8_C_3.grid(column=25, row=3+row_adj, pady=5)
-    btn8.grid(column=0, row=4+row_adj, padx=25, pady=5, columnspan='2', sticky='w')
-    btnAll8.grid(column=1, row=4+row_adj, pady=5, columnspan='1', sticky='w')
-    box8sched_stat.grid(column=3, row=4+row_adj, columnspan='8', sticky='w')
+
+        # phase 4
+    phaseLabel8_4 = Label(tab8, text='Phase 4')
+    fromLabel8_4 = Label(tab8, text='From:')
+    space8_4 = Label(tab8, text=' ')
+    space8_4_2 = Label(tab8, text=' ')
+    spin8_E_4 = Spinbox(tab8, from_=00, to=24, width=3, format='%02.0f')
+    spin8_F_4 = Spinbox(tab8, from_=00, to=59, width=3, format='%02.0f')
+    spin8_E_4.delete(0,'end')
+    spin8_E_4.insert(0,'07')
+    spin8_F_4.delete(0,'end')
+    spin8_F_4.insert(0,'00')
+    label8_h0_4 = Label(tab8, text=':')
+    label8_m0_4 = Label(tab8, text='')
+    date8_4_entry = Spinbox(tab8, from_=00, to=31, width=3, format='%02.0f')
+    month8_4_entry = Spinbox(tab8, from_=00, to=12, width=3, format='%02.0f')
+    year8_4_entry = Spinbox(tab8, from_=2018, to=2030, width=5)
+    today=datetime.date.today() # today
+    day_phase4 = day_phase3 + datetime.timedelta(days=21) # calculate dates for 21 days after recording initiation
+    date8_4_entry.delete(0,'end')
+    date8_4_entry.insert(0,'{:02d}'.format(day_phase4.day))
+    month8_4_entry.delete(0,'end')
+    month8_4_entry.insert(0,'{:02d}'.format(day_phase4.month))
+    year8_4_entry.delete(0,'end')
+    year8_4_entry.insert(0,day_phase4.year)
+    label8_d_4 = Label(tab1, text= '/')
+    label8_m_4 = Label(tab1, text= '/')
+    rad8_A_4 = Radiobutton(tab8, text='LD', variable=var8_4, value=1)
+    lbl8_A_4 = Label(tab8, text= 'On:')
+    spin8_A_4 = Spinbox(tab8, from_=00, to=24, width=3, format='%02.0f')
+    spin8_B_4 = Spinbox(tab8, from_=00, to=59, width=3, format='%02.0f')
+    spin8_A_4.delete(0,'end')
+    spin8_A_4.insert(0,'07')
+    spin8_B_4.delete(0,'end')
+    spin8_B_4.insert(0,'00')
+    label8_h1_4 = Label(tab8, text=':')
+    label8_m1_4 = Label(tab8, text='')
+    lbl8_B_4 = Label(tab8, text= 'Off:')
+    spin8_C_4 = Spinbox(tab8, from_=00, to=24, width=3, format='%02.0f')
+    spin8_D_4 = Spinbox(tab8, from_=00, to=59, width=3, format='%02.0f')
+    spin8_C_4.delete(0,'end')
+    spin8_C_4.insert(0,'19')
+    spin8_D_4.delete(0,'end')
+    spin8_D_4.insert(0,'00')
+    label8_h2_4 = Label(tab8, text=':')
+    label8_m2_4 = Label(tab8, text='')
+    rad8_B_4 = Radiobutton(tab8, text='DD', variable=var8_4, value=2)
+    rad8_C_4 = Radiobutton(tab8, text='LL', variable=var8_4, value=3)
+    phaseLabel8_4.grid(column=0, row=4+row_adj, padx=15, pady=5)
+    fromLabel8_4.grid(column=1,row=4+row_adj)
+    spin8_E_4.grid(column=2,row=4+row_adj)
+    label8_h0_4.grid(column=3,row=4+row_adj)
+    spin8_F_4.grid(column=4,row=4+row_adj)
+    label8_m0_4.grid(column=5,row=4+row_adj)
+    space8_4.grid(column=6,row=4+row_adj)
+    date8_4_entry.grid(column=11, row=4+row_adj)
+    label8_d_4.grid(column=8,row=4+row_adj)
+    month8_4_entry.grid(column=9, row=4+row_adj)
+    label8_m_4.grid(column=10,row=4+row_adj)
+    year8_4_entry.grid(column=7, row=4+row_adj) # ISO format
+    space8_4_2.grid(column=12,row=4+row_adj,padx=5)
+    rad8_A_4.grid(column=13, row=4+row_adj, pady=5)
+    lbl8_A_4.grid(column=14, row=4+row_adj, pady=5)
+    spin8_A_4.grid(column=15,row=4+row_adj, pady=5)
+    label8_h1_4.grid(column=16,row=4+row_adj, pady=5)
+    spin8_B_4.grid(column=17,row=4+row_adj, pady=5)
+    label8_m1_4.grid(column=18,row=4+row_adj, pady=5)
+    lbl8_B_4.grid(column=19, row=4+row_adj, pady=5)
+    spin8_C_4.grid(column=20,row=4+row_adj, pady=5)
+    label8_h2_4.grid(column=21,row=4+row_adj, pady=5)
+    spin8_D_4.grid(column=22,row=4+row_adj, pady=5)
+    label8_m2_4.grid(column=23,row=4+row_adj, pady=5)
+    rad8_B_4.grid(column=24, row=4+row_adj, padx=15, pady=5)
+    rad8_C_4.grid(column=25, row=4+row_adj, pady=5)
+
+    btn8.grid(column=0, row=6+row_adj, padx=25, pady=5, columnspan='2', sticky='w')
+    btnAll8.grid(column=1, row=6+row_adj, pady=5, columnspan='1', sticky='w')
+    box8sched_stat.grid(column=3, row=6+row_adj, columnspan='8', sticky='w')
     window.update_idletasks()
-    tab8_title2 = Label(tab8, text= 'Recording status', anchor='center')
-    tab8_title2.grid(column=0, row= row_adj+6, columnspan='27', sticky='we')
+    tab8_title2 = Label(tab1, text= 'Recording status', anchor='center')
+    tab8_title2.grid(column=0, row= row_adj+7, columnspan='27', sticky='we')
     box8rec_text=StringVar()
     box8rec_text.set('Recording not started yet.')
-    box8rec_stat=Label(tab8, textvariable=box8rec_text, anchor='center', justify=LEFT)
-    box8rec_stat.grid(column=0, row= row_adj+7, columnspan='27', sticky='we')
+    box8rec_stat=Label(tab1, textvariable=box8rec_text, anchor='center', justify=LEFT)
+    box8rec_stat.grid(column=0, row= row_adj+8, columnspan='27', sticky='we')
     window.update_idletasks()
 
     # Box9
@@ -5577,16 +6895,91 @@ if __name__ == '__main__':
     label9_m2_3.grid(column=23,row=3+row_adj, pady=5)
     rad9_B_3.grid(column=24, row=3+row_adj, padx=15, pady=5)
     rad9_C_3.grid(column=25, row=3+row_adj, pady=5)
-    btn9.grid(column=0, row=4+row_adj, padx=25, pady=5, columnspan='2', sticky='w')
-    btnAll9.grid(column=1, row=4+row_adj, pady=5, columnspan='1', sticky='w')
-    box9sched_stat.grid(column=3, row=4+row_adj, columnspan='8', sticky='w')
+
+        # phase 4
+    phaseLabel9_4 = Label(tab9, text='Phase 4')
+    fromLabel9_4 = Label(tab9, text='From:')
+    space9_4 = Label(tab9, text=' ')
+    space9_4_2 = Label(tab9, text=' ')
+    spin9_E_4 = Spinbox(tab9, from_=00, to=24, width=3, format='%02.0f')
+    spin9_F_4 = Spinbox(tab9, from_=00, to=59, width=3, format='%02.0f')
+    spin9_E_4.delete(0,'end')
+    spin9_E_4.insert(0,'07')
+    spin9_F_4.delete(0,'end')
+    spin9_F_4.insert(0,'00')
+    label9_h0_4 = Label(tab9, text=':')
+    label9_m0_4 = Label(tab9, text='')
+    date9_4_entry = Spinbox(tab9, from_=00, to=31, width=3, format='%02.0f')
+    month9_4_entry = Spinbox(tab9, from_=00, to=12, width=3, format='%02.0f')
+    year9_4_entry = Spinbox(tab9, from_=2018, to=2030, width=5)
+    today=datetime.date.today() # today
+    day_phase4 = day_phase3 + datetime.timedelta(days=21) # calculate dates for 21 days after recording initiation
+    date9_4_entry.delete(0,'end')
+    date9_4_entry.insert(0,'{:02d}'.format(day_phase4.day))
+    month9_4_entry.delete(0,'end')
+    month9_4_entry.insert(0,'{:02d}'.format(day_phase4.month))
+    year9_4_entry.delete(0,'end')
+    year9_4_entry.insert(0,day_phase4.year)
+    label9_d_4 = Label(tab1, text= '/')
+    label9_m_4 = Label(tab1, text= '/')
+    rad9_A_4 = Radiobutton(tab9, text='LD', variable=var9_4, value=1)
+    lbl9_A_4 = Label(tab9, text= 'On:')
+    spin9_A_4 = Spinbox(tab9, from_=00, to=24, width=3, format='%02.0f')
+    spin9_B_4 = Spinbox(tab9, from_=00, to=59, width=3, format='%02.0f')
+    spin9_A_4.delete(0,'end')
+    spin9_A_4.insert(0,'07')
+    spin9_B_4.delete(0,'end')
+    spin9_B_4.insert(0,'00')
+    label9_h1_4 = Label(tab9, text=':')
+    label9_m1_4 = Label(tab9, text='')
+    lbl9_B_4 = Label(tab9, text= 'Off:')
+    spin9_C_4 = Spinbox(tab9, from_=00, to=24, width=3, format='%02.0f')
+    spin9_D_4 = Spinbox(tab9, from_=00, to=59, width=3, format='%02.0f')
+    spin9_C_4.delete(0,'end')
+    spin9_C_4.insert(0,'19')
+    spin9_D_4.delete(0,'end')
+    spin9_D_4.insert(0,'00')
+    label9_h2_4 = Label(tab9, text=':')
+    label9_m2_4 = Label(tab9, text='')
+    rad9_B_4 = Radiobutton(tab9, text='DD', variable=var9_4, value=2)
+    rad9_C_4 = Radiobutton(tab9, text='LL', variable=var9_4, value=3)
+    phaseLabel9_4.grid(column=0, row=4+row_adj, padx=15, pady=5)
+    fromLabel9_4.grid(column=1,row=4+row_adj)
+    spin9_E_4.grid(column=2,row=4+row_adj)
+    label9_h0_4.grid(column=3,row=4+row_adj)
+    spin9_F_4.grid(column=4,row=4+row_adj)
+    label9_m0_4.grid(column=5,row=4+row_adj)
+    space9_4.grid(column=6,row=4+row_adj)
+    date9_4_entry.grid(column=11, row=4+row_adj)
+    label9_d_4.grid(column=8,row=4+row_adj)
+    month9_4_entry.grid(column=9, row=4+row_adj)
+    label9_m_4.grid(column=10,row=4+row_adj)
+    year9_4_entry.grid(column=7, row=4+row_adj) # ISO format
+    space9_4_2.grid(column=12,row=4+row_adj,padx=5)
+    rad9_A_4.grid(column=13, row=4+row_adj, pady=5)
+    lbl9_A_4.grid(column=14, row=4+row_adj, pady=5)
+    spin9_A_4.grid(column=15,row=4+row_adj, pady=5)
+    label9_h1_4.grid(column=16,row=4+row_adj, pady=5)
+    spin9_B_4.grid(column=17,row=4+row_adj, pady=5)
+    label9_m1_4.grid(column=18,row=4+row_adj, pady=5)
+    lbl9_B_4.grid(column=19, row=4+row_adj, pady=5)
+    spin9_C_4.grid(column=20,row=4+row_adj, pady=5)
+    label9_h2_4.grid(column=21,row=4+row_adj, pady=5)
+    spin9_D_4.grid(column=22,row=4+row_adj, pady=5)
+    label9_m2_4.grid(column=23,row=4+row_adj, pady=5)
+    rad9_B_4.grid(column=24, row=4+row_adj, padx=15, pady=5)
+    rad9_C_4.grid(column=25, row=4+row_adj, pady=5)
+
+    btn9.grid(column=0, row=6+row_adj, padx=25, pady=5, columnspan='2', sticky='w')
+    btnAll9.grid(column=1, row=6+row_adj, pady=5, columnspan='1', sticky='w')
+    box9sched_stat.grid(column=3, row=6+row_adj, columnspan='8', sticky='w')
     window.update_idletasks()
-    tab9_title2 = Label(tab9, text= 'Recording status', anchor='center')
-    tab9_title2.grid(column=0, row= row_adj+6, columnspan='27', sticky='we')
+    tab9_title2 = Label(tab1, text= 'Recording status', anchor='center')
+    tab9_title2.grid(column=0, row= row_adj+7, columnspan='27', sticky='we')
     box9rec_text=StringVar()
     box9rec_text.set('Recording not started yet.')
-    box9rec_stat=Label(tab9, textvariable=box9rec_text, anchor='center', justify=LEFT)
-    box9rec_stat.grid(column=0, row= row_adj+7, columnspan='27', sticky='we')
+    box9rec_stat=Label(tab1, textvariable=box9rec_text, anchor='center', justify=LEFT)
+    box9rec_stat.grid(column=0, row= row_adj+8, columnspan='27', sticky='we')
     window.update_idletasks()
 
     # Box10
@@ -5785,18 +7178,94 @@ if __name__ == '__main__':
     label10_m2_3.grid(column=23,row=3+row_adj, pady=5)
     rad10_B_3.grid(column=24, row=3+row_adj, padx=15, pady=5)
     rad10_C_3.grid(column=25, row=3+row_adj, pady=5)
-    btn10.grid(column=0, row=4+row_adj, padx=25, pady=5, columnspan='2', sticky='w')
-    btnAll10.grid(column=1, row=4+row_adj, pady=5, columnspan='1', sticky='w')
-    tab_control.pack(expand=1, fill='both')
-    box10sched_stat.grid(column=3, row=4+row_adj, columnspan='8', sticky='w')
+    
+        # phase 4
+    phaseLabel10_4 = Label(tab10, text='Phase 4')
+    fromLabel10_4 = Label(tab10, text='From:')
+    space10_4 = Label(tab10, text=' ')
+    space10_4_2 = Label(tab10, text=' ')
+    spin10_E_4 = Spinbox(tab10, from_=00, to=24, width=3, format='%02.0f')
+    spin10_F_4 = Spinbox(tab10, from_=00, to=59, width=3, format='%02.0f')
+    spin10_E_4.delete(0,'end')
+    spin10_E_4.insert(0,'07')
+    spin10_F_4.delete(0,'end')
+    spin10_F_4.insert(0,'00')
+    label10_h0_4 = Label(tab10, text=':')
+    label10_m0_4 = Label(tab10, text='')
+    date10_4_entry = Spinbox(tab10, from_=00, to=31, width=3, format='%02.0f')
+    month10_4_entry = Spinbox(tab10, from_=00, to=12, width=3, format='%02.0f')
+    year10_4_entry = Spinbox(tab10, from_=2018, to=2030, width=5)
+    today=datetime.date.today() # today
+    day_phase4 = day_phase3 + datetime.timedelta(days=21) # calculate dates for 21 days after recording initiation
+    date10_4_entry.delete(0,'end')
+    date10_4_entry.insert(0,'{:02d}'.format(day_phase4.day))
+    month10_4_entry.delete(0,'end')
+    month10_4_entry.insert(0,'{:02d}'.format(day_phase4.month))
+    year10_4_entry.delete(0,'end')
+    year10_4_entry.insert(0,day_phase4.year)
+    label10_d_4 = Label(tab1, text= '/')
+    label10_m_4 = Label(tab1, text= '/')
+    rad10_A_4 = Radiobutton(tab10, text='LD', variable=var10_4, value=1)
+    lbl10_A_4 = Label(tab10, text= 'On:')
+    spin10_A_4 = Spinbox(tab10, from_=00, to=24, width=3, format='%02.0f')
+    spin10_B_4 = Spinbox(tab10, from_=00, to=59, width=3, format='%02.0f')
+    spin10_A_4.delete(0,'end')
+    spin10_A_4.insert(0,'07')
+    spin10_B_4.delete(0,'end')
+    spin10_B_4.insert(0,'00')
+    label10_h1_4 = Label(tab10, text=':')
+    label10_m1_4 = Label(tab10, text='')
+    lbl10_B_4 = Label(tab10, text= 'Off:')
+    spin10_C_4 = Spinbox(tab10, from_=00, to=24, width=3, format='%02.0f')
+    spin10_D_4 = Spinbox(tab10, from_=00, to=59, width=3, format='%02.0f')
+    spin10_C_4.delete(0,'end')
+    spin10_C_4.insert(0,'19')
+    spin10_D_4.delete(0,'end')
+    spin10_D_4.insert(0,'00')
+    label10_h2_4 = Label(tab10, text=':')
+    label10_m2_4 = Label(tab10, text='')
+    rad10_B_4 = Radiobutton(tab10, text='DD', variable=var10_4, value=2)
+    rad10_C_4 = Radiobutton(tab10, text='LL', variable=var10_4, value=3)
+    phaseLabel10_4.grid(column=0, row=4+row_adj, padx=15, pady=5)
+    fromLabel10_4.grid(column=1,row=4+row_adj)
+    spin10_E_4.grid(column=2,row=4+row_adj)
+    label10_h0_4.grid(column=3,row=4+row_adj)
+    spin10_F_4.grid(column=4,row=4+row_adj)
+    label10_m0_4.grid(column=5,row=4+row_adj)
+    space10_4.grid(column=6,row=4+row_adj)
+    date10_4_entry.grid(column=11, row=4+row_adj)
+    label10_d_4.grid(column=8,row=4+row_adj)
+    month10_4_entry.grid(column=9, row=4+row_adj)
+    label10_m_4.grid(column=10,row=4+row_adj)
+    year10_4_entry.grid(column=7, row=4+row_adj) # ISO format
+    space10_4_2.grid(column=12,row=4+row_adj,padx=5)
+    rad10_A_4.grid(column=13, row=4+row_adj, pady=5)
+    lbl10_A_4.grid(column=14, row=4+row_adj, pady=5)
+    spin10_A_4.grid(column=15,row=4+row_adj, pady=5)
+    label10_h1_4.grid(column=16,row=4+row_adj, pady=5)
+    spin10_B_4.grid(column=17,row=4+row_adj, pady=5)
+    label10_m1_4.grid(column=18,row=4+row_adj, pady=5)
+    lbl10_B_4.grid(column=19, row=4+row_adj, pady=5)
+    spin10_C_4.grid(column=20,row=4+row_adj, pady=5)
+    label10_h2_4.grid(column=21,row=4+row_adj, pady=5)
+    spin10_D_4.grid(column=22,row=4+row_adj, pady=5)
+    label10_m2_4.grid(column=23,row=4+row_adj, pady=5)
+    rad10_B_4.grid(column=24, row=4+row_adj, padx=15, pady=5)
+    rad10_C_4.grid(column=25, row=4+row_adj, pady=5)
+
+    btn10.grid(column=0, row=6+row_adj, padx=25, pady=5, columnspan='2', sticky='w')
+    btnAll10.grid(column=1, row=6+row_adj, pady=5, columnspan='1', sticky='w')
+    box10sched_stat.grid(column=3, row=6+row_adj, columnspan='8', sticky='w')
     window.update_idletasks()
-    tab10_title2 = Label(tab10, text= 'Recording status', anchor='center')
-    tab10_title2.grid(column=0, row= row_adj+6, columnspan='27', sticky='we')
+    tab10_title2 = Label(tab1, text= 'Recording status', anchor='center')
+    tab10_title2.grid(column=0, row= row_adj+7, columnspan='27', sticky='we')
     box10rec_text=StringVar()
     box10rec_text.set('Recording not started yet.')
-    box10rec_stat=Label(tab10, textvariable=box10rec_text, anchor='center', justify=LEFT)
-    box10rec_stat.grid(column=0, row= row_adj+7, columnspan='27', sticky='we')
+    box10rec_stat=Label(tab1, textvariable=box10rec_text, anchor='center', justify=LEFT)
+    box10rec_stat.grid(column=0, row= row_adj+8, columnspan='27', sticky='we')
     window.update_idletasks()
+
+    tab_control.pack(expand=1, fill='both')
 
     ### Main loop
     window.mainloop()
