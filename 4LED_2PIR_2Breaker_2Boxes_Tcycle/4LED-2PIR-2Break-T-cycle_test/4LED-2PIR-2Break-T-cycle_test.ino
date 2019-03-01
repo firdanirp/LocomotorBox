@@ -331,6 +331,7 @@ float intTimeex = 0.; //For re-reference when the external clock turns 00:00:00
 float intHour = 0.;
 float intMinute = 0.;
 float intSecond = 0.;
+float anchor = 24.*3600. ;
 
 // Define a function to convert string to integer
 int getInt(String text)
@@ -1081,12 +1082,6 @@ void loop()
     Serial.println("HH:MM:SS MO/DY/YEAR DAY Internal LED01 PIR11 PIR12 BRK11 BRK12 LED02 PIR21 PIR22 BRK21 BRK22");
     InitialFlag = 1;
     T_Cycle = T_Cycle1;
-    clock.getTime();
-    while ((clock.hour == StartHour && clock.minute == StartMinute && clock.dayOfMonth == StartDate && clock.month == StartMonth && (clock.year + 2000) == StartYear) == false)
-    {
-      delay(1);
-      clock.getTime();
-    }
   }
 
   if (InitialFlag == 1)
@@ -1181,6 +1176,14 @@ void loop()
         intMinute = minute(intTimeex);
         intHour = hour(intTimeex);
       }
+    }
+
+    //To avoid the 00:00:00 can't be reached
+    if (reset1 == 1 && (anchor - (intHour * 60 * 60 + intMinute * 60 + intSecond) < 30))
+    {
+      intHour = 0.;
+      intMinute = 0.;
+      intSecond = 0.;
     }
     //Reset the reference to clock time from the second Day at 23:59:00, after 1 min of PIR sampling, it becomes the next day
 

@@ -32,7 +32,7 @@ import threading  # To run Arduino loop and tkinter loop alongside
 
 import serial.tools.list_ports  # For identifying Arduino port
 
-#import numpy as np
+import numpy as np
 
 #import pandas as pd
 
@@ -1569,24 +1569,14 @@ if __name__ == '__main__':
 
     tab_control.add(tab11, text='Schedules')
 
-    # Display all available serial ports
-
-    # openPorts=serial_ports()
-
+    #Display all available serial ports
     ports = list(serial.tools.list_ports.comports())
-
     for p in ports:
-
         print(p)
-
     openPorts = p.device
-
-    #if len(np.shape(openPorts)) == 0:
-
-        #openPorts = [openPorts]
-
+    if len(np.shape(openPorts)) == 0:
+        openPorts = [openPorts]
     status.pack(side='bottom', fill='x')
-
     status.set('Available ports: '+', '.join(map(str, openPorts)))
 
     # Entry for Port, Baud, timeout, filename to save

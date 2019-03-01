@@ -116,33 +116,6 @@ def create_serial_obj(portPath, baud_rate, timeout):
     '''
     return serial.Serial(portPath, baud_rate, timeout=timeout)
 
-# Find open serial ports
-def serial_ports():
-    arduino_ports = [
-        p.device
-        for p in serial.tools.list_ports.comports()
-        if 'Arduino' or 'Generic CDC' in p.description
-    ]
-    if sys.platform.startswith('win'):
-        arduino_ports = ['COM%s' % (i + 1) for i in range(256)]
-    elif sys.platform.startswith('linux') or sys.platform.startswith('cygwin'):
-        # this excludes your current terminal '/dev/tty'
-        arduino_ports = glob.glob('/dev/tty[A-Za-z]*')
-    elif sys.platform.startswith('darwin'):
-        arduino_ports = glob.glob('/dev/tty.*')
-    else:
-        raise EnvironmentError('Unsupported platform')
-        
-    result = []
-    for port in arduino_ports:
-        try:
-            s = serial.Serial(port)
-            s.close()
-            result.append(port)
-        except (OSError, serial.SerialException):
-            pass
-    return result
-
 ###Classes
 class StatusBar(Frame): # scan open serial ports
     def __init__(self, master):
@@ -4372,7 +4345,6 @@ if __name__ == '__main__':
     tab_control.add(tab11, text='Schedules')
 
     #Display all available serial ports
-    #openPorts=serial_ports()
     ports = list(serial.tools.list_ports.comports())
     for p in ports:
         print(p)
