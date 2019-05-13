@@ -287,6 +287,8 @@ float intHour = 0.;
 float intMinute = 0.;
 float intSecond = 0.;
 
+float anchor = 24.*3600. ;
+
 // Define a function to convert string to integer
 int getInt(String text)
 {
@@ -1958,12 +1960,6 @@ void loop()
     Serial.println("HH:MM:SS MO/DY/YEAR DAY Internal LED01 PIR01 LED02 PIR02 LED03 PIR03 LED04 PIR04 LED05 PIR05 LED06 PIR06 LED07 PIR07 LED08 PIR08 LED09 PIR09 LED10 PIR10");
     InitialFlag = 1;
     T_Cycle = T_Cycle1;
-    clock.getTime();
-    while ((clock.hour == StartHour && clock.minute == StartMinute && clock.dayOfMonth == StartDate && clock.month == StartMonth && (clock.year + 2000) == StartYear) == false)
-    {
-      delay(1);
-      clock.getTime();
-    }
   }
 
   if (InitialFlag == 1)
@@ -2059,9 +2055,17 @@ void loop()
         intHour = hour(intTimeex);
       }
     }
+    
+    //To avoid the 00:00:00 can't be reached
+    if (reset1 == 1 && (anchor - (intHour * 60 * 60 + intMinute * 60 + intSecond) < 30))
+    {
+      intHour = 0.;
+      intMinute = 0.;
+      intSecond = 0.;
+    }
     //Reset the reference to clock time from the second Day at 23:59:00, after 1 min of PIR sampling, it becomes the next day
 
-    if (reset1 == 1 && intHour == 23. && intMinute == 59.)
+    if (reset1 == 1 && intHour == 0. && intMinute == 0. && intSecond == 0.)
     {
       hourstart = clock.hour;
       minstart = clock.minute;
