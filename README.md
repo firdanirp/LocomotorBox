@@ -21,8 +21,8 @@ This software system requires Arduino Mega 2560 for controlling 10 boxes and a d
 
 ## Authors
 
-* Jihwan Myung - initial work and further development
-* Vuong Truong - further development on Python GUI interface
+* Jihwan Myung - initial work, Arduino, and GUI development
+* Vuong Truong - development of Python interface
 
 ## Acknowledgments
 
