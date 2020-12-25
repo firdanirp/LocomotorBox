@@ -33,7 +33,7 @@ int phase1[10]  = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 int phase2[10]  = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 int phase3[10]  = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 
-int HourOn1[10]    = { 8, 8, 8, 8, 8, 8, 8, 8, 8, 8};  // phase 1
+int HourOn1[10]    = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};  // phase 1
 int MinuteOn1[10]  = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 int HourOff1[10]   = {20,20,20,20,20,20,20,20,20,20};
 int MinuteOff1[10] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
@@ -781,8 +781,26 @@ void loop()
                 LightFlag[i] = 1;
               }
           }
+          else
+          {
+            if (light1[i] == 0 && dark1[i] == 0)
+            {
+              digitalWrite(DOut[i], LOW);
+              LightFlag[i] = 0;
+            }
+            if (light1[i] == 0 && dark1[i] == 1)
+              {
+                digitalWrite(DOut[i], LOW);
+                LightFlag[i] = 0;
+              }
+            if (light1[i] == 1 && dark1[i] == 0)
+              {
+                digitalWrite(DOut[i], HIGH);
+                LightFlag[i] = 1;
+              }
+          } //else
         }
-        if (HourOn1[i]*60 + MinuteOn1[i] > HourOff1[i]*60 + MinuteOff1[i]) //pm to am condition Turn On 
+        else if (HourOn1[i]*60 + MinuteOn1[i] > HourOff1[i]*60 + MinuteOff1[i]) //pm to am condition Turn On 
         {
           if ( HourOn1[i] * 60 + MinuteOn1[i] <=  clock.hour * 60 + clock.minute || clock.hour * 60 + clock.minute < HourOff1[i] * 60 + MinuteOff1[i])
           {
@@ -802,25 +820,26 @@ void loop()
                 LightFlag[i] = 1;
               }
           }
-        }
-        else
-        {
-          if (light1[i] == 0 && dark1[i] == 0)
+          else
           {
-            digitalWrite(DOut[i], LOW);
-            LightFlag[i] = 0;
-          }
-          if (light1[i] == 0 && dark1[i] == 1)
+            if (light1[i] == 0 && dark1[i] == 0)
             {
               digitalWrite(DOut[i], LOW);
               LightFlag[i] = 0;
             }
-          if (light1[i] == 1 && dark1[i] == 0)
+            if (light1[i] == 0 && dark1[i] == 1)
+              {
+                digitalWrite(DOut[i], LOW);
+                LightFlag[i] = 0;
+              }
+            if (light1[i] == 1 && dark1[i] == 0)
               {
                 digitalWrite(DOut[i], HIGH);
                 LightFlag[i] = 1;
               }
           } //else
+        }
+        
       }
     } // end of for loop
 

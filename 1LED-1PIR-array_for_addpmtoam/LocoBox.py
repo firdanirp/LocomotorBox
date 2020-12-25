@@ -3144,11 +3144,11 @@ if __name__ == '__main__':
     status.set('Available ports: '+', '.join(map(str,openPorts)))
 
     #Entry for Port, Baud, timeout, filename to save
-    port   = Label(text = 'Port').place(x = 40, y = 320)
-    baud   = Label(text =  'Baud rate').place(x = 363, y = 320)
-    timeout = Label(text = 'Time out').place(x= 565, y=320)
-    filename = Label(text= 'File').place(x=40, y=360)
-    configfilename = Label(text= 'Schedule').place(x=363, y=360)
+    Label(text = 'Port').place(x = 40, y = 320)
+    Label(text =  'Baud rate').place(x = 363, y = 320)
+    Label(text = 'Time out').place(x= 565, y=320)
+    Label(text= 'File').place(x=40, y=360)
+    Label(text= 'Schedule').place(x=363, y=360)
 
     port_entry = Spinbox(values=openPorts, width=25)
     port_entry.delete(0,'end')
